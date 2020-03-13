@@ -571,15 +571,15 @@
     }
   }
 
-  fetch('https://app-router.leancloud.cn/2/route?appId=QMXGn5ttLIUf6TGnmWMCm1cO-gzGzoHsz')
+  fetch('https://app-router.leancloud.cn/2/route?appId=CXubGQ4Kvn7J2qlCodHKscCy-gzGzoHsz')
     .then(response => response.json())
     .then(({ api_server }) => {
       var Counter = (method, url, data) => {
         return fetch(`https://${api_server}/1.1${url}`, {
           method,
           headers: {
-            'X-LC-Id'     : 'QMXGn5ttLIUf6TGnmWMCm1cO-gzGzoHsz',
-            'X-LC-Key'    : 'MeOG4BU6iYnp6YQ9YYMel2mi',
+            'X-LC-Id'     : 'CXubGQ4Kvn7J2qlCodHKscCy-gzGzoHsz',
+            'X-LC-Key'    : 'H2f0rRpnmBHGlNeRJBVLeDbT',
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(data)
