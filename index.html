@@ -212,10 +212,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-03-13 21:22:17 / 修改时间：23:03:40" itemprop="dateCreated datePublished" datetime="2020-03-13T21:22:17+08:00">2020-03-13</time>
+              <time title="创建时间：2020-03-13 21:22:17" itemprop="dateCreated datePublished" datetime="2020-03-13T21:22:17+08:00">2020-03-13</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-14 00:21:38" itemprop="dateModified" datetime="2020-03-14T00:21:38+08:00">2020-03-14</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -251,42 +257,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="克隆仓库"><a href="#克隆仓库" class="headerlink" title="克隆仓库"></a>克隆仓库</h2><p>在根目录下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;theme-next&#x2F;hexo-theme-next themes&#x2F;next</span><br></pre></td></tr></table></figure>
-
-<h2 id="使用主题"><a href="#使用主题" class="headerlink" title="使用主题"></a>使用主题</h2><p><code>_config.yml</code>中找到<code>theme</code>，修改为<code>next</code>完成</p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="标签栏"><a href="#标签栏" class="headerlink" title="标签栏"></a>标签栏</h3><ol>
-<li><p>添加标签栏</p>
-<p> 根目录下</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
-<p> 此时<code>/source/</code>中生成<code>tags</code>文件夹，里面有<code>index.md</code>，内容为</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: 标签</span><br><span class="line">date: 2014-12-22 12:39:04</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<p> 添加<code>type: &quot;tags&quot;</code>，此时文件内容为</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">title: 标签</span><br><span class="line">date: 2014-12-22 12:39:04</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-<p> 根目录的<code>config.yml</code>中取消<code>menu: tags:</code>的的注释即可</p>
-</li>
-<li><p>为文章添加标签</p>
-<p> 文章顶部：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">title: 标签测试文章</span><br><span class="line">tags:</span><br><span class="line">   - Test1</span><br><span class="line">   - Test2</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-<p> 注意不要忘了末尾的<code>---</code>，否则<code>hexo generate</code>的时候会报错</p>
-</li>
-</ol>
-<h3 id="分类栏"><a href="#分类栏" class="headerlink" title="分类栏"></a>分类栏</h3><p>类似<code>标签栏</code>的添加</p>
-<ol>
-<li><code>hexo new page categories</code></li>
-<li>在<code>source/categories/index.md</code>中添加类型<code>type: &quot;categories&quot;</code></li>
-<li>取消根目录的<code>_config.yml</code>中<code>categories:</code>的注释</li>
-<li>文章中<code>categories: test</code>（只能有一个分类）</li>
-</ol>
-<h3 id="评论（Valine）"><a href="#评论（Valine）" class="headerlink" title="评论（Valine）"></a>评论（Valine）</h3><ol>
-<li>在<a href="https://valine.js.org/quickstart.html" target="_blank" rel="noopener">链接</a>中查看APP ID和APP Key的获取方式（需注册<a href="https://www.leancloud.cn/" target="_blank" rel="noopener">leanCloud</a>并实名认证）<br> 注：无需部署，Next主题已经内置</li>
-<li>在<code>next</code>主题的<code>_config.yml</code>中找到APP ID和APP Key填入，将相关项改为<code>true</code>即可</li>
-</ol>
-<h3 id="访客-访问量数据统计"><a href="#访客-访问量数据统计" class="headerlink" title="访客/访问量数据统计"></a>访客/访问量数据统计</h3><p>（用的不蒜子统计）<br><code>_config.yml</code>中<code>busuanzi_count</code>把相关项<code>true</code>了</p>
-<h3 id="更多定制化配置"><a href="#更多定制化配置" class="headerlink" title="更多定制化配置"></a>更多定制化配置</h3><p>如侧边社交栏、打赏功能、腾讯公益404页面，请参考<a href="http://theme-next.iissnan.com/theme-settings.html" target="_blank" rel="noopener">官方教程链接</a></p>
-
+          <p>Next主题美化个人博客</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/13/%E4%BD%BF%E7%94%A8Next%E4%B8%BB%E9%A2%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -328,10 +307,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-03-13 09:19:20 / 修改时间：22:44:14" itemprop="dateCreated datePublished" datetime="2020-03-13T09:19:20+08:00">2020-03-13</time>
+              <time title="创建时间：2020-03-13 09:19:20" itemprop="dateCreated datePublished" datetime="2020-03-13T09:19:20+08:00">2020-03-13</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-14 00:20:25" itemprop="dateModified" datetime="2020-03-14T00:20:25+08:00">2020-03-14</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -367,54 +352,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Hexo-github-io部署自己的博客"><a href="#Hexo-github-io部署自己的博客" class="headerlink" title="Hexo+github.io部署自己的博客"></a>Hexo+github.io部署自己的博客</h1><blockquote>
+          <p>使用Hexo与github.io部署自己的博客</p>
+<blockquote>
 <p>环境：win10</p>
 </blockquote>
-<h2 id="1-安装Node-JS"><a href="#1-安装Node-JS" class="headerlink" title="1 安装Node.JS"></a>1 安装Node.JS</h2><p><a href="https://nodejs.org/en/" target="_blank" rel="noopener">链接</a></p>
-<h2 id="2-安装Hexo"><a href="#2-安装Hexo" class="headerlink" title="2 安装Hexo"></a>2 安装Hexo</h2><p>cmd中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-部署本地"><a href="#3-部署本地" class="headerlink" title="3 部署本地"></a>3 部署本地</h2><p>初始化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;folder&gt;</span><br><span class="line">cd &lt;folder&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-
-<p>生成</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-
-<p>然后在<code>http://localhost:xxxx</code>中可以预览博客</p>
-<h2 id="4-部署github"><a href="#4-部署github" class="headerlink" title="4 部署github"></a>4 部署github</h2><ol>
-<li><p>新仓库</p>
-<p> 创建一个新的仓库，仓库名为<code>username.github.io</code>，其中<code>username</code>必须是Github的用户名。然后就能在<code>username.github.io</code>看到你的主页了</p>
-</li>
-<li><p>转移</p>
-<p> 然后将仓库克隆到本地，并将第三部中创建的<code>&lt;folder&gt;</code><strong>中</strong>的文件copy到仓库文件中</p>
-</li>
-<li><p>配置文件修改</p>
-<p> 找到<code>_config.yml</code>，拖到底部找到<code>deploy</code>，按如下格式修改：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repo:</span><br><span class="line">        github: https:&#x2F;&#x2F;github.com&#x2F;username&#x2F;username.github.io</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure></li>
-<li><p>部署！<br> 进入<code>username.github.io</code>文件下</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p> 第一次部署需要github密码，等待片刻后可以在<code>https://username.github.io/</code>中看到自己的博客。初始状态是这样的：</p>
-<p> <img src="https://ftp.bmp.ovh/imgs/2020/03/49d75ff2d5a3e545.png" alt=""></p>
-</li>
-</ol>
-<h2 id="5-发布文章"><a href="#5-发布文章" class="headerlink" title="5 发布文章"></a>5 发布文章</h2><ol>
-<li><p>创建<br> 在<code>source/_posts/</code>中创建新的<code>markdown</code>文件，或者使用以下命令创建</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &lt;title&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>预览<br> 文章撰写完成后，执行命令</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g # 生成，即generate</span><br><span class="line">hexo s # 即server</span><br></pre></td></tr></table></figure>
-<p> 即可预览自己的博客</p>
-</li>
-<li><p>发布</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean # 清楚缓存文件和静态生产文件</span><br><span class="line">hexo g -d # 发布</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-<h2 id="6-参考文献"><a href="#6-参考文献" class="headerlink" title="6 参考文献"></a>6 参考文献</h2><p><a href="https://hexo.io/zh-tw/docs/" target="_blank" rel="noopener">Hexo官方文档</a></p>
-<p><a href="https://www.jianshu.com/p/71f58f4b7b30" target="_blank" rel="noopener">用 Github.io 和 Hexo 创建你的第一个博客</a></p>
-<p><a href="https://segmentfault.com/a/1190000017986794" target="_blank" rel="noopener">超详细Hexo+Github Page搭建技术博客教程【持续更新】</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/13/Hexo+Github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
