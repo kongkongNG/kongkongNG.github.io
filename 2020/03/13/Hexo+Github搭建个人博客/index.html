@@ -201,7 +201,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/morty.png">
       <meta itemprop="name" content="Minghao Feng">
-      <meta itemprop="description" content="personal blog of fmh.">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -275,19 +275,13 @@
 <p>环境：win10</p>
 </blockquote>
 <a id="more"></a>
-
-
-
 <h2 id="1-安装Node-JS"><a href="#1-安装Node-JS" class="headerlink" title="1 安装Node.JS"></a>1 安装Node.JS</h2><p><a href="https://nodejs.org/en/" target="_blank" rel="noopener">链接</a></p>
 <h2 id="2-安装Hexo"><a href="#2-安装Hexo" class="headerlink" title="2 安装Hexo"></a>2 安装Hexo</h2><p>cmd中</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
 <h2 id="3-部署本地"><a href="#3-部署本地" class="headerlink" title="3 部署本地"></a>3 部署本地</h2><p>初始化</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;folder&gt;</span><br><span class="line">cd &lt;folder&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-
 <p>生成</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-
 <p>然后在<code>http://localhost:xxxx</code>中可以预览博客</p>
 <h2 id="4-部署github"><a href="#4-部署github" class="headerlink" title="4 部署github"></a>4 部署github</h2><ol>
 <li><p>新仓库</p>
@@ -301,22 +295,18 @@
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repo:</span><br><span class="line">        github: git@github.com:username&#x2F;username.github.io.git（这种ssh的写法可以避免每次deploy要输入账号密码，不过如果git没配置ssh key的话上网找找教程</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure></li>
 <li><p>部署！<br> 进入<code>username.github.io</code>文件下</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-
 <p> 第一次部署需要github密码，等待片刻后可以在<code>https://username.github.io/</code>中看到自己的博客。初始状态是这样的：</p>
 <p> <img src="https://ftp.bmp.ovh/imgs/2020/03/49d75ff2d5a3e545.png" alt=""></p>
 </li>
 </ol>
 <h2 id="5-发布文章"><a href="#5-发布文章" class="headerlink" title="5 发布文章"></a>5 发布文章</h2><ol>
-<li><p>创建<br> 在<code>source/_posts/</code>中创建新的<code>markdown</code>文件，或者使用以下命令创建</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &lt;title&gt;</span><br></pre></td></tr></table></figure></li>
+<li>创建<br> 在<code>source/_posts/</code>中创建新的<code>markdown</code>文件，或者使用以下命令创建 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &lt;title&gt;</span><br></pre></td></tr></table></figure></li>
 <li><p>预览<br> 文章撰写完成后，执行命令</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g # 生成，即generate</span><br><span class="line">hexo s # 即server</span><br></pre></td></tr></table></figure>
 <p> 即可预览自己的博客</p>
 </li>
 <li><p>发布</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean # 清楚缓存文件和静态生产文件</span><br><span class="line">hexo g -d # 发布</span><br></pre></td></tr></table></figure>
-
-
 </li>
 </ol>
 <h2 id="6-参考文献"><a href="#6-参考文献" class="headerlink" title="6 参考文献"></a>6 参考文献</h2><p><a href="https://hexo.io/zh-tw/docs/" target="_blank" rel="noopener">Hexo官方文档</a></p>
@@ -452,7 +442,7 @@
     <img class="site-author-image" itemprop="image" alt="Minghao Feng"
       src="/images/morty.png">
   <p class="site-author-name" itemprop="name">Minghao Feng</p>
-  <div class="site-description" itemprop="description">personal blog of fmh.</div>
+  <div class="site-description" itemprop="description">Stay hungry, stay foolish.</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -659,6 +649,8 @@ window.addEventListener('pjax:success', () => {
 
 
     <div id="pjax">
+  
+
   
 
   
