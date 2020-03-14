@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>LeetCode 300：最长上升子序列</title>
+    <url>/2020/03/14/leetcode_3_14/</url>
+    <content><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><img src="assets/md_2020-03-14-16-26-32.png" alt=""></p>
+<a id="more"></a>
+
+<h2 id="标准解法一：DP-O-n-2"><a href="#标准解法一：DP-O-n-2" class="headerlink" title="标准解法一：DP $O(n^2)$"></a>标准解法一：DP $O(n^2)$</h2><p>$d[i] = max(d[j])+1, 0 ≤ j &lt; i &amp;&amp; nums[j] &gt; nums[i]$</p>
+<p>即$d[i]$表示以$nums[i]$结尾的最长递增子序列长度</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int lengthOfLIS(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int n&#x3D;(int)nums.size();</span><br><span class="line">        if (n &#x3D;&#x3D; 0) return 0;</span><br><span class="line">        vector&lt;int&gt; dp(n, 0);</span><br><span class="line">        for (int i &#x3D; 0; i &lt; n; ++i) &#123;</span><br><span class="line">            dp[i] &#x3D; 1;</span><br><span class="line">            for (int j &#x3D; 0; j &lt; i; ++j) &#123;</span><br><span class="line">                if (nums[j] &lt; nums[i]) &#123;</span><br><span class="line">                    dp[i] &#x3D; max(dp[i], dp[j] + 1);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return *max_element(dp.begin(), dp.end());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="标准解法二：贪心-二分-O-nlogn"><a href="#标准解法二：贪心-二分-O-nlogn" class="headerlink" title="标准解法二：贪心+二分 $O(nlogn)$"></a>标准解法二：贪心+二分 $O(nlogn)$</h2><p>　　思路：记录长度为<code>i</code>的LIS的最小尾元素<code>d[i]</code></p>
+<p><strong>贪心贪什么？</strong></p>
+<p>　　贪尾元素的最小，从而保证每个长度为<code>i</code>的递增子序列（IS，Increasing Sequence）都是最容易扩充的。</p>
+<p><strong>二分分什么？</strong></p>
+<p>　　分最小尾元数组<code>d</code>，当<code>num[i]</code>大于当前最大长度<code>len</code>对应的尾元<code>d[len]</code>时，秩序将<code>num[i]</code>“插入”LIS（直接令<code>d[++len]=num[i]</code>即可完成更新<code>d</code>与<code>len</code>）；而如果无法插入当前的LIS，则需要考虑更新之前的IS，因为<strong>每个IS都有可能成为LIS</strong>。所以需要找到<code>d[k] &lt; num[i] &lt; d[k+1]</code>，也就是<strong>找到第一个比<code>num[i]</code>小的尾元<code>d[k]</code></strong>，这里就用到了二分。然后把<code>num[i]</code>“插到”<code>d[k]</code>之后（更新<code>d[k+1]=num[i]</code>）。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int lengthOfLIS(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int len &#x3D; 1, n &#x3D; (int)nums.size();</span><br><span class="line">        if (n &#x3D;&#x3D; 0) return 0;</span><br><span class="line">        vector&lt;int&gt; d(n + 1, 0);</span><br><span class="line">        d[len] &#x3D; nums[0];</span><br><span class="line">        for (int i &#x3D; 1; i &lt; n; ++i) &#123;</span><br><span class="line">            if (nums[i] &gt; d[len]) d[++len] &#x3D; nums[i];</span><br><span class="line">            else&#123;</span><br><span class="line">                int l &#x3D; 1, r &#x3D; len, pos &#x3D; 0; &#x2F;&#x2F; 如果找不到说明所有的数都比 nums[i] 大，此时要更新 d[1]，所以这里将 pos 设为 0</span><br><span class="line">                while (l &lt;&#x3D; r) &#123;</span><br><span class="line">                    int mid &#x3D; (l + r) &gt;&gt; 1;</span><br><span class="line">                    if (d[mid] &lt; nums[i]) &#123;</span><br><span class="line">                        pos &#x3D; mid;</span><br><span class="line">                        l &#x3D; mid + 1;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else r &#x3D; mid - 1;</span><br><span class="line">                &#125;</span><br><span class="line">                d[pos + 1] &#x3D; nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return len;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="个人解法-DP"><a href="#个人解法-DP" class="headerlink" title="个人解法 DP"></a>个人解法 DP</h2><p>　　思路类似<code>标准解法一</code>，用<code>map P</code>记录以<code>nums[i]</code>结尾的的最大递增子序列（LIS），每次取最大的LIS长度<code>P[nums[j]]</code>使得<code>nums[i]&gt;nums[j]</code>保留</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int lengthOfLIS(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        map&lt;int, int&gt; P;    &#x2F;&#x2F; 使用map记录num[i]结尾的LIS</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 0; i &lt; nums.size(); i++) &#123;</span><br><span class="line">            P[nums[i]] &#x3D; 1; &#x2F;&#x2F; 初始化为1（也就是只有自己）</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 0; i &lt; nums.size(); i++) &#123;</span><br><span class="line">            int j;</span><br><span class="line">            for (j &#x3D; 0; j &lt; i; j++) &#123;</span><br><span class="line">                if (nums[i] &gt; nums[j] &amp;&amp; P[nums[i]] &lt; P[nums[j]]+1) &#123;</span><br><span class="line">                    P[nums[i]] &#x3D; P[nums[j]]+1;  &#x2F;&#x2F; 取最大的一个</span><br><span class="line">                    &#x2F;&#x2F; cout &lt;&lt; nums[i] &lt;&lt; &quot; &quot; &lt;&lt; P[nums[i]] &lt;&lt; endl;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int max &#x3D; 0;</span><br><span class="line">        for (auto it &#x3D; P.begin(); it !&#x3D; P.end(); it++) &#123;</span><br><span class="line">            if ((*it).second &gt; max) &#123;</span><br><span class="line">                max &#x3D; (*it).second;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return max;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>　　总结一下，DP解这题的思路只需由<code>i</code>建立<code>nums[i]</code>与dp数组<code>dp[i]</code>的联系，而无需用到<code>map</code>进行具体数值的映射。此外，对<code>max</code>的处理不够简略，比较混乱</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://leetcode-cn.com/problems/longest-increasing-subsequence/solution/zui-chang-shang-sheng-zi-xu-lie-by-leetcode-soluti/" target="_blank" rel="noopener">官方题解</a></p>
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用Next主题</title>
     <url>/2020/03/13/%E4%BD%BF%E7%94%A8Next%E4%B8%BB%E9%A2%98/</url>
     <content><![CDATA[<p>Next主题美化个人博客</p>
