@@ -1,6 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>LeetCode 1160.拼写单词</title>
+    <url>/2020/03/17/leetcode_3_17/</url>
+    <content><![CDATA[<p>ps：是非常非常简单的一道题，但是实现途中意识到自己代码能力太差，c++ string的用法搞的一塌糊涂，还是要拉出来总结一下</p>
+<a id="more"></a>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><img src="assets/md_2020-03-17-12-03-23.png" alt=""></p>
+<h2 id="标准解法-哈希表计数-O-n-m"><a href="#标准解法-哈希表计数-O-n-m" class="headerlink" title="标准解法 哈希表计数 $O(n+m)$"></a>标准解法 哈希表计数 $O(n+m)$</h2><p><code>unorder_map</code>分别记录<code>chars</code>（资源）和<code>words</code>中的单词（需求）的字母出现次数，若资源大于需求则满足，否则不满足。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// include &lt;unordered_map&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countCharacters</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; words, <span class="built_in">string</span> chars)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; chars_cnt;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> c : chars) &#123;</span><br><span class="line">            chars_cnt[c]++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> <span class="keyword">word</span> : words) &#123;</span><br><span class="line">            <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; word_cnt;</span><br><span class="line">            <span class="keyword">bool</span> flag = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> c : <span class="keyword">word</span>) &#123;</span><br><span class="line">                word_cnt[c]++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> c : <span class="keyword">word</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (chars_cnt[c] &lt; word_cnt[c]) &#123;</span><br><span class="line">                    flag = <span class="literal">false</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; </span><br><span class="line">            <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">                ans += <span class="keyword">word</span>.<span class="built_in">size</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="个人解法-O-n-m"><a href="#个人解法-O-n-m" class="headerlink" title="个人解法 $O(n*m)$"></a>个人解法 $O(n*m)$</h2><p>没脑暴力的做法，对于<code>words</code>里的每个词的每个字母，在<code>chars</code>中找，找到一个删一个，如果有一个没找到，则不满足要求。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countCharacters</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; words, <span class="built_in">string</span> chars)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> it = words.<span class="built_in">begin</span>(); it != words.<span class="built_in">end</span>(); it++) &#123;</span><br><span class="line">            <span class="built_in">string</span> tmpchars = chars;</span><br><span class="line">            <span class="keyword">bool</span> flag = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> c = it-&gt;<span class="built_in">begin</span>(); c != it-&gt;<span class="built_in">end</span>(); c++) &#123;</span><br><span class="line">                <span class="keyword">auto</span> pos = tmpchars.<span class="built_in">find</span>(*c);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (pos != <span class="built_in">string</span>::npos) &#123;</span><br><span class="line">                    tmpchars.erase(pos, <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    flag = <span class="literal">false</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">                ans += it-&gt;<span class="built_in">size</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>有一个神秘的现象时，本人的$O(n*m)$方案比题解$O(n+m)$方案的实际耗时要少，也许<code>unordered_map</code>的初始化、增添等代价要比<code>string</code>的使用代价高，或者<code>string</code>内部优化了<code>find()</code>。</p>
+<p>从思路来讲，题解采用哈希表计数，通过比对资源与需求来判断单词是否可以被成果拼写，这个思路很巧妙。</p>
+<h3 id="在本题中使用到的C-特性总结"><a href="#在本题中使用到的C-特性总结" class="headerlink" title="在本题中使用到的C++特性总结"></a>在本题中使用到的C++特性总结</h3><ul>
+<li><code>unordered_map&lt;key, value&gt;</code><ul>
+<li>正常哈希表的使用方法，重载了<code>[]</code>，可以很方便地类似数组使用</li>
+</ul>
+</li>
+<li><code>for(it : container)</code><ul>
+<li>for_each的用法太赞了，以前不知道，每次遍历都要苦苦写长长的<code>iterator</code></li>
+</ul>
+</li>
+<li><code>string</code><ul>
+<li><code>size_t str.find(substr/char)</code>：find可以用来查找子串，也可以查找单个char，返回的是该子串/字母第一次出现的位置，如果找不到,返回<code>str.npos</code>。注意<strong>不要用int型变量接收返回值</strong>（如<code>int pos = str.find(xxx)</code>，会将<code>str.npos</code>转为-1，从而<code>(pos != str.npos)</code>的判断语句就会失效。标准的接收变量是<code>size_t</code>或简便的<code>auto</code></li>
+<li><code>str.erase(pos, n)</code>，从<code>pos</code>开始删除<code>n</code>个字符，如果省略<code>n</code>的话默认是到结尾。千万注意这里的<code>pos</code>是<code>size_t</code>型（也可以传入int），之前错以为可以删除特定字母<code>c</code>，从而造成错误的用法是<code>str.erase(c)</code>，这里语义是将<strong>从<code>c</code>的ASCII码位置起，到字符串结尾的字符删除</strong>，而这个ASCII码通常很大，就会造成程序出错。<ul>
+<li><code>str.erase(iterator pos)</code>和<code>str.erase(iterator first, iterator last)</code>，erase的重载方法，注意区分使用。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LeetCode 695：岛屿的最大面积</title>
     <url>/2020/03/15/leetcode_3_15/</url>
     <content><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><img src="https://ftp.bmp.ovh/imgs/2020/03/2c3c48b371d8f3e1.png" alt=""></p>
