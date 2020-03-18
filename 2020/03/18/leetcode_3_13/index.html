@@ -22,16 +22,16 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="题目描述 标准解答 数学 $O(n)$首先证明：如果str1+str2等于str2+str1，则一定存在符合条件的字符串X。 必要性： $str1&#x3D;X+X+…+X&#x3D;nX,str2&#x3D;X+X+…+X&#x3D;mX$，则$str1+str2&#x3D;(n+m)X&#x3D;(m+n)X&#x3D;str2+str1$ 充分性（证明其逆否命题成立）： 将str1分为长度最小的相等的n份，str2分为m份，$str1&#x3D;X_1+…+X_n,st">
+  <meta name="description" content="题目描述">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode 1071：字符串的最大公因子">
 <meta property="og:url" content="http://yoursite.com/2020/03/18/leetcode_3_13/index.html">
 <meta property="og:site_name" content="kongkong&#39;s Blog">
-<meta property="og:description" content="题目描述 标准解答 数学 $O(n)$首先证明：如果str1+str2等于str2+str1，则一定存在符合条件的字符串X。 必要性： $str1&#x3D;X+X+…+X&#x3D;nX,str2&#x3D;X+X+…+X&#x3D;mX$，则$str1+str2&#x3D;(n+m)X&#x3D;(m+n)X&#x3D;str2+str1$ 充分性（证明其逆否命题成立）： 将str1分为长度最小的相等的n份，str2分为m份，$str1&#x3D;X_1+…+X_n,st">
+<meta property="og:description" content="题目描述">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://ftp.bmp.ovh/imgs/2020/03/e492b17beb0c5a02.png">
 <meta property="article:published_time" content="2020-03-18T03:11:40.715Z">
-<meta property="article:modified_time" content="2020-03-18T03:57:17.927Z">
+<meta property="article:modified_time" content="2020-03-18T04:03:47.030Z">
 <meta property="article:author" content="Minghao Feng">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary">
@@ -220,7 +220,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-03-18 11:11:40 / 修改时间：11:57:17" itemprop="dateCreated datePublished" datetime="2020-03-18T11:11:40+08:00">2020-03-18</time>
+              <time title="创建时间：2020-03-18 11:11:40 / 修改时间：12:03:47" itemprop="dateCreated datePublished" datetime="2020-03-18T11:11:40+08:00">2020-03-18</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -265,6 +265,7 @@
 
       
         <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><img src="https://ftp.bmp.ovh/imgs/2020/03/e492b17beb0c5a02.png" alt=""></p>
+<a id="more"></a>
 <h2 id="标准解答-数学-O-n"><a href="#标准解答-数学-O-n" class="headerlink" title="标准解答 数学 $O(n)$"></a>标准解答 数学 $O(n)$</h2><p>首先证明：如果<code>str1+str2</code>等于<code>str2+str1</code>，则一定存在符合条件的字符串<code>X</code>。</p>
 <p>必要性：</p>
 <p>$str1=X+X+…+X=n<em>X,str2=X+X+…+X=m</em>X$，则$str1+str2=(n+m)<em>X=(m+n)</em>X=str2+str1$</p>
@@ -337,7 +338,10 @@
     <a href="/2020/03/17/leetcode_3_17/" rel="prev" title="LeetCode 1160：拼写单词">
       <i class="fa fa-chevron-left"></i> LeetCode 1160：拼写单词
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/18/Code_Complete_part_1/" rel="next" title="《代码大全（第2版）》Part 1：打好基础">
+      《代码大全（第2版）》Part 1：打好基础 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -414,20 +418,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

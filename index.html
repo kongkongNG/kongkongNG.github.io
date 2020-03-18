@@ -191,6 +191,95 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/18/Code_Complete_part_1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/morty.png">
+      <meta itemprop="name" content="Minghao Feng">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kongkong's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/18/Code_Complete_part_1/" class="post-title-link" itemprop="url">《代码大全（第2版）》Part 1：打好基础</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-18 12:02:50 / 修改时间：14:45:43" itemprop="dateCreated datePublished" datetime="2020-03-18T12:02:50+08:00">2020-03-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reading/" itemprop="url" rel="index"><span itemprop="name">Reading</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/03/18/Code_Complete_part_1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/18/Code_Complete_part_1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-欢迎进入软件构建的世界"><a href="#1-欢迎进入软件构建的世界" class="headerlink" title="1 欢迎进入软件构建的世界"></a>1 欢迎进入软件构建的世界</h2><h3 id="1-1-什么是软件构建"><a href="#1-1-什么是软件构建" class="headerlink" title="1.1 什么是软件构建"></a>1.1 什么是软件构建</h3><p>　　构建就是软件工程中“编码”的那一部分，关心的是程序的实现与可行。构建活动主要是编码与调试，但也涉及详细设计、规划构建、单元测试、集成等其他活动。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/18/Code_Complete_part_1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/18/leetcode_3_13/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -216,7 +305,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-03-18 11:11:40 / 修改时间：11:57:17" itemprop="dateCreated datePublished" datetime="2020-03-18T11:11:40+08:00">2020-03-18</time>
+              <time title="创建时间：2020-03-18 11:11:40 / 修改时间：12:03:47" itemprop="dateCreated datePublished" datetime="2020-03-18T11:11:40+08:00">2020-03-18</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -254,19 +343,14 @@
 
       
           <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><img src="https://ftp.bmp.ovh/imgs/2020/03/e492b17beb0c5a02.png" alt=""></p>
-<h2 id="标准解答-数学-O-n"><a href="#标准解答-数学-O-n" class="headerlink" title="标准解答 数学 $O(n)$"></a>标准解答 数学 $O(n)$</h2><p>首先证明：如果<code>str1+str2</code>等于<code>str2+str1</code>，则一定存在符合条件的字符串<code>X</code>。</p>
-<p>必要性：</p>
-<p>$str1=X+X+…+X=n<em>X,str2=X+X+…+X=m</em>X$，则$str1+str2=(n+m)<em>X=(m+n)</em>X=str2+str1$</p>
-<p>充分性（证明其逆否命题成立）：</p>
-<p>将str1分为长度最小的相等的n份，str2分为m份，$str1=X_1+…+X_n,str2=Y_1+…+Y_m$，则$str1+str2=X_1+…+X_n+Y_1+…+Y_m$，$str2+str1=Y_1+…+Y_m+X_1+…+X_n$。若不存在符合条件的<code>X</code>，则$X_1 ≠ Y_1, …, Y_m ≠ X_n$，也即$str1+str2 ≠ str2+str1$，从而逆否命题成立，原命题也成立。</p>
-<p>满足题意的<code>X</code>的长度的最大值即为<code>gcd(str1.length(), str2.length())</code>（gcd(n, m)个<code>X</code>相连接）</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> b&gt;<span class="number">0</span>? gcd(b, a%b) : a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">gcdOfStrings</span><span class="params">(<span class="built_in">string</span> str1, <span class="built_in">string</span> str2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (str1 + str2 != str2 + str1) <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">return</span> str1.substr(<span class="number">0</span>, gcd((<span class="keyword">int</span>)str1.length(), (<span class="keyword">int</span>)str2.length()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>字符串比较$O(n)$，<code>gcd</code>开销$O(logn)$，总和为$O(n)$。</p>
-<h2 id="个人解法-O-frac-n-2-m-logn"><a href="#个人解法-O-frac-n-2-m-logn" class="headerlink" title="个人解法 $O(\frac{n^2}{m}logn)$"></a>个人解法 $O(\frac{n^2}{m}logn)$</h2><p>利用gcd的思想写字符串的mod函数</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">gcdOfStrings</span><span class="params">(<span class="built_in">string</span> str1, <span class="built_in">string</span> str2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (str2 == <span class="string">""</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> str1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (str1.length() &gt;= str2.length()) &#123;</span><br><span class="line">            <span class="built_in">string</span> smod = mod(str1, str2);</span><br><span class="line">            <span class="keyword">if</span> (smod == str1) &#123; </span><br><span class="line">                <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> gcdOfStrings(str2, smod);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> gcdOfStrings(str2, str1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">mod</span><span class="params">(<span class="built_in">string</span> str1, <span class="built_in">string</span> str2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (str1.length() == str2.length()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (str1 == str2) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> str1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123; <span class="comment">// l1 &gt; l2</span></span><br><span class="line">            <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">int</span> i, j;</span><br><span class="line">            <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; str1.length(); i+=str2.length()) &#123;</span><br><span class="line">                <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; str2.length(); j++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (str2[j] != str1[i+j]) &#123;</span><br><span class="line">                        flag = <span class="literal">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> str1.substr(i);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>gcd开销$O(logn)$，字符串mod中的for循环外层$O(n/m)$，内层$O(n)$，相乘为$O(n^2/m)$，总共开销为$O(\frac{n^2}{m}logn)$</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://leetcode-cn.com/problems/greatest-common-divisor-of-strings/solution/zi-fu-chuan-de-zui-da-gong-yin-zi-by-leetcode-solu/" target="_blank" rel="noopener">官方题解</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/18/leetcode_3_13/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -822,20 +906,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
