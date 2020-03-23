@@ -216,7 +216,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-03-23 17:20:47 / 修改时间：17:21:16" itemprop="dateCreated datePublished" datetime="2020-03-23T17:20:47+08:00">2020-03-23</time>
+              <time title="创建时间：2020-03-23 17:20:47 / 修改时间：17:26:25" itemprop="dateCreated datePublished" datetime="2020-03-23T17:20:47+08:00">2020-03-23</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -289,7 +289,6 @@
 </tbody>
 </table>
 </div>
-<p><br></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/03/23/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE%E4%BD%9C%E4%B8%9A/#more" rel="contents">
@@ -573,7 +572,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-03-23 16:47:24 / 修改时间：17:21:45" itemprop="dateCreated datePublished" datetime="2020-03-23T16:47:24+08:00">2020-03-23</time>
+              <time title="创建时间：2020-03-23 16:47:24 / 修改时间：17:25:48" itemprop="dateCreated datePublished" datetime="2020-03-23T16:47:24+08:00">2020-03-23</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -642,283 +641,14 @@
 </tbody>
 </table>
 </div>
-<p><br></p>
-<h2 id="一、需求分析与UML图"><a href="#一、需求分析与UML图" class="headerlink" title="一、需求分析与UML图"></a>一、需求分析与UML图</h2><p>　　与上一次的个人项目作业相类似，本次的任务关键在于交点的求解。至于新需求“交点绘制”，是简单扩展，实际上是将每个交点的坐标反馈到用户。</p>
-<p>　　本次任务增加了两种图形：线段与射线，它们都是特殊的直线。为什么是特殊的“直线”呢？因为本质上，这两种图形都是将无限长直线进行截断而形成的。</p>
-<p>　　由于这种性质，我们不难发现，整体的求解过程几乎没有改变。上一次的求解划分方法抄录如下</p>
-<ul>
-<li>直线与直线<ul>
-<li>平行：交点个数 0</li>
-<li>同一条直线：交点个数无限</li>
-<li>相交：交点个数 1</li>
-</ul>
-</li>
-<li>直线与圆<ul>
-<li>相离：交点个数 0</li>
-<li>相切：交点个数 1</li>
-<li>相交：交点个数 2</li>
-</ul>
-</li>
-<li>圆与圆<ul>
-<li>相离：交点个数 0</li>
-<li>相切：交点个数 1</li>
-<li>相交：交点个数 2</li>
-<li>内含：交点个数 0</li>
-</ul>
-</li>
-</ul>
-<p>　　但是，射线与线段毕竟不是直线，因此我们需要考虑因截断带来的影响，即所求得的交点是否在图形上。而求解交点的过程，依旧是参见 Paul Bourke 先生的<a href="http://paulbourke.net/geometry/circlesphere/" target="_blank" rel="noopener">文章</a>。</p>
-<p>　　除此以外，我们还需要考虑射线与线段之间的新的交点，即端点的重合。</p>
-<p>UML图如下：</p>
-<p><img src="https://ftp.bmp.ovh/imgs/2020/03/b40b4c697fbedfce.png" alt=""></p>
-<h2 id="二、接口设计与实现"><a href="#二、接口设计与实现" class="headerlink" title="二、接口设计与实现"></a>二、接口设计与实现</h2><h3 id="Information-Hiding，Interface-Design，Loose-Coupling"><a href="#Information-Hiding，Interface-Design，Loose-Coupling" class="headerlink" title="Information Hiding，Interface Design，Loose Coupling"></a>Information Hiding，Interface Design，Loose Coupling</h3><p>　　我们本次的接口设计依照了Imformation Hiding（信息隐藏）原则与Loose Coupling（松耦合）原则，体现在通过一个特定的管理器指针与调用方互动，不会涉及类成员的修改，保证信息的隐藏；通信的参数都是基本类型参数，双方不必为各自的实现考虑，保证松耦合特性。</p>
-<h3 id="Design-by-Contract，Code-by-Contract"><a href="#Design-by-Contract，Code-by-Contract" class="headerlink" title="Design by Contract，Code by Contract"></a>Design by Contract，Code by Contract</h3><p>　　Design by Contract，契约式设计，其强调前置条件、后置条件与不变式，是一种形式约束。DbC的优点正如它的初衷，能够保证程序正确，它是一种形式逻辑上的正确，而不是测试之后得出的正确率，所以非常可靠，但其缺点是使得代码臃肿、工作量增大。OO课程中有一个单元练习的JML体现的便是这种思想，当程序复杂时带来的约束编写的工作量也会成倍增加。Code By Contract也是同样的道理，按照约束编写能够保证可靠，但是强行依照断言编写程序会造成代码的冗余和复杂，且如果约束复杂，也会增加理解交流的成本，降低效率。</p>
-<p>本次结对项目中，我们没有过多使用Contract这种理念，而是在需求分析时确定应有的约束，保证项目“敏捷”地进行下去。</p>
-<h3 id="接口实现"><a href="#接口实现" class="headerlink" title="接口实现"></a>接口实现</h3><p>　　考虑到我们所要编写的库需要面对的环境是未知的，即不清楚会被什么语言以什么形式调用，因此我们选择了最广泛的 C 形式。我们希望，调用语言只要能够获取变量的地址，就能顺利地调用我们的库。具体的接口如下</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下的 CORE_API 均是 __declspec(dllexport)，声明将要在 dll 中导出</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function">CORE_API GraphManager * <span class="title">create_graph_manager</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function">CORE_API <span class="keyword">int</span> <span class="title">add_line</span><span class="params">(GraphManager*, <span class="keyword">char</span>*, Type, INTTYPE, INTTYPE, INTTYPE, INTTYPE)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function">CORE_API <span class="keyword">int</span> <span class="title">add_circle</span><span class="params">(GraphManager*, <span class="keyword">char</span>*, Type, INTTYPE, INTTYPE, INTTYPE)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function">CORE_API <span class="keyword">void</span> <span class="title">remove_graph</span><span class="params">(GraphManager*, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function">CORE_API <span class="keyword">int</span> <span class="title">calculate_intersect</span><span class="params">(GraphManager*, <span class="keyword">char</span>*, INTTYPE)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function">CORE_API <span class="keyword">int</span> <span class="title">fetch_intersect</span><span class="params">(GraphManager*, <span class="keyword">char</span>*, FLOATTYPE*, FLOATTYPE*)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function">CORE_API <span class="keyword">void</span> <span class="title">clear_manager</span><span class="params">(GraphManager*)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function">CORE_API <span class="keyword">void</span> <span class="title">dispose_graph_manager</span><span class="params">(GraphManager*)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>各个接口分别的作用是：</p>
-<ul>
-<li><code>create_graph_manager</code>：创建 GraphManager</li>
-<li><code>add_line</code>：向指定的 GraphManager 添加一条线（可能是直线、线段或射线，由 Type 指定）</li>
-<li><code>add_circle</code>：向指定的 GraphManager 添加一个圆</li>
-<li><code>remove_graph</code>：从指定的 GraphManager 中删除一个图形</li>
-<li><code>calculate_intersect</code>：计算指定的 GraphManager 中所管理的图形的交点</li>
-<li><code>fetch_intersect</code>：从指定的 GraphManager 中获取交点信息</li>
-<li><code>clear_manager</code>：清空指定的 GraphManager</li>
-<li><code>dispose_graph_manager</code>:销毁指定的 GraphManager</li>
-</ul>
-<h3 id="性能分析与改进"><a href="#性能分析与改进" class="headerlink" title="性能分析与改进"></a>性能分析与改进</h3><p>性能分析结果：</p>
-<p><img src="https://ftp.bmp.ovh/imgs/2020/03/04768924de774c46.png" alt=""></p>
-<p>其中消耗最大的函数是求交点函数<code>calculate_intersect</code>：</p>
-<p><img src="https://ftp.bmp.ovh/imgs/2020/03/9192074929613e95.png" alt=""></p>
-<p>　　由于改进的切入点只有交点计算的算法改进，而计算的算法没有稳定改进办法，所以性能改进上处理不多。</p>
-<h2 id="三、异常处理"><a href="#三、异常处理" class="headerlink" title="三、异常处理"></a>三、异常处理</h2><p>　　这一部分是接口设计的后续内容。</p>
-<p>　　异常处理是必要的，因为我们无法假设调用方的调用方式，否则调用方与被调用方将存在一定的非必要的耦合关系。</p>
-<p>以下面这个接口为例子</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function">CORE_API <span class="keyword">int</span> <span class="title">add_line</span><span class="params">(GraphManager* gm, <span class="keyword">char</span>* msg, Type type, INTTYPE x1, INTTYPE y1, INTTYPE x2, INTTYPE y2)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>　　调用方在尝试调用这个接口之前，对内部实现没有了解，不清楚直线各个参数的限制（当然，库文档一般会提供，我们假设文档中没有注明），那么可能会错误地提供了两个相同的点，或者超过限制范围的坐标值等等，这些都是需要反馈的。</p>
-<p>　　那么，问题就在于如何反馈异常。首先，不可能抛异常（尽管我们的库是使用 C++编写的，具有抛异常能力），不同的语言与环境的异常模型未必相同，调用方不一定能够完成异常的处理。我们依旧需要一个通用的做法，选择返回错误信息的长度与错误信息的指针（对于本接口，返回值即错误信息长度，msg 用于存储错误信息的指针），如果错误信息的长度为 0，意味着没有异常发生，这里同样只有基本类型的参与。</p>
-<p>根据需求，我们设计了以下几种异常类型：</p>
-<ul>
-<li>直线两点重合</li>
-<li>输入参数的大小不在限定范围内</li>
-<li>圆半径为负</li>
-<li>在计算交点之前就尝试获取交点信息</li>
-<li>无交点却尝试获取交点信息</li>
-<li>输入数据中具有重合或重复的图形</li>
-</ul>
-<p>　　对于最后一种情况，即会产生“无限多交点”的情况，我们容许它的发生，会以警告的形式反馈给用户，但是会将发生重合的图形连接成为一个图形进行计算。</p>
-<h2 id="四、单元测试"><a href="#四、单元测试" class="headerlink" title="四、单元测试"></a>四、单元测试</h2><p>  先展示覆盖情况（使用 OpenCPPCoverage 生成）</p>
-<p><img src="https://ftp.bmp.ovh/imgs/2020/03/0e62fd435ee54034.png" alt=""></p>
-<p>  测试的框架如下</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> main_ret = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> test_count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> test_pass = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EXPECT_EQ_BASE(equality, expect, actual) \</span></span><br><span class="line">    <span class="keyword">do</span> &#123;\</span><br><span class="line">        test_count++;\</span><br><span class="line">        <span class="keyword">if</span> (equality)\</span><br><span class="line">            test_pass++;\</span><br><span class="line">        <span class="keyword">else</span> &#123;\</span><br><span class="line">            <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; __FILE__ &lt;&lt; <span class="string">":"</span> &lt;&lt; __LINE__ &lt;&lt; <span class="string">": expect: "</span> &lt;&lt; expect &lt;&lt; <span class="string">" actual: "</span> &lt;&lt; actual &lt;&lt; <span class="string">"\n"</span>; \</span><br><span class="line">            main_ret = <span class="number">1</span>;\</span><br><span class="line">        &#125;\</span><br><span class="line">    &#125; <span class="keyword">while</span>(<span class="number">0</span>)</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EXPECT_EQ(expect, actual) EXPECT_EQ_BASE((expect) == (actual), expect, actual)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EXPECT_TRUE(actual) EXPECT_EQ_BASE((actual) != 0, <span class="meta-string">"true"</span>, <span class="meta-string">"false"</span>)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EXPECT_FALSE(actual) EXPECT_EQ_BASE((actual) == 0, <span class="meta-string">"false"</span>, <span class="meta-string">"true"</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">gm_test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> gm = create_graph_manager();</span><br><span class="line">    ... <span class="comment">// 测试项目</span></span><br><span class="line">    dispose_graph_manager(gm);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    gm_test();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d/%d (%3.2f%%) passed\n"</span>, test_pass, test_count, test_pass * <span class="number">100.0</span> / test_count);</span><br><span class="line">    <span class="keyword">return</span> main_ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>  测试项目有功能性测试和异常测试。</p>
-<p>  首先是功能性测试，以测试两圆外切情况为例</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">clear_manager(gm);                              <span class="comment">// 首先清空 GraghManager</span></span><br><span class="line">add_circle(gm, <span class="literal">nullptr</span>, Type::circle, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>); <span class="comment">// 加入一个圆，用空指针接收错误信息可以及时发现异常的发生</span></span><br><span class="line">add_circle(gm, <span class="literal">nullptr</span>, Type::circle, <span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>); <span class="comment">// 加入另一个圆</span></span><br><span class="line">EXPECT_EQ(<span class="number">1</span>, calculate_intersect(gm));          <span class="comment">// 计算交点数并进行比较</span></span><br></pre></td></tr></table></figure>
-<p>　　测试数据的构造会考虑正负零以及在数据范围附近的情况(-100000, 100000)，分类的依据可见需求分析。</p>
-<p>  然后是异常测试，大致如下</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 两点重合</span></span><br><span class="line">clear_manager(gm);</span><br><span class="line">EXPECT_TRUE(add_line(gm, msg, Type::line_segment, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>) &gt; <span class="number">0</span>);</span><br><span class="line"><span class="comment">// 超出数据范围</span></span><br><span class="line">clear_manager(gm);</span><br><span class="line">EXPECT_TRUE(add_line(gm, msg, Type::line_segment, <span class="number">10000000</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>) &gt; <span class="number">0</span>);</span><br><span class="line"><span class="comment">// 超出数据范围</span></span><br><span class="line">clear_manager(gm);</span><br><span class="line">EXPECT_TRUE(add_line(gm, msg, Type::line_segment, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">-10000000</span>) &gt; <span class="number">0</span>);</span><br><span class="line"><span class="comment">// 超出数据范围</span></span><br><span class="line">clear_manager(gm);</span><br><span class="line">EXPECT_TRUE(add_circle(gm, msg, Type::circle, <span class="number">0</span>, <span class="number">0</span>, <span class="number">-10000000</span>) &gt; <span class="number">0</span>);</span><br><span class="line"><span class="comment">// 半径为负</span></span><br><span class="line">clear_manager(gm);</span><br><span class="line">EXPECT_TRUE(add_circle(gm, msg, Type::circle, <span class="number">0</span>, <span class="number">0</span>, <span class="number">-1000</span>) &gt; <span class="number">0</span>);</span><br><span class="line"><span class="comment">// 计算交点前获取交点信息</span></span><br><span class="line">clear_manager(gm);</span><br><span class="line">EXPECT_TRUE(fetch_intersect(gm, msg, &amp;x, &amp;y) &gt; <span class="number">0</span>);</span><br><span class="line"><span class="comment">// 无交点获取交点信息</span></span><br><span class="line">calculate_intersect(gm, msg, &amp;point_num);</span><br><span class="line">EXPECT_TRUE(fetch_intersect(gm, msg, &amp;x, &amp;y) &gt; <span class="number">0</span>);</span><br><span class="line"><span class="comment">// 输入数据中具有重合或重复的图形</span></span><br><span class="line">add_circle(gm, <span class="literal">nullptr</span>, Type::circle, <span class="number">0</span>, <span class="number">0</span>, <span class="number">3</span>);</span><br><span class="line">add_circle(gm, <span class="literal">nullptr</span>, Type::circle, <span class="number">0</span>, <span class="number">0</span>, <span class="number">3</span>);</span><br><span class="line">EXPECT_TRUE(calculate_intersect(gm, msg, &amp;point_num) &gt; <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="五、UI设计及与计算模块的对接"><a href="#五、UI设计及与计算模块的对接" class="headerlink" title="五、UI设计及与计算模块的对接"></a>五、UI设计及与计算模块的对接</h2><p>　　界面模块我们选取的开发框架是WPF，开发语言为C#。由于项目给出的界面模块需求为几何对象的文件导入、增删、绘制与交点求解，这些需求都可以通过按钮点击事件完成，故界面模块的总体设计为：上方用画板展示绘制内容，下方排布按钮进行控制。完成后的初始界面如下：</p>
-<p><img src="https://ftp.bmp.ovh/imgs/2020/03/b47965a4122cdf51.png" alt=""></p>
-<h3 id="画布设计"><a href="#画布设计" class="headerlink" title="画布设计"></a>画布设计</h3><p>　　画布设计又分为坐标网格的绘制与几何图形的绘制，下面解释二者的实现细节。</p>
-<p>　　坐标轴的绘制比较简单，只需在画布中央画两条直线，其中y轴的两端为画布上下边界的中点，x轴的两端为画布左右边界的中点。而坐标网格的绘制其实也只是坐标轴绘制的一个加强版，横纵线交错即为网格；坐标的绘制通过<code>TextBlock</code>实现。下面是展示沿X轴方向的坐标网格和坐标的绘制，y轴同理翻转即可。</p>
-<h3 id="几何对象绘制设计"><a href="#几何对象绘制设计" class="headerlink" title="几何对象绘制设计"></a>几何对象绘制设计</h3><p>　　几何对象的绘制分为线绘制和圆形绘制，其中线绘制又分为无限长直线、射线和线段。</p>
-<p>　　<strong>线绘制</strong>最为麻烦，因为WPF框架中给出的现有方法只支持绘制线段，不支持无限长直线。我们对于无限长直线和射线的实现办法为：添加边界点。边界点的求法为：令横坐标x为INF_X（这里取INF_X为画布宽度的一半，也就是把画布放到二维坐标系的中心时的边界值），利用直线方程求出y。需要考虑平行于坐标轴的情况，下方代码不再赘述:</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// input: x1, y1, x2, y2</span></span><br><span class="line"><span class="keyword">double</span> A = y2 - y1, B = x1 - x2, C = x2 * y1 - x1 * y2;</span><br><span class="line"><span class="keyword">double</span> edge_x1, edge_x2, edge_y1, edge_y2;  <span class="comment">// 1为边界起点，2为边界终点</span></span><br><span class="line"><span class="keyword">double</span> INFX = frame_width / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (x2 &lt; x1)</span><br><span class="line">&#123;</span><br><span class="line">    edge_x1 = INFX;</span><br><span class="line">    edge_x2 = -INFX;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    edge_x1 = -INFX;</span><br><span class="line">    edge_x2 = INFX;</span><br><span class="line">&#125;</span><br><span class="line">edge_y1 = (-C - A * edge_x1) / B;</span><br><span class="line">edge_y2 = (-C - A * edge_x2) / B;</span><br></pre></td></tr></table></figure>
-<p>　　之后即可根据线对象的类型进行绘制。需要注意的是，之前在二维坐标系中进行计算，最后绘制时应将点坐标转换到画布的坐标系（也就是二维坐标系沿x轴翻转后取第四象限）中去:</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">Point start;</span><br><span class="line">Point end;</span><br><span class="line"><span class="keyword">switch</span> (type)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">case</span> Type.infinite_line:    <span class="comment">// 无限长直线</span></span><br><span class="line">        start = convert_point(edge_x1, edge_y1);</span><br><span class="line">        end = convert_point(edge_x2, edge_y2);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> Type.line_segment:     <span class="comment">// 射线</span></span><br><span class="line">        start = convert_point(x1, y1);</span><br><span class="line">        end = convert_point(edge_x2, edge_y2);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> Type.segment: <span class="keyword">default</span>:    <span class="comment">// 线段</span></span><br><span class="line">        start = convert_point(x1, y1);</span><br><span class="line">        end = convert_point(x2, y2);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">LineGeometry line = <span class="keyword">new</span> LineGeometry();</span><br><span class="line">line.StartPoint = start;</span><br><span class="line">line.EndPoint = end;</span><br><span class="line"></span><br><span class="line">Path path = <span class="keyword">new</span> Path();</span><br><span class="line">path.Stroke = Brushes.Black;</span><br><span class="line">path.StrokeThickness = <span class="number">1</span>;</span><br><span class="line">path.Data = line;</span><br><span class="line"></span><br><span class="line">mainPanel.Children.Add(path);</span><br></pre></td></tr></table></figure>
-<p><code>convert_point</code>的代码如下：<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Point <span class="title">convert_point</span>(<span class="params"><span class="keyword">double</span> x, <span class="keyword">double</span> y</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Point(x * SCALE + x_offset, -y * SCALE + y_offset);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>　　<strong>圆形与坐标点</strong>的绘制可以使用WPF提供的<code>EllipseGeometry</code>（椭圆）类。二者区别只有空心实心和半径大小，下面给出坐标点的绘制方法：</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// input: x, y</span></span><br><span class="line">Point p = convert_point(x, y);</span><br><span class="line">EllipseGeometry el = <span class="keyword">new</span> EllipseGeometry();</span><br><span class="line"><span class="keyword">int</span> pointR = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">el.RadiusX = pointR;</span><br><span class="line">el.RadiusY = pointR;</span><br><span class="line">el.Center = p;</span><br><span class="line"></span><br><span class="line">Path path = <span class="keyword">new</span> Path();</span><br><span class="line">path.Stroke = Brushes.Black;</span><br><span class="line">path.StrokeThickness = <span class="number">2</span>;</span><br><span class="line">path.Fill = Brushes.Black;</span><br><span class="line">path.Data = el;</span><br><span class="line"></span><br><span class="line">mainPanel.Children.Add(path);</span><br><span class="line">intersections.Add(path);</span><br></pre></td></tr></table></figure>
-<h3 id="按钮设计"><a href="#按钮设计" class="headerlink" title="按钮设计"></a>按钮设计</h3><p>按钮的功能设计如下：</p>
-<ul>
-<li><code>Files</code>：从文件导入几何对象的描述<strong>并绘制</strong>（不独立设置“绘制”按钮是为了更直观地展示输入的几何对象，避免用户进行重复冗余的点击操作，下面的增添/删除按钮也贯彻了这一理念）。</li>
-<li><code>Intersect</code>：求解现有几何对象的交点并绘制。</li>
-<li><code>Delete</code>：选择某一个几何对象，将其从画布上删除，并删除画布中的<strong>所有交点</strong>。</li>
-<li><code>Add</code>：根据选择的类型及输入增添一个几何对象，并在画布上画出。</li>
-<li><code>Clear</code>：清空画布上所有的几何对象及交点</li>
-<li><code>Scale+/-</code>：放大/缩小画布的坐标系，将会删除图上所有的几何对象和交点。</li>
-</ul>
-<p>　　下面展示这些按钮触发事件的实现细节。</p>
-<p>　　按钮事件函数的写法为：<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Button_click</span>(<span class="params"><span class="keyword">object</span> sender, RoutedEventArgs e</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// xxx</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li><p>Files</p>
- <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dialog = <span class="keyword">new</span> Microsoft.Win32.OpenFileDialog</span><br><span class="line">&#123;</span><br><span class="line">    Filter = <span class="string">".txt|*.txt"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">if</span> (dialog.ShowDialog(<span class="keyword">this</span>) == <span class="literal">false</span>) <span class="keyword">return</span>;</span><br><span class="line"><span class="keyword">string</span> fileName = dialog.FileName;</span><br><span class="line"></span><br><span class="line">Console.WriteLine(fileName);</span><br><span class="line"></span><br><span class="line">drawer.clearAll();      <span class="comment">// 清除画布</span></span><br><span class="line">drawer.DrawXY();        <span class="comment">// 重新绘制坐标轴</span></span><br><span class="line">drawer.ReadGraphFromFile(fileName);</span><br></pre></td></tr></table></figure>
-<p> 其中<code>read_graph_from_file()</code>方法的实现流程为：</p>
-<ol>
-<li>读文件第一行的数字</li>
-<li>根据数字按行读取并parse</li>
-<li>将parse后获得的几何对象信息输入到<code>core</code>中的计算模块进行添加</li>
-<li><p>调用线绘制方法进行绘制</p>
-<p>其中还涉及若干错误判断，使用<code>MessageBox.show()</code>报告错误</p>
-</li>
-</ol>
-</li>
-<li><p>Intersect</p>
-<p> 　　该事件主要调用<code>core</code>中的计算模块，并使用<code>core</code>中实现的取交点函数逐一获取所有交点。</p>
- <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">calc_and_draw_intersects</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 计算交点</span></span><br><span class="line">    <span class="keyword">int</span> r = NativeMethods.calculate_intersect(core_graph_manager, msg, <span class="keyword">ref</span> n);</span><br><span class="line">    <span class="keyword">if</span> (r &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        MessageBox.Show(msg.ToString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">long</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 从core中取一个交点坐标</span></span><br><span class="line">        r = NativeMethods.fetch_intersect(core_graph_manager, msg, <span class="keyword">ref</span> x, <span class="keyword">ref</span> y);</span><br><span class="line">        <span class="keyword">if</span> (r &gt; <span class="number">0</span>)  <span class="comment">// 如果有错误信息</span></span><br><span class="line">        &#123;</span><br><span class="line">            MessageBox.Show(msg.ToString());</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            drawIntersectPoint(x, y);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Delete</p>
-<p> 　　该事件弹出新窗口（项目中为<code>GraphsWindow</code>），获取当前所有几何对象的信息，并使用<code>ListBox</code>陈列，用户确认选择后分别删除其在<code>ListBox</code>中的描述、画布中的图形以及在<code>core</code>中的对象，并删除所有交点。</p>
-<p> 　　画布中删除某一图形的逻辑如下：</p>
- <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// input： graph id</span></span><br><span class="line"><span class="comment">// remove graoh on Canvas</span></span><br><span class="line">mainPanel.Children.Remove(graphs[id]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// remove info</span></span><br><span class="line">graphs.Remove(graphs[id]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// remove points on graph</span></span><br><span class="line">Path[] points = pointsOnGraph[id];</span><br><span class="line"><span class="keyword">foreach</span> (Path point <span class="keyword">in</span> points)</span><br><span class="line">&#123;</span><br><span class="line">    mainPanel.Children.Remove(point);</span><br><span class="line">&#125;</span><br><span class="line">pointsOnGraph.Remove(points);</span><br><span class="line"></span><br><span class="line"><span class="comment">// remove intersections(all)</span></span><br><span class="line"><span class="keyword">foreach</span> (Path intersect <span class="keyword">in</span> intersections)</span><br><span class="line">&#123;</span><br><span class="line">    mainPanel.Children.Remove(intersect);</span><br><span class="line">&#125;</span><br><span class="line">intersections.Clear();</span><br><span class="line"></span><br><span class="line"><span class="comment">// remove data in core</span></span><br><span class="line">remove_graph(core_graph_manager, id);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Add</p>
-<p> 　　弹出新窗口进行几何对象的添加。实现方法是使用<code>ComboBox</code>实现下拉栏选择四种几何对象类型的其中一个，并根据类型的不同给出不同数量的参数输入框（<code>TextBox</code>）。提交输入时进行正确性检测。最后将正确的输入整合为一行，利用按行处理文件输入的方法进行添加处理。</p>
- <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">string</span> wrongMsg = <span class="string">""</span>;</span><br><span class="line">verify_TextInput(tbox1, tblock1, <span class="keyword">ref</span> wrongMsg);</span><br><span class="line">verify_TextInput(tbox2, tblock2, <span class="keyword">ref</span> wrongMsg);</span><br><span class="line">verify_TextInput(tbox3, tblock3, <span class="keyword">ref</span> wrongMsg);</span><br><span class="line"><span class="keyword">if</span> (combo.SelectedIndex != (<span class="keyword">int</span>)ComboItem.C)    <span class="comment">// 圆形没有第四个参数输入框，只有x, y, r</span></span><br><span class="line">&#123;</span><br><span class="line">    verify_TextInput(tbox4, tblock4, <span class="keyword">ref</span> wrongMsg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (wrongMsg.Length != <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">    MessageBox.Show(wrongMsg);  <span class="comment">// 输入栏的错误提醒</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">string</span> info = combo.Text + <span class="string">" "</span> + tbox1.Text + <span class="string">" "</span> + tbox2.Text + <span class="string">" "</span> + tbox3.Text;</span><br><span class="line">    <span class="keyword">if</span> (combo.SelectedIndex != (<span class="keyword">int</span>)ComboItem.C)</span><br><span class="line">    &#123;</span><br><span class="line">        info += <span class="string">" "</span> + tbox4.Text;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        drawer.AddGraphFromLine(info);  <span class="comment">// 添加该行对应的几何对象信息</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (FormatException)</span><br><span class="line">    &#123;</span><br><span class="line">        MessageBox.Show(<span class="string">"Wrong Format!"</span>);   <span class="comment">// 在执行添加逻辑时的错误报告</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Clear</p>
-<p> 　　该事件包括清除画布内容、几何对象所有信息，并重新绘画坐标网格。清除的细节如下：</p>
- <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mainPanel.Children.Clear();     <span class="comment">// 清楚画布内容</span></span><br><span class="line">graphs.Clear();                 <span class="comment">// 清楚几何对象绘制信息</span></span><br><span class="line">intersections.Clear();          <span class="comment">// 清除交点绘制信息</span></span><br><span class="line">pointsOnGraph.Clear();          <span class="comment">// 清除几何对象上的点（起点、终点、圆心）的绘制信息</span></span><br><span class="line">graphsInfo.Clear();             <span class="comment">// 清除用于生成ListBox的几何对象信息</span></span><br><span class="line">core_graph_manager = IntPtr.Zero;   <span class="comment">// 清除core中的manager</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Scale+/-</p>
-<p> 　　该事件由调整画布尺寸参数<code>SCALE</code>实现。坐标网格绘制中，在绘制垂直x轴的坐标网格的循环语句中，网格密度是根据<code>SCALE</code>来调整的，由此实现画布的尺寸增减：</p>
- <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = SCALE; i &lt; frame_width/<span class="number">2</span>; i+=SCALE)</span><br></pre></td></tr></table></figure>
-<p> 在实现中，用户每点击一次按钮Scale+/-，首先清除画布，<code>SCALE</code>增加/减少<code>5</code>，并进行设定边界，避免无限放大，然后再重新绘制坐标轴。</p>
-<p> 如下是实现的大致逻辑</p>
- <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (SCALE &gt;= <span class="number">100</span>)</span><br><span class="line">&#123;</span><br><span class="line">    MessageBox.Show(<span class="string">"Reach Max Scale"</span>, <span class="string">"Note"</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">clear_all();</span><br><span class="line">SCALE += <span class="number">5</span>;</span><br><span class="line">drawXY();</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="六、界面模块与计算模块的对接"><a href="#六、界面模块与计算模块的对接" class="headerlink" title="六、界面模块与计算模块的对接"></a>六、界面模块与计算模块的对接</h2><blockquote>
-<p>11.界面模块与计算模块的对接。详细地描述 UI 模块的设计与两个模块的对接，并在博客中截图实现的功能。（4’）</p>
-</blockquote>
-<p>　　计算模块生成动态链接库提供，由于界面模块使用的是WPF框架及C#进行开发，可以通过<code>DLLImport</code>语句可以导入dll中的接口进行使用。</p>
-<p>　　在界面模块中导入接口函数的语句如下：<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">DllImport(<span class="meta-string">"core.dll"</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">internal</span> <span class="keyword">static</span> <span class="keyword">extern</span> IntPtr <span class="title">create_graph_manager</span>(<span class="params"></span>)</span>;</span><br><span class="line"></span><br><span class="line">[<span class="meta">DllImport(<span class="meta-string">"core.dll"</span>, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true)</span>]</span><br><span class="line"><span class="function"><span class="keyword">internal</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">add_line</span>(<span class="params">IntPtr gm, StringBuilder msg, <span class="keyword">int</span> type, <span class="keyword">long</span> x1, <span class="keyword">long</span> y1, <span class="keyword">long</span> x2, <span class="keyword">long</span> y2</span>)</span>;</span><br><span class="line"></span><br><span class="line">[<span class="meta">DllImport(<span class="meta-string">"core.dll"</span>, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true)</span>]</span><br><span class="line"><span class="function"><span class="keyword">internal</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">add_circle</span>(<span class="params">IntPtr gm, StringBuilder msg, <span class="keyword">int</span> type, <span class="keyword">long</span> x, <span class="keyword">long</span> y, <span class="keyword">long</span> r</span>)</span>;</span><br><span class="line"></span><br><span class="line">[<span class="meta">DllImport(<span class="meta-string">"core.dll"</span>, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true)</span>]</span><br><span class="line"><span class="function"><span class="keyword">internal</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">calculate_intersect</span>(<span class="params">IntPtr gm, StringBuilder msg, <span class="keyword">ref</span> <span class="keyword">long</span> res</span>)</span>;</span><br><span class="line"></span><br><span class="line">[<span class="meta">DllImport(<span class="meta-string">"core.dll"</span>, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true)</span>]</span><br><span class="line"><span class="function"><span class="keyword">internal</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">fetch_intersect</span>(<span class="params">IntPtr gm, StringBuilder msg, <span class="keyword">ref</span> <span class="keyword">double</span> x, <span class="keyword">ref</span> <span class="keyword">double</span> y</span>)</span>;</span><br><span class="line"></span><br><span class="line">[<span class="meta">DllImport(<span class="meta-string">"core.dll"</span>, CallingConvention = CallingConvention.Cdecl)</span>]</span><br><span class="line"><span class="function"><span class="keyword">internal</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">remove_graph</span>(<span class="params">IntPtr gm, <span class="keyword">long</span> id</span>)</span>;</span><br><span class="line"></span><br><span class="line">[<span class="meta">DllImport(<span class="meta-string">"core.dll"</span>, CallingConvention = CallingConvention.Cdecl)</span>]</span><br><span class="line"><span class="function"><span class="keyword">internal</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">dispose_graph_manager</span>(<span class="params">IntPtr gm</span>)</span>;</span><br></pre></td></tr></table></figure></p>
-<p>　　为了达到松耦合的条件，界面模块中不涉及计算模块的类操作。通过<code>IntPtr</code>型的计算模块管理器对接各个接口。如初始时创建新的计算模块管理器：<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IntPtr graph_manager = create_graph_manager();</span><br></pre></td></tr></table></figure></p>
-<p>　　之后在添加一条直线，根据输入得到的类型及坐标，即可如下添加一条直线：<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add_Line(graph_manager, msg, type, x1, y1, x2, y2);</span><br></pre></td></tr></table></figure></p>
-<p>　　其中msg用于获取计算模块的错误信息，通过<code>MessageBox</code>报告给用户。</p>
-<p>实现的功能如下：</p>
-<ol>
-<li>从文件中读取几何图形信息并画出（Files按钮）<br> <img src="https://ftp.bmp.ovh/imgs/2020/03/36bcc78b111ef97c.png" alt=""><br> <img src="2020-03-21-22-08-58.png" alt=""></li>
-<li>求交点并画出（Intersect按钮）<br> <img src="https://ftp.bmp.ovh/imgs/2020/03/ae33598ccb004878.png" alt=""></li>
-<li>删除一个几何图形（Delete按钮）<br> <img src="https://ftp.bmp.ovh/imgs/2020/03/797e79851cd56e05.png" alt=""><br> <img src="https://i.loli.net/2020/03/22/ICX3lvSDOEfuHdP.png" alt="2020-03-21-22-12-26.png"></li>
-<li>增添一个几何图形（Add按钮）<br> <img src="https://ftp.bmp.ovh/imgs/2020/03/16f74e3beb9fe9b6.png" alt=""><br> <img src="https://ftp.bmp.ovh/imgs/2020/03/4687048e0a0cd790.png" alt=""></li>
-<li>清空画布（Clear按钮）<br> <img src="https://ftp.bmp.ovh/imgs/2020/03/90c5282fcf31017b.png" alt=""><br> <img src="https://ftp.bmp.ovh/imgs/2020/03/175c22ae53049122.png" alt=""></li>
-<li>画布尺寸增减（将会删除图形）<ul>
-<li>Scale+按钮<br><img src="https://ftp.bmp.ovh/imgs/2020/03/ba049f016c444dad.png" alt=""></li>
-<li>Scale-按钮<br><img src="https://ftp.bmp.ovh/imgs/2020/03/f3514c624dce1256.png" alt=""></li>
-</ul>
-</li>
-</ol>
-<h2 id="七、结对编程过程"><a href="#七、结对编程过程" class="headerlink" title="七、结对编程过程"></a>七、结对编程过程</h2><p>　　我们采用的结对编程方式是Live Share+语音，其中存在的问题，一方面是live share本身的不稳定，对方的修改可能经过一定延迟才能看到；另一方面是，互相不太了解可能产生一定的阻碍。但结对编程也带来一定好处，比如能够学习到队友比较良好的代码规范和新颖的编码技巧，并且有人一起review也减少了错误的产生，遇到比较纠结的问题时也能够通过沟通找到答案。队友在编码规范、设计能力以及项目管理等方面都很优秀，在交流中也能够精准地给出解答的方向，有时我可能会跟不上。我在此次项目中也用心、勤奋、认真地参与其中，但是对于代码规范、版本管理等细节问题还存在缺陷。</p>
-<p>讨论图形界面时：</p>
-<p><img src="https://i.loli.net/2020/03/22/dLxQ9oleyg24vPs.png" alt="2020-03-22-21-44-34.png"></p>
-<p>讨论模块对接时：</p>
-<p><img src="https://i.loli.net/2020/03/22/wuHMEjmPcl5yv4D.png" alt="2020-03-22-21-44-51.png"></p>
-<h2 id="八、PSP表格"><a href="#八、PSP表格" class="headerlink" title="八、PSP表格"></a>八、PSP表格</h2><blockquote>
-<p>2.在开始实现程序之前，在下述 PSP 表格记录下你估计将在程序的各个模块的开发上耗费的时间。（0.5’）</p>
-</blockquote>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>PSP2.1</th>
-<th>Personal Software Process Stages</th>
-<th>预估耗时（分钟）</th>
-<th>实际耗时（分钟）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Planning</td>
-<td>计划</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>· Estimate</td>
-<td>估计这个任务需要多少时间</td>
-<td>30</td>
-<td>30</td>
-</tr>
-<tr>
-<td>Development</td>
-<td>开发</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>· Analysis</td>
-<td>需求分析 (包括学习新技术)</td>
-<td>120</td>
-<td>240</td>
-</tr>
-<tr>
-<td>· Design Spec</td>
-<td>生成设计文档</td>
-<td>30</td>
-<td>30</td>
-</tr>
-<tr>
-<td>· Design Review</td>
-<td>设计复审 (和同事审核设计文档)</td>
-<td>20</td>
-<td>20</td>
-</tr>
-<tr>
-<td>· Coding Standard</td>
-<td>代码规范 (为目前的开发制定合适的规范)</td>
-<td>10</td>
-<td>5</td>
-</tr>
-<tr>
-<td>· Design</td>
-<td>具体设计</td>
-<td>60</td>
-<td>60</td>
-</tr>
-<tr>
-<td>· Coding</td>
-<td>具体编码</td>
-<td>120</td>
-<td>240</td>
-</tr>
-<tr>
-<td>· Code Review</td>
-<td>代码复审</td>
-<td>30</td>
-<td>60</td>
-</tr>
-<tr>
-<td>· Test</td>
-<td>测试（自我测试，修改代码，提交修改）</td>
-<td>60</td>
-<td>120</td>
-</tr>
-<tr>
-<td>Reporting</td>
-<td>报告</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>· Test Report</td>
-<td>测试报告</td>
-<td>10</td>
-<td>10</td>
-</tr>
-<tr>
-<td>· Size Measurement</td>
-<td>计算工作量</td>
-<td>10</td>
-<td>10</td>
-</tr>
-<tr>
-<td>· Postmortem &amp; Process Improvement Plan</td>
-<td>事后总结, 并提出过程改进计划</td>
-<td>60</td>
-<td>30</td>
-</tr>
-<tr>
-<td></td>
-<td>合计</td>
-<td>560</td>
-<td>855</td>
-</tr>
-</tbody>
-</table>
-</div>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/23/%E7%BB%93%E5%AF%B9%E9%A1%B9%E7%9B%AE%E4%BD%9C%E4%B8%9A/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
