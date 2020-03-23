@@ -1,6 +1,773 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>个人项目作业-Intersect</title>
+    <url>/2020/03/23/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE%E4%BD%9C%E4%B8%9A/</url>
+    <content><![CDATA[<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>这个作业属于哪个课程</td>
+<td><a href="https://edu.cnblogs.com/campus/buaa/BUAA_SE_2020_LJ" target="_blank" rel="noopener">2020春季计算机学院软件工程（罗杰、任建）</a> </td>
+</tr>
+<tr>
+<td>这个作业的要求在哪里</td>
+<td><a href="https://edu.cnblogs.com/campus/buaa/BUAA_SE_2020_LJ/homework/10429" target="_blank" rel="noopener">个人项目作业 </a> </td>
+</tr>
+<tr>
+<td>我在这个课程的目标是</td>
+<td>提高软件开发能力、团队协作能力 </td>
+</tr>
+<tr>
+<td>这个作业在哪个具体方面帮助我实现目标</td>
+<td>个人开发实践 </td>
+</tr>
+<tr>
+<td>教学班级</td>
+<td>006</td>
+</tr>
+<tr>
+<td>项目地址</td>
+<td><a href="https://github.com/kongkongNG/Intersection_proj" target="_blank" rel="noopener">https://github.com/kongkongNG/Intersection_proj</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br></p>
+<a id="more"></a>
+<h2 id="一、PSP表格"><a href="#一、PSP表格" class="headerlink" title="一、PSP表格"></a>一、PSP表格</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>PSP2.1</th>
+<th>Personal Software Process Stages</th>
+<th>预估耗时（分钟）</th>
+<th>实际耗时（分钟）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Planning</td>
+<td>计划</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>· Estimate</td>
+<td>估计这个任务需要多少时间</td>
+<td>30</td>
+<td>30</td>
+</tr>
+<tr>
+<td>Development</td>
+<td>开发</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>· Analysis</td>
+<td>需求分析 (包括学习新技术)</td>
+<td>30</td>
+<td>40</td>
+</tr>
+<tr>
+<td>· Design Spec</td>
+<td>生成设计文档</td>
+<td>60</td>
+<td>20</td>
+</tr>
+<tr>
+<td>· Design Review</td>
+<td>设计复审 (和同事审核设计文档)</td>
+<td>20</td>
+<td>5</td>
+</tr>
+<tr>
+<td>· Coding Standard</td>
+<td>代码规范 (为目前的开发制定合适的规范)</td>
+<td>10</td>
+<td>5</td>
+</tr>
+<tr>
+<td>· Design</td>
+<td>具体设计</td>
+<td>60</td>
+<td>60</td>
+</tr>
+<tr>
+<td>· Coding</td>
+<td>具体编码</td>
+<td>120</td>
+<td>240</td>
+</tr>
+<tr>
+<td>· Code Review</td>
+<td>代码复审</td>
+<td>30</td>
+<td>60</td>
+</tr>
+<tr>
+<td>· Test</td>
+<td>测试（自我测试，修改代码，提交修改）</td>
+<td>60</td>
+<td>360</td>
+</tr>
+<tr>
+<td>Reporting</td>
+<td>报告</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>· Test Report</td>
+<td>测试报告</td>
+<td>40</td>
+<td>20</td>
+</tr>
+<tr>
+<td>· Size Measurement</td>
+<td>计算工作量</td>
+<td>20</td>
+<td>10</td>
+</tr>
+<tr>
+<td>· Postmortem &amp; Process Improvement Plan</td>
+<td>事后总结, 并提出过程改进计划</td>
+<td>60</td>
+<td>30</td>
+</tr>
+<tr>
+<td></td>
+<td>合计</td>
+<td>540</td>
+<td>880</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>　　从表格中可以看到，事前预估的编码与测试的时间估计差距比较大，原因总结如下：</p>
+<ol>
+<li>设计时本着“先让它跑起来”的想法，对于一些精度、边界问题没有考虑充分，导致测试时bug层出不穷。</li>
+<li>编码时对于C++的容器、某些特性不够熟悉，边查边写导致效率很低。这里充分体会到了讲义里<a href="https://www.cnblogs.com/xinz/archive/2011/08/07/2129751.html" target="_blank" rel="noopener">技能的反面</a>所说的痛处。</li>
+<li>在家里惰性较重，常常分心导致思路不连贯。</li>
+</ol>
+<p><br></p>
+<h2 id="二、解题思路描述"><a href="#二、解题思路描述" class="headerlink" title="二、解题思路描述"></a>二、解题思路描述</h2><p>　　刚拿到题目，首先思考的是寻找通过数学技巧直接判断交点数而无需求交点的方法，然而当考虑到可能会出现重复交点的情况，数学技巧只能求最少交点数与最大交点数，进而转向暴力求解交点，并通过比较去重的方法。</p>
+<p>　　之后开始通过计算验证和查找的方式得到各种交点公式，判断可行性。所有用到的公式都放在<a href="https://github.com/kongkongNG/Intersection_proj/blob/master/README.md" target="_blank" rel="noopener">设计文档</a>的“数学准备”一栏中，故不再赘述。</p>
+<p>　　接下来考虑的是交点去重问题。查资料得知C++的<code>set</code>类采用RB树的数据结构，能够自动去重，所以选择<code>set</code>作为储存交点的数据结构。</p>
+<p><br></p>
+<h2 id="三、设计实现过程。"><a href="#三、设计实现过程。" class="headerlink" title="三、设计实现过程。"></a>三、设计实现过程。</h2><p>　　本次项目的实现思路为：每次接收一个几何对象时，判断它与之前存下的所有几何对象是否相交，若相交则求交点，并加入交点的<code>set</code>集合。</p>
+<p>　　类的设计大致是：通过一个<code>Geometry</code>类作为几何对象的总纲，其中有判断是否相交和求交点两个函数，<code>Line</code>类和<code>Circle</code>类实现这个接口；<code>Intersection</code>类负责实现接受外部参数、实现业务的功能。</p>
+<p>　　如图为<code>Line</code>类, <code>Circle</code>类与<code>Geomtry</code>类的关系：</p>
+<p><img src="https://i.loli.net/2020/03/10/KqYXkWatJHIcySF.png" alt="md_2020-03-09-23-13-20.png"></p>
+<p>　　由于关键函数中的内容基本为数学公式的编码，故下面只展示基本需求——求两直线交点的流程图：<br><img src="https://i.loli.net/2020/03/10/QRqUsIngV7vNEmO.png" alt="md_2020-03-09-23-28-26.png"></p>
+<p>　　单元测试的设计有常规样例测试与边界样例测试，检测几何对象之间是否相交以及相交得到的交点坐标是否准确。其中，<strong>直线与直线</strong>的相交检测考虑：任一条直线与坐标轴平行、两条直线都与坐标轴平行、两条直线都不与坐标轴平行三种情况；<strong>直线与圆</strong>相交检测考虑：直线与圆相交、直线与圆相切、直线与圆相离、直线与坐标轴平行四种样例；<strong>两圆</strong>相交检测：两圆相交、两圆内切、两圆外切、两圆内离、两圆外离五种情况；<strong>多个几何对象</strong>测试中考虑交点重合以及不重合的情况。</p>
+<p><br></p>
+<h2 id="四、性能分析"><a href="#四、性能分析" class="headerlink" title="四、性能分析"></a>四、性能分析</h2><p>　　这里的性能分析采用的输入数据是1000+组直线数据：<br><img src="https://i.loli.net/2020/03/10/OupcF32WYCbed9D.png" alt="md_2020-03-10-10-21-34.png"></p>
+<p>　　从图中可以看到，在<code>main</code>中开销最大的是主业务函数<code>count_intersection()</code>，其中，有两个“热函数”：<code>std::_Tree</code>的构造函数（也就是<code>set</code>的插入与去重），以及<code>Line::getInterPoint()</code>（即直线的交点计算函数）</p>
+<p>　　性能改进大概花费了1h左右，改进的地方不多，思路是将中间运算尽可能简化，比如将相同的开方操作、乘除运算等重复运算提前算出结果，重复使用。</p>
+<p><br></p>
+<h2 id="五、代码说明。"><a href="#五、代码说明。" class="headerlink" title="五、代码说明。"></a>五、代码说明。</h2><h3 id="1）直线与直线相交"><a href="#1）直线与直线相交" class="headerlink" title="1）直线与直线相交"></a>1）直线与直线相交</h3><p><strong>相交检测：</strong><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">this</span>-&gt;isVerticalToX()) &#123;</span><br><span class="line">    <span class="keyword">if</span> (ln-&gt;isVerticalToX()) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (ln-&gt;isVerticalToX()) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;isVerticalToX()) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">fabs</span>(<span class="keyword">this</span>-&gt;k - ln-&gt;k) &gt; EPS;</span><br></pre></td></tr></table></figure><br>　　思路很简单，就是考虑垂直坐标轴的直线后，判断<code>k</code>是否相等（这里用<code>fabs()&gt;EPS</code>考虑了double的精度问题），从而判断两直线是否平行，平行则无交点。</p>
+<p><strong>求交点：</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">this</span>-&gt;isVerticalToX()) &#123;</span><br><span class="line">    x = <span class="keyword">this</span>-&gt;x;</span><br><span class="line">    y = ln-&gt;k * x + ln-&gt;b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (ln-&gt;isVerticalToX()) &#123;</span><br><span class="line">    x = ln-&gt;x;</span><br><span class="line">    y = <span class="keyword">this</span>-&gt;k * x + <span class="keyword">this</span>-&gt;b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span> &#123;	<span class="comment">// no need to consider vertical to y because we can handle it</span></span><br><span class="line">    x = (ln-&gt;b - <span class="keyword">this</span>-&gt;b) / (<span class="keyword">this</span>-&gt;k - ln-&gt;k);</span><br><span class="line">    y = <span class="keyword">this</span>-&gt;k * x + <span class="keyword">this</span>-&gt;b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">pvec.push_back(&#123; x, y &#125;);</span><br></pre></td></tr></table></figure>
+<p>　　由于采用斜率式的储存方法，所以当直线垂直于X轴时，交点的x值可以直接取得（在输入中作了判断并存值）。代码中注释的意思是：当某直线垂直于Y轴时，无需特殊考虑，因为仍可以通过公式正常求解（不会出现两条直线都垂直Y轴的情况，已经通过相交检测过滤）。其他正常直线通过公式求解即可得到交点。</p>
+<h3 id="2）直线与圆相交"><a href="#2）直线与圆相交" class="headerlink" title="2）直线与圆相交"></a>2）直线与圆相交</h3><p><strong>相交检测：</strong><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (isVerticalToX()) &#123;</span><br><span class="line">    d = <span class="built_in">fabs</span>(cc-&gt;n - <span class="keyword">this</span>-&gt;x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (isVerticalToY()) &#123;</span><br><span class="line">    d = <span class="built_in">fabs</span>(cc-&gt;m - <span class="keyword">this</span>-&gt;b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    up = <span class="keyword">this</span>-&gt;k * cc-&gt;n - cc-&gt;m + <span class="keyword">this</span>-&gt;b;</span><br><span class="line">    down = <span class="built_in">sqrt</span>(<span class="keyword">this</span>-&gt;k * <span class="keyword">this</span>-&gt;k + <span class="number">1</span>);</span><br><span class="line">    d = <span class="built_in">fabs</span>(up / down);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (d &gt; cc-&gt;r) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>　　思路是：考虑直线垂直于X轴、垂直于Y轴与正常直线三种情况时圆心到直线距离，通过距离与圆半径的比较即可得到圆与直线相交关系：<code>d&lt;r</code>则相交，否则不相交（这里将相切与相交合并为相交，因为求交点时会通过求得的值判定交点是1个还是2个）</p>
+<p><strong>求交点：</strong><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">A = <span class="number">1</span> + k * k;</span><br><span class="line">B = <span class="number">2</span> * k * (b - cc-&gt;m) - <span class="number">2</span> * cc-&gt;n;</span><br><span class="line">C = (b - cc-&gt;m) * (b - cc-&gt;m) + cc-&gt;n * cc-&gt;n - cc-&gt;r * cc-&gt;r;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; ans = Geomtry::solve(A, B, C);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> it = ans.<span class="built_in">begin</span>(); it != ans.<span class="built_in">end</span>(); it++) &#123;</span><br><span class="line">    <span class="keyword">double</span> yi = k * *it + b;</span><br><span class="line">    pvec.push_back(&#123; *it, yi &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>　　垂直坐标轴的特殊直线与圆交点求法就是带入已知x值或y值，利用几何知识求解，代码不再赘述。上述代码是正常直线与圆相交的情况，数学公式见<a href="https://github.com/kongkongNG/Intersection_proj/blob/master/README.md" target="_blank" rel="noopener">设计文档</a>的“数学准备”一栏，思路是得到直线与圆相交的一元二次方程组后，通过<code>Geomtry::solve(A, B, C)</code>求解方程得到横坐标（如果相切只返回一个），然后带入直线得到纵坐标。</p>
+<h3 id="3）两圆相交"><a href="#3）两圆相交" class="headerlink" title="3）两圆相交"></a>3）两圆相交</h3><p><strong>相交检测：</strong><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">double</span> dcenter = <span class="built_in">sqrt</span>((n - cc-&gt;n) * (n - cc-&gt;n) </span><br><span class="line">	+ (m - cc-&gt;m) * (m - cc-&gt;m));	<span class="comment">// d = sqrt((x1-x2)^2 + (y1-y2)^2)</span></span><br><span class="line"><span class="keyword">if</span> (dcenter &gt; r + cc-&gt;r || dcenter &lt; <span class="built_in">fabs</span>(r - cc-&gt;r) ) &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>　　思路是通过计算两圆心距离与半径关系进行判断。若圆心距大于半径之和，表示两圆外离；若圆心距小于半径差的绝对值，表示两圆內离。其他情况为存在交点。</p>
+<p><strong>求交点：</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">d = <span class="built_in">sqrt</span>((n - cc-&gt;n) * (n - cc-&gt;n)</span><br><span class="line">        + (m - cc-&gt;m) * (m - cc-&gt;m));	<span class="comment">// distance of two centers</span></span><br><span class="line">AE = (<span class="keyword">this</span>-&gt;r * <span class="keyword">this</span>-&gt;r - cc-&gt;r * cc-&gt;r + d * d) / (<span class="number">2</span> * d);</span><br><span class="line">x0 = <span class="keyword">this</span>-&gt;n + AE / d * (cc-&gt;n - <span class="keyword">this</span>-&gt;n); <span class="comment">// x0 = x1 + AE/d * (x2-x1)</span></span><br><span class="line">y0 = <span class="keyword">this</span>-&gt;m + AE / d * (cc-&gt;m - <span class="keyword">this</span>-&gt;m); <span class="comment">// x0 = x1 + AE/d * (x2-x1)</span></span><br><span class="line">CE = <span class="built_in">sqrt</span>(r * r - AE * AE); <span class="comment">// CE^2 + AE^2 = AC^2 = r^2</span></span><br><span class="line"></span><br><span class="line">x1 = x0 - CE / d * (cc-&gt;m - m);</span><br><span class="line">y1 = y0 + CE / d * (cc-&gt;n - n);</span><br><span class="line">x2 = x0 + CE / d * (cc-&gt;m - m);</span><br><span class="line">y2 = y0 - CE / d * (cc-&gt;n - n);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (x1 == x2 &amp;&amp; y1 == y2) &#123;</span><br><span class="line">    pvec.push_back(&#123; x1, y1 &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    pvec.push_back(&#123; x1, y1 &#125;);</span><br><span class="line">    pvec.push_back(&#123; x2, y2 &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　同样是几何关系推演得到的结果进行编码，公式在<a href="https://github.com/kongkongNG/Intersection_proj/blob/master/README.md" target="_blank" rel="noopener">设计文档</a>的“数学准备”一栏能找到。推导思路是先求得两圆交点连线与圆心连线的交点，再通过相似三角形的性质得到横纵坐标。</p>
+<h3 id="4）主逻辑"><a href="#4）主逻辑" class="headerlink" title="4）主逻辑"></a>4）主逻辑</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> it = geoms.<span class="built_in">begin</span>(); it != geoms.<span class="built_in">end</span>(); it++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (gmt-&gt;isInterset(*it)) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;Point&gt; pvec = gmt-&gt;getInterPoint(*it);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> pIt = pvec.<span class="built_in">begin</span>(); pIt != pvec.<span class="built_in">end</span>(); pIt++) &#123;</span><br><span class="line">            pIt-&gt;id = points.<span class="built_in">size</span>();</span><br><span class="line">            points.insert(*pIt);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">geoms.push_back(gmt);</span><br></pre></td></tr></table></figure>
+<p>　　主程序的思路就是每次将输入的几何对象与当前所有几何对象做相交检测，若存在交点，则计算交点并加入点集。其中<code>gmt</code>是当前输入的几何对象，<code>geoms</code>是几何对象集合，<code>points</code>是结构体<code>Point</code>的<code>set</code>集合，能够通过<code>operator&lt;</code>的判断进行去重。<code>Point</code>中重写了<code>operator&lt;</code>，在精度范围内两个点相同则返回<code>false</code>。</p>
+<p>　　下面是Point结构体的细节：<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Point</span> &#123;</span></span><br><span class="line">	<span class="keyword">double</span> x, y;</span><br><span class="line">	Point(<span class="keyword">double</span> x, <span class="keyword">double</span> y) : x(x), y(y) &#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> Point &amp;p) <span class="keyword">const</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">fabs</span>(x - p.x) &lt;= EPS &amp;&amp; <span class="built_in">fabs</span>(y - p.y) &lt;= EPS) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> (x!=p.x)? x &lt; p.x : y &lt; p.y;</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br><br></p>
+<h2 id="六、代码分析与单元测试结果"><a href="#六、代码分析与单元测试结果" class="headerlink" title="六、代码分析与单元测试结果"></a>六、代码分析与单元测试结果</h2><h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><p><strong>消除警告前：</strong></p>
+<p><img src="https://i.loli.net/2020/03/10/lgPrLWZ4cqf1xHn.png" alt="md_2020-03-10-16-37-34.png"></p>
+<p>代码中存在的问题及解决办法如下：</p>
+<ul>
+<li><code>C26435</code>：存在未初始化的成员。解决办法是给每个可能无初值的成员赋初值</li>
+<li><code>C26451</code>：算术溢出，将4byte的值用于减法运算并赋给8byte的结果。解决办法是在<code>int</code>型数据前强制转换为<code>double</code>参与减法运算。</li>
+</ul>
+<p><strong>消除警告后：</strong></p>
+<p><img src="https://i.loli.net/2020/03/10/t9sjDHPoAiNWaqL.png" alt="md_2020-03-10-16-41-43.png"></p>
+<h3 id="单元测试结果"><a href="#单元测试结果" class="headerlink" title="单元测试结果"></a>单元测试结果</h3><p>　　单元测试的<a href="https://github.com/kongkongNG/Intersection_proj/blob/master/test/IntersectionUnitTest.cpp" target="_blank" rel="noopener">测试文件</a>按照“三、设计实现过程”中的设计来完成，即直线与直线、直线与圆、圆与圆以及总体业务逻辑测试，测试结果如下：</p>
+<p><img src="https://i.loli.net/2020/03/10/Q7FkWcPrJgeqHiO.png" alt="md_2020-03-10-18-41-02.png"></p>
+]]></content>
+      <categories>
+        <category>SoftWareEngineering</category>
+      </categories>
+      <tags>
+        <tag>CourseHomework</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>个人博客作业-讲义阅读</title>
+    <url>/2020/03/23/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E4%BD%9C%E4%B8%9A/</url>
+    <content><![CDATA[<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>这个作业属于哪个课程</td>
+<td><a href="https://edu.cnblogs.com/campus/buaa/BUAA_SE_2020_LJ" target="_blank" rel="noopener">2020春季计算机学院软件工程（罗杰、任建）</a> </td>
+</tr>
+<tr>
+<td>这个作业的要求在哪里</td>
+<td><a href="https://edu.cnblogs.com/campus/buaa/BUAA_SE_2020_LJ/homework/10410" target="_blank" rel="noopener">个人博客作业 </a> </td>
+</tr>
+<tr>
+<td>我在这个课程的目标是</td>
+<td>提高软件开发能力、团队协作能力 </td>
+</tr>
+<tr>
+<td>这个作业在哪个具体方面帮助我实现目标</td>
+<td>了解与总结软件工程的一些方法论 </td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="more"></a>
+<h2 id="一、阅览教材-讲义后问题汇总"><a href="#一、阅览教材-讲义后问题汇总" class="headerlink" title="一、阅览教材/讲义后问题汇总"></a>一、阅览教材/讲义后问题汇总</h2><p><br></p>
+<p> <strong>1）<a href="https://www.cnblogs.com/xinz/archive/2011/10/22/2220872.html" target="_blank" rel="noopener">PSP: Personal Software Process</a>：每个人的工作质量直接影响最终软件的质量？</strong></p>
+<p>读到“每个人的工作质量直接影响最终软件的质量”这一段话，我有一个小问题：也许只有团队中少部分人真正影响了最终软件的质量呢？当经过软件的设计与任务的分配，团队不免会有“划水”的人存在，也就是<a href="https://www.cnblogs.com/xinz/archive/2010/12/11/1902933.html" target="_blank" rel="noopener">非P1的人</a>，他们的工作无非只会延长成果的完成时间。而团队中能力较强的人能够完成这些“额外”单工作，将进度拉回正轨，最终的软件质量也就不受影响了。</p>
+<p><br></p>
+<p><strong>2）<a href="https://www.cnblogs.com/xinz/archive/2011/08/07/2129751.html" target="_blank" rel="noopener">技能的反面</a>：技能的反面是problem solving？</strong></p>
+<p>读到“技能的反面是Problem solving”这句话，我存在疑惑。这里对Problem Solving的解释有些生硬，将其意思约束在了能力差的人的行为表现。然而Problem Solving也是一项能力，如果一个人称自己精通编程，在被要求用特定语言完成一个问题的情况下，通过“Problem Solving”迅速了解了这门语言的基本用法，并完成了题目，这又何尝不是技能的精通呢？</p>
+<p><br></p>
+<p><strong>3）<a href="https://www.cnblogs.com/xinz/archive/2011/08/07/2130332.html" target="_blank" rel="noopener">结对编程</a> 测试的极致做法是TDD？</strong></p>
+<p>文中对极限编程的表格中，有这么一项：“测试/单元测试能帮助提高质量”的极致做法是“先写单元测试，从测试开始写程序——TDD”。通过网上查阅得知，TDD的基本思想是在开发功能代码之前，先编写测试代码，其理念是</p>
+<ul>
+<li>确保所有需求都能被照顾到</li>
+<li>在代码不断增加和重构的过程中，可以检查所有功能是否正确</li>
+</ul>
+<p>从上述的解释来看，如果需求在不断改变，一旦某段实际功能代码作废，其测试代码也将报废。若面临软件重构的情况，带来的测试程序的改动将是十分巨大的。此外，如果只根据需求分析编写测试程序，而不去考虑实际程序，结果测试只能覆盖结果的正确性，而无法保证其实现过程正确，程序的bug往往出现在对实现细节的考虑不周。</p>
+<p>因此，我对“测试能提高质量的极致是TDD”的推理仍存在疑惑。</p>
+<p><br></p>
+<p><strong>4）<a href="https://www.cnblogs.com/xinz/archive/2010/12/11/1902849.html" target="_blank" rel="noopener">敏捷宣言</a>：敏捷求成品，而不需要文档？</strong>  </p>
+<p>读到现有做法与敏捷的对比表格：“现有的做法：完整的文档；敏捷的做法：可用的软件”，我存在一些疑惑。面向对象程序设计课程中教给我们，编码之前应充分设计，且需充分考虑其可扩展性，在实践过程中，我发现明确的设计文档确实对编码思路、增量开发有很大帮助。而敏捷目标在于“可用的软件”，当遇到需求的变化时，没有经过充分设计的文档指导与代码支撑，增量开发会不会变得十分困难，反而不那么“敏捷”了？</p>
+<p><br></p>
+<p><strong>5）<a href="https://www.cnblogs.com/xinz/archive/2011/03/13/1982585.html" target="_blank" rel="noopener">画扇面</a>：速成还是求全？</strong></p>
+<p>博客中利用画扇面的例子形象描述出软件工程团队项目进展，引起了我的思考：如果团队项目在进行中途不断添加需求，最终会导致问题层出不穷复杂从而项目流产，那么团队在最初的需求分析时，应该尽可能将需求简化，以达到“速成”的目的，还是应该将需求的功能充分考虑呢？</p>
+<p>以我的个人经验来看，如果作为学生，项目的最终目的是为了的高分，那么前期的充分需求分析、创新性想法就成了争夺高分的利器，而且在准备做足的基础上，项目进展的加速度大，动力也足；而如果追求敏捷而抛弃充分分析的话，导致成果得分不高的同时，还会出现项目完成时处于距离交差不上不下的时间、没有动力增加新功能的窘况。当然在如果交差时间很局限的话，削减需求、敏捷开发还是很必要的。</p>
+<p><br></p>
+<p><strong>6）<a href="https://www.cnblogs.com/xinz/archive/2011/07/10/2102310.html" target="_blank" rel="noopener">创新的迷思  连载(2)</a>：技术创新不一定是关键？</strong> </p>
+<p>在“迷思之六-技术的创新是关键”一节中，作者的观点是，除了技术的创新，其他方面的创新也显得尤为重要。而我认为，相比于其他创新带来的昙花一现，技术的创新才是关键。ipod成功的真正原因并不是用户界面上的创新，而是它实现了“把1000首歌塞进口袋”的技术；苹果生态能够取得成功，得益于其内部软硬件技术的一次次创新；网络购物理念出现时，Paul Graham使用Lisp语言编写Viaweb，在技术上一直领先竞争者，并具有更快的迭代速度，从而占据领先地位。其他方面的创新固然能产生显著效果，比如共享经济、电商经济，但谁才能真正享有成功的果实？只有技术创新才能带来一骑绝尘的实力。因此，对于作者在“技术的创新是关键”的迷思上，我存有疑惑。</p>
+<p><br></p>
+<h2 id="二、“软件”、“软件工程”词汇的产生"><a href="#二、“软件”、“软件工程”词汇的产生" class="headerlink" title="二、“软件”、“软件工程”词汇的产生"></a>二、“软件”、“软件工程”词汇的产生</h2><p><strong>“软件”的产生</strong></p>
+<blockquote>
+<p>In 2000, Fred Shapiro, a librarian at the Yale Law School, published a letter revealing that <strong>Tukey</strong>‘s 1958 paper “The Teaching of Concrete Mathematics” contained the earliest known usage of the term “software” found in a search of JSTOR’s electronic archives, predating the OED’s citation by two years. This led many to credit Tukey with coining the term, particularly in obituaries published that same year, although Tukey never claimed credit for any such coinage. In 1995, <strong>Paul Niquette</strong> claimed he had originally coined the term in October 1953, although he could not find any documents supporting his claim. The earliest known publication of the term “software” in an engineering context was in August 1953 by <strong>Richard R. Carhart</strong>, in a RAND Corporation research memorandum.</p>
+</blockquote>
+<p>上文中说明了“软件”一词的3种起源：</p>
+<ul>
+<li>1958年Tukey在论文《The Teaching of Concrete Mathematics》中包含了“软件”一词的最早用法</li>
+<li>Paul Niquette 声称自己在1953年10月创造了“软件”这个词，经管他找不到支持他说法的文件</li>
+<li>“软件”在工程领域的最早出现是1953年8月Richard R.Carhart在RAND公司的研究备忘录中</li>
+</ul>
+<p><br></p>
+<p><strong>“软件工程”的产生</strong></p>
+<blockquote>
+<p><strong>Hamilton</strong> details how she came to make up the term “software engineering”:<br>When I first came up with the term, no one had heard of it before, at least in our world. It was an ongoing joke for a long time. They liked to kid me about my radical ideas. It was a memorable day when one of the most respected hardware gurus explained to everyone in a meeting that he agreed with me that the process of building software should also be considered an engineering discipline, just like with hardware. Not because of his acceptance of the new ‘term’ per se, but because we had earned his and the acceptance of the others in the room as being in an engineering field in its own right.</p>
+</blockquote>
+<p>“软件工程”是在1960s阿波罗计划执行期间由Margaret Hamilton提出。上面是Margaret Hamilton描述自己如何提出“软件工程”这一词汇的细节。</p>
+<p><br></p>
+<h2 id="三、软件工程发展的过程中的冷知识"><a href="#三、软件工程发展的过程中的冷知识" class="headerlink" title="三、软件工程发展的过程中的冷知识"></a>三、软件工程发展的过程中的冷知识</h2><blockquote>
+<p>Unix的命名：上世纪六七十年代，计算机工业几大巨头聚在一起，合作研发官方版的下一代操作系统Multics。但是，另外两个年轻人——26岁的肯·汤普森和28岁的丹尼斯·里奇——觉得Multics过分负载，就另起炉灶，写出了一个自己的操作系统。他们参照Multics，为它取了一个搞笑式的名字Unix（注：前缀Multi-意思是“多个”，而前缀Uni-意思是“单个”）<br>                                                   ——《黑客与画家》</p>
+</blockquote>
+<p><br></p>
+<h2 id="四、源代码与项目管理软件调研"><a href="#四、源代码与项目管理软件调研" class="headerlink" title="四、源代码与项目管理软件调研"></a>四、源代码与项目管理软件调研</h2><p>目前主要流行的源代码和项目管理软件有Microsoft TFS，GitHub，Trac，Bugzilla，Apple XCode等。优缺点如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Microsoft TFS</td>
+<td>对敏捷、CMMI等项目、过程管理改善有较好支持，需求、项目进度一览无余，对小团队开发有利</td>
+<td>用户量少，源代码功能使用较多，但并不是软件定位</td>
+</tr>
+<tr>
+<td>Git</td>
+<td>支持多人维护庞大项目，分支能力强大、体验好，支持离线提交、非线性开发，是的协作流畅</td>
+<td>上手难，代码保密性差</td>
+</tr>
+<tr>
+<td>Mercurial</td>
+<td>命令行简单，易上手，可扩展性好，对网络依赖性低</td>
+<td>功能较弱，分支方式杂多不便，改写历史麻烦；没有命名空间，容易混淆</td>
+</tr>
+<tr>
+<td>GitHub</td>
+<td>基于web，允许使用Git的源代码管理功能，开源</td>
+<td>适合代码跟踪，但不适合设计跟踪，对国内用户不友好</td>
+</tr>
+<tr>
+<td>Bitbucket</td>
+<td>免费支持私有仓库，且同时支持hg/Git，自定义域名，有Bug追踪功能</td>
+<td>鲜为人知</td>
+</tr>
+<tr>
+<td>Trac</td>
+<td>有良好的扩充性，权限体系的设计较完备，灵活、可随心所欲定制</td>
+<td>不支持多项目，核心功能少，中文化不完整，本地化很差</td>
+</tr>
+<tr>
+<td>Bugzilla</td>
+<td>bug管理系统，检索功能强大，后端数据库强大，配置设定丰富多样</td>
+<td>安装繁琐，不支持中文</td>
+</tr>
+<tr>
+<td>Apple XCode</td>
+<td>文件转移快速，可自由撤销，能够辅助开发</td>
+<td>只支持Mac OS</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>按照用户数和流行度排序排序如下（<a href="https://en.wikipedia.org/wiki/Comparison_of_source-code-hosting_facilities#Popularity" target="_blank" rel="noopener">参照Wiki</a>)</p>
+<p><img src="https://i.loli.net/2020/03/06/p2chV1qsWZDaKjU.png" alt="md_2020-03-06-22-19-20.png"></p>
+<p><br></p>
+<h2 id="五、源代码与项目管理软件使用"><a href="#五、源代码与项目管理软件使用" class="headerlink" title="五、源代码与项目管理软件使用"></a>五、源代码与项目管理软件使用</h2><h3 id="1）Git"><a href="#1）Git" class="headerlink" title="1）Git"></a>1）Git</h3><ul>
+<li>使用git初始化仓库<br><img src="https://i.loli.net/2020/03/06/hQrAsK31p8vNtcL.png" alt="md_2020-03-06-22-35-34.png"></li>
+</ul>
+<ul>
+<li>使用git添加新版本并记录<br><img src="https://i.loli.net/2020/03/06/NmlS3hunpvCHrPd.png" alt="md_2020-03-06-22-41-38.png"></li>
+</ul>
+<p>使用体验：虽然需要记住几个命令行，但是一旦熟悉之后，使用非常方便，且支持离线管理。理解分支操作之后对团队开发将更有帮助。<br><br></p>
+<h3 id="2）BitBucket"><a href="#2）BitBucket" class="headerlink" title="2）BitBucket"></a>2）BitBucket</h3><ul>
+<li>在<a href="https://bitbucket.org/product/features" target="_blank" rel="noopener">BitBucket官网</a>完成注册登录后，可以创建新的私人仓库<br><img src="https://i.loli.net/2020/03/06/yqXMEkCOSvBuF5e.png" alt="md_2020-03-06-22-48-50.png"></li>
+<li>创建仓库流程<br><img src="https://i.loli.net/2020/03/06/kmqg1CRHOKYVLrB.png" alt="md_2020-03-06-22-49-43.png"></li>
+<li>完成仓库创建<br><img src="https://i.loli.net/2020/03/06/5wu2yejhJLSfTbE.png" alt="md_2020-03-06-22-51-08.png"></li>
+<li>使用Git将仓库克隆到本地<br><img src="https://i.loli.net/2020/03/06/gujaUX2fHmwex5b.png" alt="md_2020-03-06-22-59-35.png"></li>
+</ul>
+<p><br></p>
+<ul>
+<li>使用Git添加本地项目文件，然后push到仓库中<br><img src="https://i.loli.net/2020/03/06/Af9JRKBZasMdveE.png" alt="md_2020-03-06-23-02-06.png"></li>
+</ul>
+<p>使用体验：BitBucket和Github很类似，对Git也有很好的支持，区别是Github私人仓库要收费，而BitBucket是免费的。此外，BitBucket用户界面美观大方，使用体验也很方便很赞。</p>
+]]></content>
+      <categories>
+        <category>SoftWareEngineering</category>
+      </categories>
+      <tags>
+        <tag>CourseHomework</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第一次作业-热身！</title>
+    <url>/2020/03/23/%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%9C%E4%B8%9A-%E7%83%AD%E8%BA%AB/</url>
+    <content><![CDATA[<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>这个作业属于哪个课程</td>
+<td><a href="https://edu.cnblogs.com/campus/buaa/BUAA_SE_2020_LJ" target="_blank" rel="noopener">2020春季计算机学院软件工程（罗杰、任建）</a> </td>
+</tr>
+<tr>
+<td>这个作业的要求在哪里</td>
+<td><a href="https://edu.cnblogs.com/campus/buaa/BUAA_SE_2020_LJ/homework/10410" target="_blank" rel="noopener">第一次作业-热身！</a> </td>
+</tr>
+<tr>
+<td>我在这个课程的目标是</td>
+<td>提高软件开发能力、团队协作能力 </td>
+</tr>
+<tr>
+<td>这个作业在哪个具体方面帮助我实现目标</td>
+<td>认清现状、明确规划 </td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="more"></a>
+<p><br></p>
+<h1 id="一、结缘计算机"><a href="#一、结缘计算机" class="headerlink" title="一、结缘计算机"></a>一、结缘计算机</h1><p><br></p>
+<h2 id="1-1-你为什么选择计算机专业？你认为你的条件如何？和这些博主比呢？"><a href="#1-1-你为什么选择计算机专业？你认为你的条件如何？和这些博主比呢？" class="headerlink" title="1.1 你为什么选择计算机专业？你认为你的条件如何？和这些博主比呢？"></a>1.1 你为什么选择计算机专业？你认为你的条件如何？和这些博主比呢？</h2><p>　　学生时代的我，与计算机的关系只停留在了娱乐一项。小学时老爸带回来的第一台电脑，在我眼里只是一个可以玩蜘蛛纸牌的。由于参与游泳特长训练，加之需要维持学业成绩，我没有将过多的精力投入在探索计算机的运行原理中，而是将其作为一个释放压力和追赶潮流的工具。同时，“编程”这个词在我生活中几乎从未出现过，除了电影。对它的印象只停留在黑客所掌握的酷酷的技能点。</p>
+<p>　　平凡地经历高考之后，拿到了意外的好成绩，这是鼓励我投身信息专业的重要因素。经过反复思索后，我坚定了一个观点：信息专业是通向未来的专业，我想要探究信息世界是如何形成与发展的（也许是迟到的好奇心在作怪），这是决定性因素。很幸福的是，父母也十分尊重我的选择。所以，我最终填报了北航的信息大类志愿，也幸运地被压线录取。后来专业分流时选择选择计算机学院，有一部分“业界好评”的原因，有一部分热心向学的原因，也有一部分受周围环境影响的原因。</p>
+<p>　　作为一个从大学才开始接触编程的计算机系本科生，我自认为条件自然是远远不如其他优秀的同学。从来到士谔书院起，我就十分敬仰那些中学参与信息学竞赛、热爱计算机、动手能力超强、理解能力超强的同学。虽然自己也在努力维持成绩，但编程能力、思维能力的不足还是让自己有些自卑。</p>
+<p>　　与<a href="https://www.cnblogs.com/unruledboy/p/DevCareer.html" target="_blank" rel="noopener">博客I</a>的博主相比，我虽然没有他在学生时代钻研电脑的热情与经历，但拥有深入计算机专业的大学教育资源。我认为与他的条件相比，我无法区分谁好谁坏。都说“兴趣是最好的老师”，博主虽然读的是英语专业，却对计算机有十分浓厚的兴趣，这份热情驱使着他不断学习计算机领域新兴技术。而我虽然拥有十分优秀的教育资源，但仍在迷茫途中，对计算机的感情反复无常，但说不定随着理解的深入，我会在计算机领域找到一个自己热爱的方向呢？</p>
+<p><br></p>
+<h2 id="1-2-计算机是你喜欢的领域吗？是你擅长的领域吗？"><a href="#1-2-计算机是你喜欢的领域吗？是你擅长的领域吗？" class="headerlink" title="1.2 计算机是你喜欢的领域吗？是你擅长的领域吗？"></a>1.2 计算机是你喜欢的领域吗？是你擅长的领域吗？</h2><p>　　严格来说，不是。对于计算机体系结构，从计算机组成、操作系统到编译原理的课程学习来看，我很少感受到沉浸在解决难题的喜悦中，而更多的是害怕无法完成任务、跟不上系里其他同学的学业压力。当然，随着课程的学习，自己对计算机的一些问题也慢慢得到解答，这是使我感到充实的。从程序设计来看，解题过程对我来说也是比较煎熬的，且容易产生自我否定。那“不严格”来说呢？也许后续的学习会接触到某些方向，将运用之前学习的计算机领域知识系统地解决问题，那时也许我会非常乐意地说“我喜欢计算机”吧！</p>
+<p>　　计算机绝对不是我擅长的领域。从本科的动手能力就能看出，程序设计、数据结构、计组等等，这些实验课中多数我都没有取得理想的成绩。且在计算机领域的知识广度、掌握的技能、实践的经历等我也远远比不上同系生。但我一直饱受心理问题的困扰——不自信。如果一直不相信自己有能力去解决某些问题，那么自己就会始终不愿意去深入、始终因为能力问题而兜兜转转。如果一直暗示自己不擅长计算机领域，也许我就再没有动力去学习领域内的新知识了。所以，还是试试相信自己的能力吧。</p>
+<p><br></p>
+<h2 id="1-3-你热爱这一专业吗？你对计算机的热爱是怎样的？仅仅是口头的吗？"><a href="#1-3-你热爱这一专业吗？你对计算机的热爱是怎样的？仅仅是口头的吗？" class="headerlink" title="1.3 你热爱这一专业吗？你对计算机的热爱是怎样的？仅仅是口头的吗？"></a>1.3 你热爱这一专业吗？你对计算机的热爱是怎样的？仅仅是口头的吗？</h2><p>　　目前并不热爱。我对计算机的感情有些复杂，有时会因为创造可行的程序而激动，有时又会因深陷在复杂的知识点中而被挫败。从大学学习开始，我按部就班地完成计算机专业安排的课程，对于可选的一般专业课，我也秉持着“能学多学”的原则，旨在增长见识去选课。但是目前为止，我没有被计算机专业所吸引，仍然被动地为学业而学，自然谈不上热爱。</p>
+<p>　　反观<a href="https://www.cnblogs.com/geniusvczh/archive/2011/12/16/2290808.html" target="_blank" rel="noopener">博客M</a>的博主，我认为那便是热爱。从自学编程、尝试制作游戏，到解释高级语言、写脚本引擎，他的行动以兴趣为驱动，解决问题带来的正反馈效应又更加坚定他的热爱。</p>
+<p><br></p>
+<h1 id="二、在计算机系里学习"><a href="#二、在计算机系里学习" class="headerlink" title="二、在计算机系里学习"></a>二、在计算机系里学习</h1><p><br></p>
+<h2 id="2-1-你对你的大学生活有什么想要吐槽的地方吗？你理想的大学教育应该是什么样子的？跟学校给你的有什么区别？比较你在中国大学的经历，你的老师和学校能做到和国外那样吗？如果不能，请分析一下为什么。"><a href="#2-1-你对你的大学生活有什么想要吐槽的地方吗？你理想的大学教育应该是什么样子的？跟学校给你的有什么区别？比较你在中国大学的经历，你的老师和学校能做到和国外那样吗？如果不能，请分析一下为什么。" class="headerlink" title="2.1 你对你的大学生活有什么想要吐槽的地方吗？你理想的大学教育应该是什么样子的？跟学校给你的有什么区别？比较你在中国大学的经历，你的老师和学校能做到和国外那样吗？如果不能，请分析一下为什么。"></a>2.1 你对你的大学生活有什么想要吐槽的地方吗？你理想的大学教育应该是什么样子的？跟学校给你的有什么区别？比较你在中国大学的经历，你的老师和学校能做到和国外那样吗？如果不能，请分析一下为什么。</h2><p>　　我的大学生活十分中规中矩，跟随着课程设置按部就班地完成学习。想要吐槽的地方是，学院的课程压力分配不太合理。比如大二上学期的计算机组成课，一门实验课可以说是占据了这一学期全部的重心，每周除了空闲时间，甚至理论课的时间、其他课堂的时间，也消耗在编写实验课任务上，此外，还对每周四的上机考核实验忧心忡忡。这样，每周的精力完全放在有没有通过本周Project上，而忽视了其他如离散数学、概率统计之类的重要数学基础课的学习，我认为有些得不偿失。且这种高压并不利于激发我改进设计的动力，反而更加迫使我按照课程要求的“模板”去完成设计，因害怕无法通过测试而不敢思考其他可行方案。</p>
+<p>　　我理想的大学教育应该是与生产实践想结合的。如果在教授课程的同时，能够加入这门课在当今生产实践中的实际运用，也许能让学生对课程整体有更直观的认识，也能够激发学生对某个领域的兴趣。比如算法课，按照课程大纲一个个算法细讲十分枯燥，而如果能够将这些算法在当今各大软件中的实际应用带入讲解，并进行编程实践，或许这些算法就很难忘记了。</p>
+<p>　　学校里的教育比较按部就班，有时上完一门课，却不知道这门课是做什么的。课程的知识点大多平铺罗列，着重于记忆而非联系。</p>
+<p>　　我没有经历过国外教育，但我认为国内大学和国外应该还是有一定区别。国外大学学费高，学校能够将资金转换为更优质的教育环境和资源，且国外高校教授的薪资也更能促进优质课程的产生。相比较，国内高校人数多，旨在为更多人提供平均的教育，老师有发表论文的压力，薪资水平一般，难以有动力精心准备课堂。当然如今也有越来越多的老师因课堂质量深受学生喜爱。</p>
+<p><br></p>
+<h2 id="2-2-迄今为止，你写了多少代码，描述你做的最复杂的软件项目-作业。"><a href="#2-2-迄今为止，你写了多少代码，描述你做的最复杂的软件项目-作业。" class="headerlink" title="2.2 迄今为止，你写了多少代码，描述你做的最复杂的软件项目/作业。"></a>2.2 迄今为止，你写了多少代码，描述你做的最复杂的软件项目/作业。</h2><p>　　大一程序设计课总共约500行，数据结构课约1000行；大二计组课程约2000行，OO课程四个单元约4000行，暑期课OpenGL项目约500行；大三的编译器约5000行。合计不超过2w行吧，当然这都是粗略的估计。</p>
+<p>　　最复杂的项目是大三上学期的C0编译器设计，总共5340行，包含词法分析、语法分析、语义分析、错误处理、中间代码生产、目标代码生成以及优化七个大模块，内部还有符号表之类的小设计。这是一个自己制作出来的比较有成就感的作业，课程只讲解大体的设计思路，其中实现细节经过了反复的思考、添加与修改。最终虽然错误处理测试没能通过，但优化目标代码的测试通过了，还是比较满足。</p>
+<p><br></p>
+<h2 id="2-3-科班出身和北大青鸟有什么区别？"><a href="#2-3-科班出身和北大青鸟有什么区别？" class="headerlink" title="2.3 科班出身和北大青鸟有什么区别？"></a>2.3 科班出身和北大青鸟有什么区别？</h2><p>　　我还依稀记得大一程序设计课荣欣老师在第一堂课就强调过这个问题：“你们和技校、培训班培养出来的码农不一样，你们不仅要会写程序，还要会设计程序”。我认为，当一个软件、或是一个程序的设计完成后，剩下的编码任务其实很容易完成，这点在面向对象课程中深有体会。科班出身的人在掌握编码的同时，还应具备的是设计复杂系统、解决疑难问题的能力；而北大青鸟，如<a href="https://www.cnblogs.com/Tpf386/p/4798437.html" target="_blank" rel="noopener">博客F</a>博主的经历所见，是以就业为目的、学习技能为导向的培训。</p>
+<p><br></p>
+<h2 id="2-4-速成的培训班和打基础的大学教育还有mooc之间有区别吗？"><a href="#2-4-速成的培训班和打基础的大学教育还有mooc之间有区别吗？" class="headerlink" title="2.4 速成的培训班和打基础的大学教育还有mooc之间有区别吗？"></a>2.4 速成的培训班和打基础的大学教育还有mooc之间有区别吗？</h2><p>　　速成培训班以求职技巧为核心，着重教授基本编程技能、美化简历，目的是让学员找到工作；mooc为教育资源差但学习热情高、自学能力强的学生提供名校课程教学，个人的自主学习能力尤为重要；大学教育不仅仅只有老师讲授的实体课堂，大学里提供的专业资源、社交资源、实践平台也十分重要。</p>
+<p><br></p>
+<h2 id="2-5学线性代数和概率论的时候，你是否有过这样的疑问“我们为什么要学这么多数学，这和我们的计算机有关系吗”，你现在是否还有这样的疑问？对这个问题，你有自己的解答了吗？那么其他学科呢？"><a href="#2-5学线性代数和概率论的时候，你是否有过这样的疑问“我们为什么要学这么多数学，这和我们的计算机有关系吗”，你现在是否还有这样的疑问？对这个问题，你有自己的解答了吗？那么其他学科呢？" class="headerlink" title="2.5学线性代数和概率论的时候，你是否有过这样的疑问“我们为什么要学这么多数学，这和我们的计算机有关系吗”，你现在是否还有这样的疑问？对这个问题，你有自己的解答了吗？那么其他学科呢？"></a>2.5学线性代数和概率论的时候，你是否有过这样的疑问“我们为什么要学这么多数学，这和我们的计算机有关系吗”，你现在是否还有这样的疑问？对这个问题，你有自己的解答了吗？那么其他学科呢？</h2><p>　　我曾经有过很多次这样的疑问，因为在这些数学基础课与计算机之间建立不起任何联系。现在这些疑问淡化了，因为随着专业课程的学习深入，这些数学知识或多或少地都得到了一些运用，比如OpenGL的光照运用到了线性代数的向量变换知识。但还有部分未得到解答，可能是因为学习的专业课不够多、不够深入，且见识短浅，可能还需在未来的研究实践中才能得到解答。其他学科如数学分析的知识在机器学习的SVM模型中得到了运用，离散数学的知识在计组的状态机中也有运用。进一步的解答还需等待眼界更加开阔。</p>
+<p><br></p>
+<h1 id="三、未来规划"><a href="#三、未来规划" class="headerlink" title="三、未来规划"></a>三、未来规划</h1><p><br></p>
+<h2 id="3-1-对于你未来在IT行业的发展，你有什么样的梦想或者未来想从事什么样的工作？你准备怎样来规划你技术道路，职业道路和社会道路？（必答）"><a href="#3-1-对于你未来在IT行业的发展，你有什么样的梦想或者未来想从事什么样的工作？你准备怎样来规划你技术道路，职业道路和社会道路？（必答）" class="headerlink" title="3.1 对于你未来在IT行业的发展，你有什么样的梦想或者未来想从事什么样的工作？你准备怎样来规划你技术道路，职业道路和社会道路？（必答）"></a>3.1 对于你未来在IT行业的发展，你有什么样的梦想或者未来想从事什么样的工作？你准备怎样来规划你技术道路，职业道路和社会道路？（必答）</h2><p>　　这是大学里最困扰我的问题。曾经想过做与图形图像相关的技术工作，因为比起思考枯燥的程序算法，制作出肉眼可见的成果更能使我兴奋；作为英雄联盟的游戏爱好者，我也想过进入游戏行业，看过拳头游戏出品的《听说你想做游戏？？》系列宣传片中介绍的技术美工，更是十分向往；内心深处还有一个想法是依靠计算机积累原始资本，之后转行，投身自己真正感兴趣的领域。总之，这些都是迷茫摇摆的表现。</p>
+<p>　　拜读过<a href="https://book.douban.com/subject/4006425/discussion/22803733/" target="_blank" rel="noopener">博客A</a>后，我对“产品经理”这一职位有了动念，源于文中这一句话：“产品经理是谷歌一个非常特殊的角色，一个产品除了开发和测试之外的事情，基本都由产品经理主导。其中最重要也是最令人激动的是产品功能设计，也就是说，你对产品功能的任何合理的想法，都可以在产品经理这个平台上得到实现，最终被全球数以亿计的网民使用，改变他们的生活！”。当然公司之间的产品经理或许职能会有不同，但是主导产品的创作确实令人十分兴奋。</p>
+<p>　　<a href="">博客K</a>的博主说：“做规划时最重要的是两个方面：一是清楚地认识自己的能力、优势和性格；二是确定自己的专业和想从事的行业。只有在确定这两方面后，才能做出自己的职业规划”。对这两方面，我都没有很好的认识，所以谈如何规划道路，或许我不能叫规划，应该只能说是尝试，是迷茫期的探索。<a href="https://book.douban.com/subject/4006425/discussion/22802960/">博客B</a>给我很大的启发。书籍中成体系的知识能够为自己在技术道路上的准备打下坚实的内功基础，我也深深意识到光靠老师的PPT糊弄过考试并不是真正掌握知识。所以，阅读是不可或缺的准备手段；同时，结合实践去提升自己的“硬实力”也是不可或缺的。职业道路的规划将是通过不断探索，获取关于感兴趣职业尽可能多的信息，有目的地进行求职准备，当然在这之前要面临争夺研究生资格的求学道路；因为性格内向的原因，社会道路的规划对我来说有一定难度，目前所能做的只有强迫自己去参与交流，走出自己的社交舒适圈，接触更多有趣有才的人。</p>
+<p><br></p>
+<h2 id="3-2-你对于实现自己的梦想已经做了或者计划做什么样的准备？"><a href="#3-2-你对于实现自己的梦想已经做了或者计划做什么样的准备？" class="headerlink" title="3.2 你对于实现自己的梦想已经做了或者计划做什么样的准备？"></a>3.2 你对于实现自己的梦想已经做了或者计划做什么样的准备？</h2><p>　　如上一个问题中所述，同时还要在试错的过程中找到自己擅长的、感兴趣的方向。</p>
+<p><br></p>
+<h2 id="3-3-你们马上就要面临实习了，你打算在企业内实习还是在实验室实习？"><a href="#3-3-你们马上就要面临实习了，你打算在企业内实习还是在实验室实习？" class="headerlink" title="3.3 你们马上就要面临实习了，你打算在企业内实习还是在实验室实习？"></a>3.3 你们马上就要面临实习了，你打算在企业内实习还是在实验室实习？</h2><p>　　我打算在企业内实习。据了解到的信息，实验室实习是给出课题进行研究，以发论文为目标，而企业实习是参与到项目中，锻炼实际解决问题的能力。因为大学学习阶段，知识都停留在书本，我更希望体验知识所带来的实际影响力，这点企业实习能够提供更好的平台。</p>
+<p><br></p>
+<h2 id="3-4-实习经验究竟有多重要？是否需要马上开始积累实习经验？"><a href="#3-4-实习经验究竟有多重要？是否需要马上开始积累实习经验？" class="headerlink" title="3.4 实习经验究竟有多重要？是否需要马上开始积累实习经验？"></a>3.4 实习经验究竟有多重要？是否需要马上开始积累实习经验？</h2><p>　　这点我没有发言权，因为我从未在企业或实验室中实习过，但我认为应该是十分重要的，因为能够了解到课堂以外的知识和领域内研究热点或技术热点。是否需要马上开始累积实习经验还要看个人情况，学院的课程压力比较大，我认为应该在基础扎实的情况下参与实习，而这也是我没有参加实习的原因，但我认为应该要尽快了。</p>
+<p><br></p>
+<h1 id="四、写在最后"><a href="#四、写在最后" class="headerlink" title="四、写在最后"></a>四、写在最后</h1><p>　　趁着这个机会回顾了自己走上计算机这条路的前前后后，感触良多。在迷雾中来回穿行，反反复复地问自己：这条路走对了吗？你的能力足够吗？你足够感兴趣吗？…翻阅过许多人的思考，阅读过许多名人的经历，乔布斯对科技与艺术的追求让我仰慕不已，即使他是个古怪的人，也许天才都比较古怪吧；Paul Graham拿到计算机博士学位后，远赴欧洲学习绘画，为“解决收入问题”创业，达成目的后又成立创业孵化公司，影响更多的人。</p>
+<p>　　然而我的迷茫始终都在，导致在探索的过程浪费了许多精力，甚至失去探索的动力。这一次思考点醒我的是，总结与规划十分重要，它提醒我不应驻足现状，受限与迷茫，而应理清困惑，回顾总结，做好规划并继续前行，永远不停止思考。</p>
+]]></content>
+      <categories>
+        <category>SoftWareEngineering</category>
+      </categories>
+      <tags>
+        <tag>CourseHomework</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>结对项目作业-Intersect+GUI</title>
+    <url>/2020/03/23/%E7%BB%93%E5%AF%B9%E9%A1%B9%E7%9B%AE%E4%BD%9C%E4%B8%9A/</url>
+    <content><![CDATA[<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>本作业属于北航 2020 年春软件工程</td>
+<td><a href="https://edu.cnblogs.com/campus/buaa/BUAA_SE_2019_LJ" target="_blank" rel="noopener">博客园班级连接</a></td>
+</tr>
+<tr>
+<td>本作业是本课程个人项目作业</td>
+<td><a href="https://edu.cnblogs.com/campus/buaa/BUAA_SE_2020_LJ/homework/10429" target="_blank" rel="noopener">作业要求</a></td>
+</tr>
+<tr>
+<td>我在这个课程的目标是</td>
+<td>提高软件开发能力、团队协作能力</td>
+</tr>
+<tr>
+<td>这个作业在哪个具体方面帮助我实现目标</td>
+<td>增加协作开发经验</td>
+</tr>
+<tr>
+<td>项目代码</td>
+<td><a href="https://github.com/btapple/Intersect" target="_blank" rel="noopener">https://github.com/btapple/Intersect</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br></p>
+<h2 id="一、需求分析与UML图"><a href="#一、需求分析与UML图" class="headerlink" title="一、需求分析与UML图"></a>一、需求分析与UML图</h2><p>　　与上一次的个人项目作业相类似，本次的任务关键在于交点的求解。至于新需求“交点绘制”，是简单扩展，实际上是将每个交点的坐标反馈到用户。</p>
+<p>　　本次任务增加了两种图形：线段与射线，它们都是特殊的直线。为什么是特殊的“直线”呢？因为本质上，这两种图形都是将无限长直线进行截断而形成的。</p>
+<p>　　由于这种性质，我们不难发现，整体的求解过程几乎没有改变。上一次的求解划分方法抄录如下</p>
+<ul>
+<li>直线与直线<ul>
+<li>平行：交点个数 0</li>
+<li>同一条直线：交点个数无限</li>
+<li>相交：交点个数 1</li>
+</ul>
+</li>
+<li>直线与圆<ul>
+<li>相离：交点个数 0</li>
+<li>相切：交点个数 1</li>
+<li>相交：交点个数 2</li>
+</ul>
+</li>
+<li>圆与圆<ul>
+<li>相离：交点个数 0</li>
+<li>相切：交点个数 1</li>
+<li>相交：交点个数 2</li>
+<li>内含：交点个数 0</li>
+</ul>
+</li>
+</ul>
+<p>　　但是，射线与线段毕竟不是直线，因此我们需要考虑因截断带来的影响，即所求得的交点是否在图形上。而求解交点的过程，依旧是参见 Paul Bourke 先生的<a href="http://paulbourke.net/geometry/circlesphere/" target="_blank" rel="noopener">文章</a>。</p>
+<p>　　除此以外，我们还需要考虑射线与线段之间的新的交点，即端点的重合。</p>
+<p>UML图如下：</p>
+<p><img src="https://ftp.bmp.ovh/imgs/2020/03/b40b4c697fbedfce.png" alt=""></p>
+<h2 id="二、接口设计与实现"><a href="#二、接口设计与实现" class="headerlink" title="二、接口设计与实现"></a>二、接口设计与实现</h2><h3 id="Information-Hiding，Interface-Design，Loose-Coupling"><a href="#Information-Hiding，Interface-Design，Loose-Coupling" class="headerlink" title="Information Hiding，Interface Design，Loose Coupling"></a>Information Hiding，Interface Design，Loose Coupling</h3><p>　　我们本次的接口设计依照了Imformation Hiding（信息隐藏）原则与Loose Coupling（松耦合）原则，体现在通过一个特定的管理器指针与调用方互动，不会涉及类成员的修改，保证信息的隐藏；通信的参数都是基本类型参数，双方不必为各自的实现考虑，保证松耦合特性。</p>
+<h3 id="Design-by-Contract，Code-by-Contract"><a href="#Design-by-Contract，Code-by-Contract" class="headerlink" title="Design by Contract，Code by Contract"></a>Design by Contract，Code by Contract</h3><p>　　Design by Contract，契约式设计，其强调前置条件、后置条件与不变式，是一种形式约束。DbC的优点正如它的初衷，能够保证程序正确，它是一种形式逻辑上的正确，而不是测试之后得出的正确率，所以非常可靠，但其缺点是使得代码臃肿、工作量增大。OO课程中有一个单元练习的JML体现的便是这种思想，当程序复杂时带来的约束编写的工作量也会成倍增加。Code By Contract也是同样的道理，按照约束编写能够保证可靠，但是强行依照断言编写程序会造成代码的冗余和复杂，且如果约束复杂，也会增加理解交流的成本，降低效率。</p>
+<p>本次结对项目中，我们没有过多使用Contract这种理念，而是在需求分析时确定应有的约束，保证项目“敏捷”地进行下去。</p>
+<h3 id="接口实现"><a href="#接口实现" class="headerlink" title="接口实现"></a>接口实现</h3><p>　　考虑到我们所要编写的库需要面对的环境是未知的，即不清楚会被什么语言以什么形式调用，因此我们选择了最广泛的 C 形式。我们希望，调用语言只要能够获取变量的地址，就能顺利地调用我们的库。具体的接口如下</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 以下的 CORE_API 均是 __declspec(dllexport)，声明将要在 dll 中导出</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function">CORE_API GraphManager * <span class="title">create_graph_manager</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function">CORE_API <span class="keyword">int</span> <span class="title">add_line</span><span class="params">(GraphManager*, <span class="keyword">char</span>*, Type, INTTYPE, INTTYPE, INTTYPE, INTTYPE)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function">CORE_API <span class="keyword">int</span> <span class="title">add_circle</span><span class="params">(GraphManager*, <span class="keyword">char</span>*, Type, INTTYPE, INTTYPE, INTTYPE)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function">CORE_API <span class="keyword">void</span> <span class="title">remove_graph</span><span class="params">(GraphManager*, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function">CORE_API <span class="keyword">int</span> <span class="title">calculate_intersect</span><span class="params">(GraphManager*, <span class="keyword">char</span>*, INTTYPE)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function">CORE_API <span class="keyword">int</span> <span class="title">fetch_intersect</span><span class="params">(GraphManager*, <span class="keyword">char</span>*, FLOATTYPE*, FLOATTYPE*)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function">CORE_API <span class="keyword">void</span> <span class="title">clear_manager</span><span class="params">(GraphManager*)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function">CORE_API <span class="keyword">void</span> <span class="title">dispose_graph_manager</span><span class="params">(GraphManager*)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>各个接口分别的作用是：</p>
+<ul>
+<li><code>create_graph_manager</code>：创建 GraphManager</li>
+<li><code>add_line</code>：向指定的 GraphManager 添加一条线（可能是直线、线段或射线，由 Type 指定）</li>
+<li><code>add_circle</code>：向指定的 GraphManager 添加一个圆</li>
+<li><code>remove_graph</code>：从指定的 GraphManager 中删除一个图形</li>
+<li><code>calculate_intersect</code>：计算指定的 GraphManager 中所管理的图形的交点</li>
+<li><code>fetch_intersect</code>：从指定的 GraphManager 中获取交点信息</li>
+<li><code>clear_manager</code>：清空指定的 GraphManager</li>
+<li><code>dispose_graph_manager</code>:销毁指定的 GraphManager</li>
+</ul>
+<h3 id="性能分析与改进"><a href="#性能分析与改进" class="headerlink" title="性能分析与改进"></a>性能分析与改进</h3><p>性能分析结果：</p>
+<p><img src="https://ftp.bmp.ovh/imgs/2020/03/04768924de774c46.png" alt=""></p>
+<p>其中消耗最大的函数是求交点函数<code>calculate_intersect</code>：</p>
+<p><img src="https://ftp.bmp.ovh/imgs/2020/03/9192074929613e95.png" alt=""></p>
+<p>　　由于改进的切入点只有交点计算的算法改进，而计算的算法没有稳定改进办法，所以性能改进上处理不多。</p>
+<h2 id="三、异常处理"><a href="#三、异常处理" class="headerlink" title="三、异常处理"></a>三、异常处理</h2><p>　　这一部分是接口设计的后续内容。</p>
+<p>　　异常处理是必要的，因为我们无法假设调用方的调用方式，否则调用方与被调用方将存在一定的非必要的耦合关系。</p>
+<p>以下面这个接口为例子</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function">CORE_API <span class="keyword">int</span> <span class="title">add_line</span><span class="params">(GraphManager* gm, <span class="keyword">char</span>* msg, Type type, INTTYPE x1, INTTYPE y1, INTTYPE x2, INTTYPE y2)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>　　调用方在尝试调用这个接口之前，对内部实现没有了解，不清楚直线各个参数的限制（当然，库文档一般会提供，我们假设文档中没有注明），那么可能会错误地提供了两个相同的点，或者超过限制范围的坐标值等等，这些都是需要反馈的。</p>
+<p>　　那么，问题就在于如何反馈异常。首先，不可能抛异常（尽管我们的库是使用 C++编写的，具有抛异常能力），不同的语言与环境的异常模型未必相同，调用方不一定能够完成异常的处理。我们依旧需要一个通用的做法，选择返回错误信息的长度与错误信息的指针（对于本接口，返回值即错误信息长度，msg 用于存储错误信息的指针），如果错误信息的长度为 0，意味着没有异常发生，这里同样只有基本类型的参与。</p>
+<p>根据需求，我们设计了以下几种异常类型：</p>
+<ul>
+<li>直线两点重合</li>
+<li>输入参数的大小不在限定范围内</li>
+<li>圆半径为负</li>
+<li>在计算交点之前就尝试获取交点信息</li>
+<li>无交点却尝试获取交点信息</li>
+<li>输入数据中具有重合或重复的图形</li>
+</ul>
+<p>　　对于最后一种情况，即会产生“无限多交点”的情况，我们容许它的发生，会以警告的形式反馈给用户，但是会将发生重合的图形连接成为一个图形进行计算。</p>
+<h2 id="四、单元测试"><a href="#四、单元测试" class="headerlink" title="四、单元测试"></a>四、单元测试</h2><p>  先展示覆盖情况（使用 OpenCPPCoverage 生成）</p>
+<p><img src="https://ftp.bmp.ovh/imgs/2020/03/0e62fd435ee54034.png" alt=""></p>
+<p>  测试的框架如下</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> main_ret = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> test_count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> test_pass = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EXPECT_EQ_BASE(equality, expect, actual) \</span></span><br><span class="line">    <span class="keyword">do</span> &#123;\</span><br><span class="line">        test_count++;\</span><br><span class="line">        <span class="keyword">if</span> (equality)\</span><br><span class="line">            test_pass++;\</span><br><span class="line">        <span class="keyword">else</span> &#123;\</span><br><span class="line">            <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; __FILE__ &lt;&lt; <span class="string">":"</span> &lt;&lt; __LINE__ &lt;&lt; <span class="string">": expect: "</span> &lt;&lt; expect &lt;&lt; <span class="string">" actual: "</span> &lt;&lt; actual &lt;&lt; <span class="string">"\n"</span>; \</span><br><span class="line">            main_ret = <span class="number">1</span>;\</span><br><span class="line">        &#125;\</span><br><span class="line">    &#125; <span class="keyword">while</span>(<span class="number">0</span>)</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EXPECT_EQ(expect, actual) EXPECT_EQ_BASE((expect) == (actual), expect, actual)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EXPECT_TRUE(actual) EXPECT_EQ_BASE((actual) != 0, <span class="meta-string">"true"</span>, <span class="meta-string">"false"</span>)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EXPECT_FALSE(actual) EXPECT_EQ_BASE((actual) == 0, <span class="meta-string">"false"</span>, <span class="meta-string">"true"</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">gm_test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> gm = create_graph_manager();</span><br><span class="line">    ... <span class="comment">// 测试项目</span></span><br><span class="line">    dispose_graph_manager(gm);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    gm_test();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d/%d (%3.2f%%) passed\n"</span>, test_pass, test_count, test_pass * <span class="number">100.0</span> / test_count);</span><br><span class="line">    <span class="keyword">return</span> main_ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  测试项目有功能性测试和异常测试。</p>
+<p>  首先是功能性测试，以测试两圆外切情况为例</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">clear_manager(gm);                              <span class="comment">// 首先清空 GraghManager</span></span><br><span class="line">add_circle(gm, <span class="literal">nullptr</span>, Type::circle, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>); <span class="comment">// 加入一个圆，用空指针接收错误信息可以及时发现异常的发生</span></span><br><span class="line">add_circle(gm, <span class="literal">nullptr</span>, Type::circle, <span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>); <span class="comment">// 加入另一个圆</span></span><br><span class="line">EXPECT_EQ(<span class="number">1</span>, calculate_intersect(gm));          <span class="comment">// 计算交点数并进行比较</span></span><br></pre></td></tr></table></figure>
+<p>　　测试数据的构造会考虑正负零以及在数据范围附近的情况(-100000, 100000)，分类的依据可见需求分析。</p>
+<p>  然后是异常测试，大致如下</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 两点重合</span></span><br><span class="line">clear_manager(gm);</span><br><span class="line">EXPECT_TRUE(add_line(gm, msg, Type::line_segment, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>) &gt; <span class="number">0</span>);</span><br><span class="line"><span class="comment">// 超出数据范围</span></span><br><span class="line">clear_manager(gm);</span><br><span class="line">EXPECT_TRUE(add_line(gm, msg, Type::line_segment, <span class="number">10000000</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>) &gt; <span class="number">0</span>);</span><br><span class="line"><span class="comment">// 超出数据范围</span></span><br><span class="line">clear_manager(gm);</span><br><span class="line">EXPECT_TRUE(add_line(gm, msg, Type::line_segment, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">-10000000</span>) &gt; <span class="number">0</span>);</span><br><span class="line"><span class="comment">// 超出数据范围</span></span><br><span class="line">clear_manager(gm);</span><br><span class="line">EXPECT_TRUE(add_circle(gm, msg, Type::circle, <span class="number">0</span>, <span class="number">0</span>, <span class="number">-10000000</span>) &gt; <span class="number">0</span>);</span><br><span class="line"><span class="comment">// 半径为负</span></span><br><span class="line">clear_manager(gm);</span><br><span class="line">EXPECT_TRUE(add_circle(gm, msg, Type::circle, <span class="number">0</span>, <span class="number">0</span>, <span class="number">-1000</span>) &gt; <span class="number">0</span>);</span><br><span class="line"><span class="comment">// 计算交点前获取交点信息</span></span><br><span class="line">clear_manager(gm);</span><br><span class="line">EXPECT_TRUE(fetch_intersect(gm, msg, &amp;x, &amp;y) &gt; <span class="number">0</span>);</span><br><span class="line"><span class="comment">// 无交点获取交点信息</span></span><br><span class="line">calculate_intersect(gm, msg, &amp;point_num);</span><br><span class="line">EXPECT_TRUE(fetch_intersect(gm, msg, &amp;x, &amp;y) &gt; <span class="number">0</span>);</span><br><span class="line"><span class="comment">// 输入数据中具有重合或重复的图形</span></span><br><span class="line">add_circle(gm, <span class="literal">nullptr</span>, Type::circle, <span class="number">0</span>, <span class="number">0</span>, <span class="number">3</span>);</span><br><span class="line">add_circle(gm, <span class="literal">nullptr</span>, Type::circle, <span class="number">0</span>, <span class="number">0</span>, <span class="number">3</span>);</span><br><span class="line">EXPECT_TRUE(calculate_intersect(gm, msg, &amp;point_num) &gt; <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="五、UI设计及与计算模块的对接"><a href="#五、UI设计及与计算模块的对接" class="headerlink" title="五、UI设计及与计算模块的对接"></a>五、UI设计及与计算模块的对接</h2><p>　　界面模块我们选取的开发框架是WPF，开发语言为C#。由于项目给出的界面模块需求为几何对象的文件导入、增删、绘制与交点求解，这些需求都可以通过按钮点击事件完成，故界面模块的总体设计为：上方用画板展示绘制内容，下方排布按钮进行控制。完成后的初始界面如下：</p>
+<p><img src="https://ftp.bmp.ovh/imgs/2020/03/b47965a4122cdf51.png" alt=""></p>
+<h3 id="画布设计"><a href="#画布设计" class="headerlink" title="画布设计"></a>画布设计</h3><p>　　画布设计又分为坐标网格的绘制与几何图形的绘制，下面解释二者的实现细节。</p>
+<p>　　坐标轴的绘制比较简单，只需在画布中央画两条直线，其中y轴的两端为画布上下边界的中点，x轴的两端为画布左右边界的中点。而坐标网格的绘制其实也只是坐标轴绘制的一个加强版，横纵线交错即为网格；坐标的绘制通过<code>TextBlock</code>实现。下面是展示沿X轴方向的坐标网格和坐标的绘制，y轴同理翻转即可。</p>
+<h3 id="几何对象绘制设计"><a href="#几何对象绘制设计" class="headerlink" title="几何对象绘制设计"></a>几何对象绘制设计</h3><p>　　几何对象的绘制分为线绘制和圆形绘制，其中线绘制又分为无限长直线、射线和线段。</p>
+<p>　　<strong>线绘制</strong>最为麻烦，因为WPF框架中给出的现有方法只支持绘制线段，不支持无限长直线。我们对于无限长直线和射线的实现办法为：添加边界点。边界点的求法为：令横坐标x为INF_X（这里取INF_X为画布宽度的一半，也就是把画布放到二维坐标系的中心时的边界值），利用直线方程求出y。需要考虑平行于坐标轴的情况，下方代码不再赘述:</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// input: x1, y1, x2, y2</span></span><br><span class="line"><span class="keyword">double</span> A = y2 - y1, B = x1 - x2, C = x2 * y1 - x1 * y2;</span><br><span class="line"><span class="keyword">double</span> edge_x1, edge_x2, edge_y1, edge_y2;  <span class="comment">// 1为边界起点，2为边界终点</span></span><br><span class="line"><span class="keyword">double</span> INFX = frame_width / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (x2 &lt; x1)</span><br><span class="line">&#123;</span><br><span class="line">    edge_x1 = INFX;</span><br><span class="line">    edge_x2 = -INFX;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    edge_x1 = -INFX;</span><br><span class="line">    edge_x2 = INFX;</span><br><span class="line">&#125;</span><br><span class="line">edge_y1 = (-C - A * edge_x1) / B;</span><br><span class="line">edge_y2 = (-C - A * edge_x2) / B;</span><br></pre></td></tr></table></figure>
+<p>　　之后即可根据线对象的类型进行绘制。需要注意的是，之前在二维坐标系中进行计算，最后绘制时应将点坐标转换到画布的坐标系（也就是二维坐标系沿x轴翻转后取第四象限）中去:</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">Point start;</span><br><span class="line">Point end;</span><br><span class="line"><span class="keyword">switch</span> (type)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">case</span> Type.infinite_line:    <span class="comment">// 无限长直线</span></span><br><span class="line">        start = convert_point(edge_x1, edge_y1);</span><br><span class="line">        end = convert_point(edge_x2, edge_y2);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> Type.line_segment:     <span class="comment">// 射线</span></span><br><span class="line">        start = convert_point(x1, y1);</span><br><span class="line">        end = convert_point(edge_x2, edge_y2);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> Type.segment: <span class="keyword">default</span>:    <span class="comment">// 线段</span></span><br><span class="line">        start = convert_point(x1, y1);</span><br><span class="line">        end = convert_point(x2, y2);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">LineGeometry line = <span class="keyword">new</span> LineGeometry();</span><br><span class="line">line.StartPoint = start;</span><br><span class="line">line.EndPoint = end;</span><br><span class="line"></span><br><span class="line">Path path = <span class="keyword">new</span> Path();</span><br><span class="line">path.Stroke = Brushes.Black;</span><br><span class="line">path.StrokeThickness = <span class="number">1</span>;</span><br><span class="line">path.Data = line;</span><br><span class="line"></span><br><span class="line">mainPanel.Children.Add(path);</span><br></pre></td></tr></table></figure>
+<p><code>convert_point</code>的代码如下：<br><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Point <span class="title">convert_point</span>(<span class="params"><span class="keyword">double</span> x, <span class="keyword">double</span> y</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Point(x * SCALE + x_offset, -y * SCALE + y_offset);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　<strong>圆形与坐标点</strong>的绘制可以使用WPF提供的<code>EllipseGeometry</code>（椭圆）类。二者区别只有空心实心和半径大小，下面给出坐标点的绘制方法：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// input: x, y</span></span><br><span class="line">Point p = convert_point(x, y);</span><br><span class="line">EllipseGeometry el = <span class="keyword">new</span> EllipseGeometry();</span><br><span class="line"><span class="keyword">int</span> pointR = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">el.RadiusX = pointR;</span><br><span class="line">el.RadiusY = pointR;</span><br><span class="line">el.Center = p;</span><br><span class="line"></span><br><span class="line">Path path = <span class="keyword">new</span> Path();</span><br><span class="line">path.Stroke = Brushes.Black;</span><br><span class="line">path.StrokeThickness = <span class="number">2</span>;</span><br><span class="line">path.Fill = Brushes.Black;</span><br><span class="line">path.Data = el;</span><br><span class="line"></span><br><span class="line">mainPanel.Children.Add(path);</span><br><span class="line">intersections.Add(path);</span><br></pre></td></tr></table></figure>
+<h3 id="按钮设计"><a href="#按钮设计" class="headerlink" title="按钮设计"></a>按钮设计</h3><p>按钮的功能设计如下：</p>
+<ul>
+<li><code>Files</code>：从文件导入几何对象的描述<strong>并绘制</strong>（不独立设置“绘制”按钮是为了更直观地展示输入的几何对象，避免用户进行重复冗余的点击操作，下面的增添/删除按钮也贯彻了这一理念）。</li>
+<li><code>Intersect</code>：求解现有几何对象的交点并绘制。</li>
+<li><code>Delete</code>：选择某一个几何对象，将其从画布上删除，并删除画布中的<strong>所有交点</strong>。</li>
+<li><code>Add</code>：根据选择的类型及输入增添一个几何对象，并在画布上画出。</li>
+<li><code>Clear</code>：清空画布上所有的几何对象及交点</li>
+<li><code>Scale+/-</code>：放大/缩小画布的坐标系，将会删除图上所有的几何对象和交点。</li>
+</ul>
+<p>　　下面展示这些按钮触发事件的实现细节。</p>
+<p>　　按钮事件函数的写法为：<br><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Button_click</span>(<span class="params"><span class="keyword">object</span> sender, RoutedEventArgs e</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// xxx</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li><p>Files</p>
+ <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> dialog = <span class="keyword">new</span> Microsoft.Win32.OpenFileDialog</span><br><span class="line">&#123;</span><br><span class="line">    Filter = <span class="string">".txt|*.txt"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">if</span> (dialog.ShowDialog(<span class="keyword">this</span>) == <span class="literal">false</span>) <span class="keyword">return</span>;</span><br><span class="line"><span class="keyword">string</span> fileName = dialog.FileName;</span><br><span class="line"></span><br><span class="line">Console.WriteLine(fileName);</span><br><span class="line"></span><br><span class="line">drawer.clearAll();      <span class="comment">// 清除画布</span></span><br><span class="line">drawer.DrawXY();        <span class="comment">// 重新绘制坐标轴</span></span><br><span class="line">drawer.ReadGraphFromFile(fileName);</span><br></pre></td></tr></table></figure>
+<p> 其中<code>read_graph_from_file()</code>方法的实现流程为：</p>
+<ol>
+<li>读文件第一行的数字</li>
+<li>根据数字按行读取并parse</li>
+<li>将parse后获得的几何对象信息输入到<code>core</code>中的计算模块进行添加</li>
+<li><p>调用线绘制方法进行绘制</p>
+<p>其中还涉及若干错误判断，使用<code>MessageBox.show()</code>报告错误</p>
+</li>
+</ol>
+</li>
+<li><p>Intersect</p>
+<p> 　　该事件主要调用<code>core</code>中的计算模块，并使用<code>core</code>中实现的取交点函数逐一获取所有交点。</p>
+ <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">calc_and_draw_intersects</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 计算交点</span></span><br><span class="line">    <span class="keyword">int</span> r = NativeMethods.calculate_intersect(core_graph_manager, msg, <span class="keyword">ref</span> n);</span><br><span class="line">    <span class="keyword">if</span> (r &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        MessageBox.Show(msg.ToString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">long</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 从core中取一个交点坐标</span></span><br><span class="line">        r = NativeMethods.fetch_intersect(core_graph_manager, msg, <span class="keyword">ref</span> x, <span class="keyword">ref</span> y);</span><br><span class="line">        <span class="keyword">if</span> (r &gt; <span class="number">0</span>)  <span class="comment">// 如果有错误信息</span></span><br><span class="line">        &#123;</span><br><span class="line">            MessageBox.Show(msg.ToString());</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            drawIntersectPoint(x, y);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Delete</p>
+<p> 　　该事件弹出新窗口（项目中为<code>GraphsWindow</code>），获取当前所有几何对象的信息，并使用<code>ListBox</code>陈列，用户确认选择后分别删除其在<code>ListBox</code>中的描述、画布中的图形以及在<code>core</code>中的对象，并删除所有交点。</p>
+<p> 　　画布中删除某一图形的逻辑如下：</p>
+ <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// input： graph id</span></span><br><span class="line"><span class="comment">// remove graoh on Canvas</span></span><br><span class="line">mainPanel.Children.Remove(graphs[id]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// remove info</span></span><br><span class="line">graphs.Remove(graphs[id]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// remove points on graph</span></span><br><span class="line">Path[] points = pointsOnGraph[id];</span><br><span class="line"><span class="keyword">foreach</span> (Path point <span class="keyword">in</span> points)</span><br><span class="line">&#123;</span><br><span class="line">    mainPanel.Children.Remove(point);</span><br><span class="line">&#125;</span><br><span class="line">pointsOnGraph.Remove(points);</span><br><span class="line"></span><br><span class="line"><span class="comment">// remove intersections(all)</span></span><br><span class="line"><span class="keyword">foreach</span> (Path intersect <span class="keyword">in</span> intersections)</span><br><span class="line">&#123;</span><br><span class="line">    mainPanel.Children.Remove(intersect);</span><br><span class="line">&#125;</span><br><span class="line">intersections.Clear();</span><br><span class="line"></span><br><span class="line"><span class="comment">// remove data in core</span></span><br><span class="line">remove_graph(core_graph_manager, id);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Add</p>
+<p> 　　弹出新窗口进行几何对象的添加。实现方法是使用<code>ComboBox</code>实现下拉栏选择四种几何对象类型的其中一个，并根据类型的不同给出不同数量的参数输入框（<code>TextBox</code>）。提交输入时进行正确性检测。最后将正确的输入整合为一行，利用按行处理文件输入的方法进行添加处理。</p>
+ <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">string</span> wrongMsg = <span class="string">""</span>;</span><br><span class="line">verify_TextInput(tbox1, tblock1, <span class="keyword">ref</span> wrongMsg);</span><br><span class="line">verify_TextInput(tbox2, tblock2, <span class="keyword">ref</span> wrongMsg);</span><br><span class="line">verify_TextInput(tbox3, tblock3, <span class="keyword">ref</span> wrongMsg);</span><br><span class="line"><span class="keyword">if</span> (combo.SelectedIndex != (<span class="keyword">int</span>)ComboItem.C)    <span class="comment">// 圆形没有第四个参数输入框，只有x, y, r</span></span><br><span class="line">&#123;</span><br><span class="line">    verify_TextInput(tbox4, tblock4, <span class="keyword">ref</span> wrongMsg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (wrongMsg.Length != <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">    MessageBox.Show(wrongMsg);  <span class="comment">// 输入栏的错误提醒</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">string</span> info = combo.Text + <span class="string">" "</span> + tbox1.Text + <span class="string">" "</span> + tbox2.Text + <span class="string">" "</span> + tbox3.Text;</span><br><span class="line">    <span class="keyword">if</span> (combo.SelectedIndex != (<span class="keyword">int</span>)ComboItem.C)</span><br><span class="line">    &#123;</span><br><span class="line">        info += <span class="string">" "</span> + tbox4.Text;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        drawer.AddGraphFromLine(info);  <span class="comment">// 添加该行对应的几何对象信息</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (FormatException)</span><br><span class="line">    &#123;</span><br><span class="line">        MessageBox.Show(<span class="string">"Wrong Format!"</span>);   <span class="comment">// 在执行添加逻辑时的错误报告</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Clear</p>
+<p> 　　该事件包括清除画布内容、几何对象所有信息，并重新绘画坐标网格。清除的细节如下：</p>
+ <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">mainPanel.Children.Clear();     <span class="comment">// 清楚画布内容</span></span><br><span class="line">graphs.Clear();                 <span class="comment">// 清楚几何对象绘制信息</span></span><br><span class="line">intersections.Clear();          <span class="comment">// 清除交点绘制信息</span></span><br><span class="line">pointsOnGraph.Clear();          <span class="comment">// 清除几何对象上的点（起点、终点、圆心）的绘制信息</span></span><br><span class="line">graphsInfo.Clear();             <span class="comment">// 清除用于生成ListBox的几何对象信息</span></span><br><span class="line">core_graph_manager = IntPtr.Zero;   <span class="comment">// 清除core中的manager</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Scale+/-</p>
+<p> 　　该事件由调整画布尺寸参数<code>SCALE</code>实现。坐标网格绘制中，在绘制垂直x轴的坐标网格的循环语句中，网格密度是根据<code>SCALE</code>来调整的，由此实现画布的尺寸增减：</p>
+ <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = SCALE; i &lt; frame_width/<span class="number">2</span>; i+=SCALE)</span><br></pre></td></tr></table></figure>
+<p> 在实现中，用户每点击一次按钮Scale+/-，首先清除画布，<code>SCALE</code>增加/减少<code>5</code>，并进行设定边界，避免无限放大，然后再重新绘制坐标轴。</p>
+<p> 如下是实现的大致逻辑</p>
+ <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (SCALE &gt;= <span class="number">100</span>)</span><br><span class="line">&#123;</span><br><span class="line">    MessageBox.Show(<span class="string">"Reach Max Scale"</span>, <span class="string">"Note"</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">clear_all();</span><br><span class="line">SCALE += <span class="number">5</span>;</span><br><span class="line">drawXY();</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="六、界面模块与计算模块的对接"><a href="#六、界面模块与计算模块的对接" class="headerlink" title="六、界面模块与计算模块的对接"></a>六、界面模块与计算模块的对接</h2><blockquote>
+<p>11.界面模块与计算模块的对接。详细地描述 UI 模块的设计与两个模块的对接，并在博客中截图实现的功能。（4’）</p>
+</blockquote>
+<p>　　计算模块生成动态链接库提供，由于界面模块使用的是WPF框架及C#进行开发，可以通过<code>DLLImport</code>语句可以导入dll中的接口进行使用。</p>
+<p>　　在界面模块中导入接口函数的语句如下：<br><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">[<span class="meta">DllImport(<span class="meta-string">"core.dll"</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">internal</span> <span class="keyword">static</span> <span class="keyword">extern</span> IntPtr <span class="title">create_graph_manager</span>(<span class="params"></span>)</span>;</span><br><span class="line"></span><br><span class="line">[<span class="meta">DllImport(<span class="meta-string">"core.dll"</span>, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true)</span>]</span><br><span class="line"><span class="function"><span class="keyword">internal</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">add_line</span>(<span class="params">IntPtr gm, StringBuilder msg, <span class="keyword">int</span> type, <span class="keyword">long</span> x1, <span class="keyword">long</span> y1, <span class="keyword">long</span> x2, <span class="keyword">long</span> y2</span>)</span>;</span><br><span class="line"></span><br><span class="line">[<span class="meta">DllImport(<span class="meta-string">"core.dll"</span>, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true)</span>]</span><br><span class="line"><span class="function"><span class="keyword">internal</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">add_circle</span>(<span class="params">IntPtr gm, StringBuilder msg, <span class="keyword">int</span> type, <span class="keyword">long</span> x, <span class="keyword">long</span> y, <span class="keyword">long</span> r</span>)</span>;</span><br><span class="line"></span><br><span class="line">[<span class="meta">DllImport(<span class="meta-string">"core.dll"</span>, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true)</span>]</span><br><span class="line"><span class="function"><span class="keyword">internal</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">calculate_intersect</span>(<span class="params">IntPtr gm, StringBuilder msg, <span class="keyword">ref</span> <span class="keyword">long</span> res</span>)</span>;</span><br><span class="line"></span><br><span class="line">[<span class="meta">DllImport(<span class="meta-string">"core.dll"</span>, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true)</span>]</span><br><span class="line"><span class="function"><span class="keyword">internal</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">fetch_intersect</span>(<span class="params">IntPtr gm, StringBuilder msg, <span class="keyword">ref</span> <span class="keyword">double</span> x, <span class="keyword">ref</span> <span class="keyword">double</span> y</span>)</span>;</span><br><span class="line"></span><br><span class="line">[<span class="meta">DllImport(<span class="meta-string">"core.dll"</span>, CallingConvention = CallingConvention.Cdecl)</span>]</span><br><span class="line"><span class="function"><span class="keyword">internal</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">remove_graph</span>(<span class="params">IntPtr gm, <span class="keyword">long</span> id</span>)</span>;</span><br><span class="line"></span><br><span class="line">[<span class="meta">DllImport(<span class="meta-string">"core.dll"</span>, CallingConvention = CallingConvention.Cdecl)</span>]</span><br><span class="line"><span class="function"><span class="keyword">internal</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">dispose_graph_manager</span>(<span class="params">IntPtr gm</span>)</span>;</span><br></pre></td></tr></table></figure></p>
+<p>　　为了达到松耦合的条件，界面模块中不涉及计算模块的类操作。通过<code>IntPtr</code>型的计算模块管理器对接各个接口。如初始时创建新的计算模块管理器：<br><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">IntPtr graph_manager = create_graph_manager();</span><br></pre></td></tr></table></figure></p>
+<p>　　之后在添加一条直线，根据输入得到的类型及坐标，即可如下添加一条直线：<br><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">add_Line(graph_manager, msg, type, x1, y1, x2, y2);</span><br></pre></td></tr></table></figure></p>
+<p>　　其中msg用于获取计算模块的错误信息，通过<code>MessageBox</code>报告给用户。</p>
+<p>实现的功能如下：</p>
+<ol>
+<li>从文件中读取几何图形信息并画出（Files按钮）<br> <img src="https://ftp.bmp.ovh/imgs/2020/03/36bcc78b111ef97c.png" alt=""><br> <img src="2020-03-21-22-08-58.png" alt=""></li>
+<li>求交点并画出（Intersect按钮）<br> <img src="https://ftp.bmp.ovh/imgs/2020/03/ae33598ccb004878.png" alt=""></li>
+<li>删除一个几何图形（Delete按钮）<br> <img src="https://ftp.bmp.ovh/imgs/2020/03/797e79851cd56e05.png" alt=""><br> <img src="https://i.loli.net/2020/03/22/ICX3lvSDOEfuHdP.png" alt="2020-03-21-22-12-26.png"></li>
+<li>增添一个几何图形（Add按钮）<br> <img src="https://ftp.bmp.ovh/imgs/2020/03/16f74e3beb9fe9b6.png" alt=""><br> <img src="https://ftp.bmp.ovh/imgs/2020/03/4687048e0a0cd790.png" alt=""></li>
+<li>清空画布（Clear按钮）<br> <img src="https://ftp.bmp.ovh/imgs/2020/03/90c5282fcf31017b.png" alt=""><br> <img src="https://ftp.bmp.ovh/imgs/2020/03/175c22ae53049122.png" alt=""></li>
+<li>画布尺寸增减（将会删除图形）<ul>
+<li>Scale+按钮<br><img src="https://ftp.bmp.ovh/imgs/2020/03/ba049f016c444dad.png" alt=""></li>
+<li>Scale-按钮<br><img src="https://ftp.bmp.ovh/imgs/2020/03/f3514c624dce1256.png" alt=""></li>
+</ul>
+</li>
+</ol>
+<h2 id="七、结对编程过程"><a href="#七、结对编程过程" class="headerlink" title="七、结对编程过程"></a>七、结对编程过程</h2><p>　　我们采用的结对编程方式是Live Share+语音，其中存在的问题，一方面是live share本身的不稳定，对方的修改可能经过一定延迟才能看到；另一方面是，互相不太了解可能产生一定的阻碍。但结对编程也带来一定好处，比如能够学习到队友比较良好的代码规范和新颖的编码技巧，并且有人一起review也减少了错误的产生，遇到比较纠结的问题时也能够通过沟通找到答案。队友在编码规范、设计能力以及项目管理等方面都很优秀，在交流中也能够精准地给出解答的方向，有时我可能会跟不上。我在此次项目中也用心、勤奋、认真地参与其中，但是对于代码规范、版本管理等细节问题还存在缺陷。</p>
+<p>讨论图形界面时：</p>
+<p><img src="https://i.loli.net/2020/03/22/dLxQ9oleyg24vPs.png" alt="2020-03-22-21-44-34.png"></p>
+<p>讨论模块对接时：</p>
+<p><img src="https://i.loli.net/2020/03/22/wuHMEjmPcl5yv4D.png" alt="2020-03-22-21-44-51.png"></p>
+<h2 id="八、PSP表格"><a href="#八、PSP表格" class="headerlink" title="八、PSP表格"></a>八、PSP表格</h2><blockquote>
+<p>2.在开始实现程序之前，在下述 PSP 表格记录下你估计将在程序的各个模块的开发上耗费的时间。（0.5’）</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>PSP2.1</th>
+<th>Personal Software Process Stages</th>
+<th>预估耗时（分钟）</th>
+<th>实际耗时（分钟）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Planning</td>
+<td>计划</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>· Estimate</td>
+<td>估计这个任务需要多少时间</td>
+<td>30</td>
+<td>30</td>
+</tr>
+<tr>
+<td>Development</td>
+<td>开发</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>· Analysis</td>
+<td>需求分析 (包括学习新技术)</td>
+<td>120</td>
+<td>240</td>
+</tr>
+<tr>
+<td>· Design Spec</td>
+<td>生成设计文档</td>
+<td>30</td>
+<td>30</td>
+</tr>
+<tr>
+<td>· Design Review</td>
+<td>设计复审 (和同事审核设计文档)</td>
+<td>20</td>
+<td>20</td>
+</tr>
+<tr>
+<td>· Coding Standard</td>
+<td>代码规范 (为目前的开发制定合适的规范)</td>
+<td>10</td>
+<td>5</td>
+</tr>
+<tr>
+<td>· Design</td>
+<td>具体设计</td>
+<td>60</td>
+<td>60</td>
+</tr>
+<tr>
+<td>· Coding</td>
+<td>具体编码</td>
+<td>120</td>
+<td>240</td>
+</tr>
+<tr>
+<td>· Code Review</td>
+<td>代码复审</td>
+<td>30</td>
+<td>60</td>
+</tr>
+<tr>
+<td>· Test</td>
+<td>测试（自我测试，修改代码，提交修改）</td>
+<td>60</td>
+<td>120</td>
+</tr>
+<tr>
+<td>Reporting</td>
+<td>报告</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>· Test Report</td>
+<td>测试报告</td>
+<td>10</td>
+<td>10</td>
+</tr>
+<tr>
+<td>· Size Measurement</td>
+<td>计算工作量</td>
+<td>10</td>
+<td>10</td>
+</tr>
+<tr>
+<td>· Postmortem &amp; Process Improvement Plan</td>
+<td>事后总结, 并提出过程改进计划</td>
+<td>60</td>
+<td>30</td>
+</tr>
+<tr>
+<td></td>
+<td>合计</td>
+<td>560</td>
+<td>855</td>
+</tr>
+</tbody>
+</table>
+</div>
+]]></content>
+      <categories>
+        <category>SoftWareEngineering</category>
+      </categories>
+      <tags>
+        <tag>CourseHomework</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>《代码大全（第2版）》Part 1：打好基础</title>
     <url>/2020/03/18/Code_Complete_part_1/</url>
     <content><![CDATA[<h2 id="1-欢迎进入软件构建的世界"><a href="#1-欢迎进入软件构建的世界" class="headerlink" title="1 欢迎进入软件构建的世界"></a>1 欢迎进入软件构建的世界</h2><h3 id="1-1-什么是软件构建"><a href="#1-1-什么是软件构建" class="headerlink" title="1.1 什么是软件构建"></a>1.1 什么是软件构建</h3><p>　　构建就是软件工程中“编码”的那一部分，关心的是程序的实现与可行。构建活动主要是编码与调试，但也涉及详细设计、规划构建、单元测试、集成等其他活动。</p>
