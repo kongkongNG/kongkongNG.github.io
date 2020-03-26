@@ -3,7 +3,7 @@
   <entry>
     <title>LeetCode 面试题 17.16. 按摩师</title>
     <url>/2020/03/26/leetcode_m_17_16/</url>
-    <content><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><img src="https://i.bmp.ovh/imgs/2020/03/37a6deb08a35672c.png" alt=""></p>
+    <content><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><img src="https://i.loli.net/2020/03/26/pVyUuftcH3iorGl.png" alt="image.png"></p>
 <a id="more"></a>
 <h2 id="标准解答-DP-O-n"><a href="#标准解答-DP-O-n" class="headerlink" title="标准解答 DP $O(n)$"></a>标准解答 DP $O(n)$</h2><p>01背包的思路，状态转移方程如下（dp[i][0/1]表示第i个预约选或不选得到的最长预约时间）</p>
 <p>$dp[i][0] = max(dp[i-1][0], dp[i-1][1])$，即不选第i个预约的总时间为第i-1个预约选或不选的最大值</p>
@@ -61,6 +61,7 @@
 </tbody>
 </table>
 </div>
+<a id="more"></a>
 <h2 id="第一部分-调研"><a href="#第一部分-调研" class="headerlink" title="第一部分 调研"></a>第一部分 调研</h2><h3 id="1-VS-VSCode简介"><a href="#1-VS-VSCode简介" class="headerlink" title="1 VS/VSCode简介"></a>1 VS/VSCode简介</h3><blockquote>
 <p>微软公司有两个代码编辑器：Visual Studio、VS Code，它们的目标用户，主要功能有何不同？为何要有两个编辑器和开发环境？</p>
 </blockquote>
