@@ -1,6 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>ettercap+driftnet抓取同一无线网段中设备阅览的图片</title>
+    <url>/2020/04/13/arp%E6%B8%97%E9%80%8F/</url>
+    <content><![CDATA[<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>OS：Ubuntu 16.04LTS</p>
+<p>软件：ettercap, driftnet</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">$ sudo apt-<span class="builtin-name">get</span> install ettercap-graphical </span><br><span class="line">$ sudo apt-<span class="builtin-name">get</span> install driftnet</span><br></pre></td></tr></table></figure>
+<p>ps：使用虚拟机vmware+kali体验更好</p>
+<h2 id="抓包"><a href="#抓包" class="headerlink" title="抓包"></a>抓包</h2><ol>
+<li><code>$sudo ettercap -G</code>打开ettercap图形化界面</li>
+<li>Sniff-&gt;Unified sniffing-&gt;wlp2s0（无线网卡）</li>
+<li>Host-&gt;scan for hosts，扫描连接在同一网段上的设备</li>
+<li>设备IP地址Add to Target 1；路由器IP（通常是最后一位为1）Add to Target 2（注意不要反了，否则可能导致宽带认证错误，上不了网，只能打电话找运营商清除一下之前的缓存）</li>
+<li>Mitm（中间人攻击）-&gt;Arp poisoning-&gt;Sniff remote connections-&gt;ok，至此，设备与路由器的通信会经过本主机，因此可以截获报文</li>
+<li>Start-&gt;Start sniffing开始监听，View-&gt;View Connections查看截获的报文</li>
+</ol>
+<h2 id="图片监视"><a href="#图片监视" class="headerlink" title="图片监视"></a>图片监视</h2><p>监听无线网卡：<br><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="variable">$ </span>sudo driftnet -i wlp2s0</span><br></pre></td></tr></table></figure><br>会弹出一个图片预览框，截取设备访问的图片</p>
+<p>driftnet其他参数：</p>
+<ul>
+<li>-i 监听网卡</li>
+<li>-b 声音提醒</li>
+<li>-a 保存图片（这样的话图片不会显示在窗口）</li>
+<li>-d 图片保存目录，例：driftnet -i wlan0 -b -a -d /pic </li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>经过本人的实验，可以抓取到微信朋友圈的视频帧、图片（很少），以及公众号中浏览的一些图片，原因可能是大部分图片还是经过加密传输的。但即使如此，还是见识到了连接在同一wifi上造成的信息泄露。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://blog.csdn.net/zero9988/article/details/51866882?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2&amp;utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2" target="_blank" rel="noopener">Wifi密码破解与局域网抓包监听（小白—纯工具版）</a></li>
+<li><a href="https://blog.csdn.net/ghl1390490928/article/details/81460158" target="_blank" rel="noopener">NO.26——利用ettercap和driftnet截获数据流里的图片</a></li>
+<li><a href="https://blog.csdn.net/u011500307/article/details/21736099" target="_blank" rel="noopener">ettercap与driftnet来实现中间人攻击</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>网安</category>
+      </categories>
+      <tags>
+        <tag>渗透</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode 820.单词的压缩编码</title>
+    <url>/2020/03/30/leetcode_m_62/</url>
+    <content><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><img src="assets/md-2020-03-30-14-18-36.png" alt=""></p>
+<p>约瑟夫环问题</p>
+<h2 id="标准做法-递归-O-n"><a href="#标准做法-递归-O-n" class="headerlink" title="标准做法 递归 $O(n)$"></a>标准做法 递归 $O(n)$</h2><p>由于问题是求0到n-1里最后剩下的数字，所以问题也可以转换为安全数字的序号。对问题建模，令<code>f(n, m)</code>为问题的答案，即最终安全位置的序号。最开始，我们要删除的是第<code>m%n</code>个元素，之后，序列长度变为n-1，然后从第<code>m%n</code>位开始往后数。剩下的n-1长度的序列从第<code>m%n</code>位开始，只要往后数<code>f(n-1, m)</code>位就能达到安全位置，所以<code>(m%n+f(n-1,m))%n</code>即为所求。<code>(m%n+f(n-1,m))%n = (m+f(n-1, m)%n</code></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> x = f(n - <span class="number">1</span>, m);</span><br><span class="line">        <span class="keyword">return</span> (m + x) % n;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lastRemaining</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> f(n, m);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="标准做法-迭代-DP-O-n"><a href="#标准做法-迭代-DP-O-n" class="headerlink" title="标准做法 迭代/DP $O(n)$"></a>标准做法 迭代/DP $O(n)$</h2><p>由上面的递归式，就可以得到DP所需的状态转移方程</p>
+<script type="math/tex; mode=display">f_i = (m + f_{i-1})\%i</script><p>只有一个状态转换量，所以可以用简单变量替代</p>
+<p>在<code>i=1</code>时，也就是长度为1的序列，安全位置就是0，即<code>f1 = 0</code><br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lastRemaining</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> f = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i != n + <span class="number">1</span>; ++i)</span><br><span class="line">            f = (m + f) % i;</span><br><span class="line">        <span class="keyword">return</span> f;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>模拟约瑟夫环的删除过程会超时</li>
+<li>这种类似归纳法解决问题的逻辑很巧妙，希望能掌握下来</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/solution/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-by-lee/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/solution/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-by-lee/</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LeetCode 820.单词的压缩编码</title>
     <url>/2020/03/28/leetcode_820/</url>
     <content><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><img src="https://ftp.bmp.ovh/imgs/2020/03/8f129c0f84044b45.png" alt=""></p>
