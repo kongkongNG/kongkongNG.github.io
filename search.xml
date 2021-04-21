@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>ettercap+driftnet抓取同一无线网段中设备阅览的图片</title>
-    <url>/2020/04/13/arp%E6%B8%97%E9%80%8F/</url>
+    <url>/2021/04/21/arp%E6%B8%97%E9%80%8F/</url>
     <content><![CDATA[<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>OS：Ubuntu 16.04LTS</p>
 <p>软件：ettercap, driftnet</p>
 <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">$ sudo apt-<span class="builtin-name">get</span> install ettercap-graphical </span><br><span class="line">$ sudo apt-<span class="builtin-name">get</span> install driftnet</span><br></pre></td></tr></table></figure>
@@ -64,7 +64,7 @@
   </entry>
   <entry>
     <title>LeetCode 820.单词的压缩编码</title>
-    <url>/2020/03/28/leetcode_820/</url>
+    <url>/2020/03/29/leetcode_820/</url>
     <content><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><img src="https://ftp.bmp.ovh/imgs/2020/03/8f129c0f84044b45.png" alt=""></p>
 <a id="more"></a>
 <h2 id="标准解法-字典树Trie-O-Sigma-wi"><a href="#标准解法-字典树Trie-O-Sigma-wi" class="headerlink" title="标准解法 字典树Trie $O(\Sigma wi)$"></a>标准解法 字典树Trie $O(\Sigma wi)$</h2><p>本题的核心就是如何找到<strong>是其他单词后缀的</strong>单词并删去。利用字典树，反向插入单词。这样后缀相同的单词在同一棵子树中，巧妙地过滤了需要删去的单词。最后只需要统计叶子所有叶子节点的高度，即为所求。</p>
@@ -84,38 +84,8 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode 面试题 17.16. 按摩师</title>
-    <url>/2020/03/26/leetcode_m_17_16/</url>
-    <content><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><img src="https://i.loli.net/2020/03/26/pVyUuftcH3iorGl.png" alt="image.png"></p>
-<a id="more"></a>
-<h2 id="标准解答-DP-O-n"><a href="#标准解答-DP-O-n" class="headerlink" title="标准解答 DP $O(n)$"></a>标准解答 DP $O(n)$</h2><p>01背包的思路，状态转移方程如下（dp[i][0/1]表示第i个预约选或不选得到的最长预约时间）</p>
-<p>$dp[i][0] = max(dp[i-1][0], dp[i-1][1])$，即不选第i个预约的总时间为第i-1个预约选或不选的最大值</p>
-<p>$dp[i][1] = dp[i-1][0] + nums[i]$，选第i个预约，则无法选择第i-1个</p>
-<p>计算$dp[i][0/1]$时，只与前一个状态$dp[i-1][0/1]$有关，所以可以不用数组，而使用两个临时变量，通过状态转移计算，减小开销。（这个做法很巧妙）</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">massage</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> dp0 = <span class="number">0</span>, dp1 = nums[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> i = <span class="number">1</span>; i &lt; n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> tmpDp0 = max(dp0, dp1); <span class="comment">// dp0: dp[i-1][0], dp1: dp[i-1][1]</span></span><br><span class="line">            <span class="keyword">int</span> tmpDp1 = dp0 + nums[i];</span><br><span class="line"></span><br><span class="line">            dp0 = tmpDp0;   <span class="comment">// dp0: dp[i][0], dp1: dp[i][1]</span></span><br><span class="line">            dp1 = tmpDp1;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> max(dp0, dp1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="网友的另一种dp思路"><a href="#网友的另一种dp思路" class="headerlink" title="网友的另一种dp思路"></a>网友的另一种dp思路</h2><p>状态转移方程：</p>
-<p>$dp[i] = max(dp[i-2]+nums[i], dp[i-1])$，$dp[i]$为从0到i总共能取到的最长预约时间</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">massage</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size = nums.size();</span><br><span class="line">        <span class="keyword">if</span>(size == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">        <span class="keyword">if</span>(size == <span class="number">1</span>) <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">dp</span><span class="params">(size, <span class="number">0</span>)</span></span>;</span><br><span class="line">        dp[<span class="number">0</span>] = nums[<span class="number">0</span>]; <span class="comment">//dp[i] 表示nums[0...i] 能得到的最长时间</span></span><br><span class="line">        dp[<span class="number">1</span>] = max(nums[<span class="number">0</span>],nums[<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; size; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//遍历迄今为止的最大值，两种情况取较大：</span></span><br><span class="line">            <span class="comment">//1：预约本次，则上一次不预约（dp[i-2] + nums[i]）</span></span><br><span class="line">            <span class="comment">//2：本次不预约，则值为预约到上一次的最大值</span></span><br><span class="line">            dp[i] = max(dp[i<span class="number">-2</span>] + nums[i], dp[i<span class="number">-1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[size <span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="个人解法1-递归-超时"><a href="#个人解法1-递归-超时" class="headerlink" title="个人解法1 递归 超时"></a>个人解法1 递归 超时</h2><p>起初发现的规律是，在第i个位置时，由于i+1不能选，考虑走i+2或i+3，两种走法取最大值，是一种比较暴力的做法，但最终超时了，因为重复计算的子问题太多了（比如go(0,num)算过一次go(0+3, num)，go(1,num)又要再算一遍go(1+2, num)）</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">massage</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> max(go(<span class="number">0</span>, nums), go(<span class="number">1</span>, nums));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">go</span><span class="params">(<span class="keyword">int</span> pos, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; num)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (pos &gt;= num.size()) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> num[pos] + max(go(pos + <span class="number">2</span>, num), go(pos + <span class="number">3</span>, num));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="个人解法2-从尾DP"><a href="#个人解法2-从尾DP" class="headerlink" title="个人解法2 从尾DP"></a>个人解法2 从尾DP</h2><p>这是顺从递归的思路进而产生的DP，感觉思维还是不太精炼，没有dp内味。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">massage</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (n == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> m[n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">        &#123;</span><br><span class="line">            m[i] = nums[i];</span><br><span class="line">            <span class="keyword">if</span> (i + <span class="number">3</span> &gt;= n)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (i + <span class="number">2</span> &lt; n)</span><br><span class="line">                &#123;</span><br><span class="line">                    m[i] += m[i+<span class="number">2</span>];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                m[i] += max(m[i+<span class="number">2</span>], m[i+<span class="number">3</span>]); </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> max(m[<span class="number">0</span>], m[<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li>选/不选的问题很容易归类到01背包类似的问题上去，没必要蛮力找规律再编码</li>
-<li>边界问题考虑清楚</li>
-</ul>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://leetcode-cn.com/problems/the-masseuse-lcci/solution/an-mo-shi-by-leetcode-solution/" target="_blank" rel="noopener">官方题解</a></p>
-]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>个人博客作业-软件案例分析</title>
-    <url>/2020/03/23/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E4%BD%9C%E4%B8%9A-%E8%BD%AF%E4%BB%B6%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/</url>
+    <url>/2020/03/26/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E4%BD%9C%E4%B8%9A-%E8%BD%AF%E4%BB%B6%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<div class="table-container">
 <table>
 <thead>
@@ -349,6 +319,36 @@
 ]]></content>
   </entry>
   <entry>
+    <title>LeetCode 面试题 17.16. 按摩师</title>
+    <url>/2020/03/26/leetcode_m_17_16/</url>
+    <content><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><img src="https://i.loli.net/2020/03/26/pVyUuftcH3iorGl.png" alt="image.png"></p>
+<a id="more"></a>
+<h2 id="标准解答-DP-O-n"><a href="#标准解答-DP-O-n" class="headerlink" title="标准解答 DP $O(n)$"></a>标准解答 DP $O(n)$</h2><p>01背包的思路，状态转移方程如下（dp[i][0/1]表示第i个预约选或不选得到的最长预约时间）</p>
+<p>$dp[i][0] = max(dp[i-1][0], dp[i-1][1])$，即不选第i个预约的总时间为第i-1个预约选或不选的最大值</p>
+<p>$dp[i][1] = dp[i-1][0] + nums[i]$，选第i个预约，则无法选择第i-1个</p>
+<p>计算$dp[i][0/1]$时，只与前一个状态$dp[i-1][0/1]$有关，所以可以不用数组，而使用两个临时变量，通过状态转移计算，减小开销。（这个做法很巧妙）</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">massage</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> dp0 = <span class="number">0</span>, dp1 = nums[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> i = <span class="number">1</span>; i &lt; n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> tmpDp0 = max(dp0, dp1); <span class="comment">// dp0: dp[i-1][0], dp1: dp[i-1][1]</span></span><br><span class="line">            <span class="keyword">int</span> tmpDp1 = dp0 + nums[i];</span><br><span class="line"></span><br><span class="line">            dp0 = tmpDp0;   <span class="comment">// dp0: dp[i][0], dp1: dp[i][1]</span></span><br><span class="line">            dp1 = tmpDp1;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> max(dp0, dp1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="网友的另一种dp思路"><a href="#网友的另一种dp思路" class="headerlink" title="网友的另一种dp思路"></a>网友的另一种dp思路</h2><p>状态转移方程：</p>
+<p>$dp[i] = max(dp[i-2]+nums[i], dp[i-1])$，$dp[i]$为从0到i总共能取到的最长预约时间</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">massage</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size = nums.size();</span><br><span class="line">        <span class="keyword">if</span>(size == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">        <span class="keyword">if</span>(size == <span class="number">1</span>) <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">dp</span><span class="params">(size, <span class="number">0</span>)</span></span>;</span><br><span class="line">        dp[<span class="number">0</span>] = nums[<span class="number">0</span>]; <span class="comment">//dp[i] 表示nums[0...i] 能得到的最长时间</span></span><br><span class="line">        dp[<span class="number">1</span>] = max(nums[<span class="number">0</span>],nums[<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; size; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//遍历迄今为止的最大值，两种情况取较大：</span></span><br><span class="line">            <span class="comment">//1：预约本次，则上一次不预约（dp[i-2] + nums[i]）</span></span><br><span class="line">            <span class="comment">//2：本次不预约，则值为预约到上一次的最大值</span></span><br><span class="line">            dp[i] = max(dp[i<span class="number">-2</span>] + nums[i], dp[i<span class="number">-1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[size <span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="个人解法1-递归-超时"><a href="#个人解法1-递归-超时" class="headerlink" title="个人解法1 递归 超时"></a>个人解法1 递归 超时</h2><p>起初发现的规律是，在第i个位置时，由于i+1不能选，考虑走i+2或i+3，两种走法取最大值，是一种比较暴力的做法，但最终超时了，因为重复计算的子问题太多了（比如go(0,num)算过一次go(0+3, num)，go(1,num)又要再算一遍go(1+2, num)）</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">massage</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> max(go(<span class="number">0</span>, nums), go(<span class="number">1</span>, nums));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">go</span><span class="params">(<span class="keyword">int</span> pos, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; num)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (pos &gt;= num.size()) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> num[pos] + max(go(pos + <span class="number">2</span>, num), go(pos + <span class="number">3</span>, num));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="个人解法2-从尾DP"><a href="#个人解法2-从尾DP" class="headerlink" title="个人解法2 从尾DP"></a>个人解法2 从尾DP</h2><p>这是顺从递归的思路进而产生的DP，感觉思维还是不太精炼，没有dp内味。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">massage</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (n == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> m[n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">        &#123;</span><br><span class="line">            m[i] = nums[i];</span><br><span class="line">            <span class="keyword">if</span> (i + <span class="number">3</span> &gt;= n)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (i + <span class="number">2</span> &lt; n)</span><br><span class="line">                &#123;</span><br><span class="line">                    m[i] += m[i+<span class="number">2</span>];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                m[i] += max(m[i+<span class="number">2</span>], m[i+<span class="number">3</span>]); </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> max(m[<span class="number">0</span>], m[<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>选/不选的问题很容易归类到01背包类似的问题上去，没必要蛮力找规律再编码</li>
+<li>边界问题考虑清楚</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://leetcode-cn.com/problems/the-masseuse-lcci/solution/an-mo-shi-by-leetcode-solution/" target="_blank" rel="noopener">官方题解</a></p>
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>个人项目作业-Intersect</title>
     <url>/2020/03/23/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE%E4%BD%9C%E4%B8%9A/</url>
     <content><![CDATA[<div class="table-container">
@@ -545,249 +545,6 @@
 <p><img src="https://i.loli.net/2020/03/10/t9sjDHPoAiNWaqL.png" alt="md_2020-03-10-16-41-43.png"></p>
 <h3 id="单元测试结果"><a href="#单元测试结果" class="headerlink" title="单元测试结果"></a>单元测试结果</h3><p>　　单元测试的<a href="https://github.com/kongkongNG/Intersection_proj/blob/master/test/IntersectionUnitTest.cpp" target="_blank" rel="noopener">测试文件</a>按照“三、设计实现过程”中的设计来完成，即直线与直线、直线与圆、圆与圆以及总体业务逻辑测试，测试结果如下：</p>
 <p><img src="https://i.loli.net/2020/03/10/Q7FkWcPrJgeqHiO.png" alt="md_2020-03-10-18-41-02.png"></p>
-]]></content>
-      <categories>
-        <category>SoftWareEngineering</category>
-      </categories>
-      <tags>
-        <tag>CourseHomework</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>个人博客作业-讲义阅读</title>
-    <url>/2020/03/23/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E4%BD%9C%E4%B8%9A/</url>
-    <content><![CDATA[<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>项目</th>
-<th>内容 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>这个作业属于哪个课程</td>
-<td><a href="https://edu.cnblogs.com/campus/buaa/BUAA_SE_2020_LJ" target="_blank" rel="noopener">2020春季计算机学院软件工程（罗杰、任建）</a> </td>
-</tr>
-<tr>
-<td>这个作业的要求在哪里</td>
-<td><a href="https://edu.cnblogs.com/campus/buaa/BUAA_SE_2020_LJ/homework/10410" target="_blank" rel="noopener">个人博客作业 </a> </td>
-</tr>
-<tr>
-<td>我在这个课程的目标是</td>
-<td>提高软件开发能力、团队协作能力 </td>
-</tr>
-<tr>
-<td>这个作业在哪个具体方面帮助我实现目标</td>
-<td>了解与总结软件工程的一些方法论 </td>
-</tr>
-</tbody>
-</table>
-</div>
-<a id="more"></a>
-<h2 id="一、阅览教材-讲义后问题汇总"><a href="#一、阅览教材-讲义后问题汇总" class="headerlink" title="一、阅览教材/讲义后问题汇总"></a>一、阅览教材/讲义后问题汇总</h2><p><br></p>
-<p> <strong>1）<a href="https://www.cnblogs.com/xinz/archive/2011/10/22/2220872.html" target="_blank" rel="noopener">PSP: Personal Software Process</a>：每个人的工作质量直接影响最终软件的质量？</strong></p>
-<p>读到“每个人的工作质量直接影响最终软件的质量”这一段话，我有一个小问题：也许只有团队中少部分人真正影响了最终软件的质量呢？当经过软件的设计与任务的分配，团队不免会有“划水”的人存在，也就是<a href="https://www.cnblogs.com/xinz/archive/2010/12/11/1902933.html" target="_blank" rel="noopener">非P1的人</a>，他们的工作无非只会延长成果的完成时间。而团队中能力较强的人能够完成这些“额外”单工作，将进度拉回正轨，最终的软件质量也就不受影响了。</p>
-<p><br></p>
-<p><strong>2）<a href="https://www.cnblogs.com/xinz/archive/2011/08/07/2129751.html" target="_blank" rel="noopener">技能的反面</a>：技能的反面是problem solving？</strong></p>
-<p>读到“技能的反面是Problem solving”这句话，我存在疑惑。这里对Problem Solving的解释有些生硬，将其意思约束在了能力差的人的行为表现。然而Problem Solving也是一项能力，如果一个人称自己精通编程，在被要求用特定语言完成一个问题的情况下，通过“Problem Solving”迅速了解了这门语言的基本用法，并完成了题目，这又何尝不是技能的精通呢？</p>
-<p><br></p>
-<p><strong>3）<a href="https://www.cnblogs.com/xinz/archive/2011/08/07/2130332.html" target="_blank" rel="noopener">结对编程</a> 测试的极致做法是TDD？</strong></p>
-<p>文中对极限编程的表格中，有这么一项：“测试/单元测试能帮助提高质量”的极致做法是“先写单元测试，从测试开始写程序——TDD”。通过网上查阅得知，TDD的基本思想是在开发功能代码之前，先编写测试代码，其理念是</p>
-<ul>
-<li>确保所有需求都能被照顾到</li>
-<li>在代码不断增加和重构的过程中，可以检查所有功能是否正确</li>
-</ul>
-<p>从上述的解释来看，如果需求在不断改变，一旦某段实际功能代码作废，其测试代码也将报废。若面临软件重构的情况，带来的测试程序的改动将是十分巨大的。此外，如果只根据需求分析编写测试程序，而不去考虑实际程序，结果测试只能覆盖结果的正确性，而无法保证其实现过程正确，程序的bug往往出现在对实现细节的考虑不周。</p>
-<p>因此，我对“测试能提高质量的极致是TDD”的推理仍存在疑惑。</p>
-<p><br></p>
-<p><strong>4）<a href="https://www.cnblogs.com/xinz/archive/2010/12/11/1902849.html" target="_blank" rel="noopener">敏捷宣言</a>：敏捷求成品，而不需要文档？</strong>  </p>
-<p>读到现有做法与敏捷的对比表格：“现有的做法：完整的文档；敏捷的做法：可用的软件”，我存在一些疑惑。面向对象程序设计课程中教给我们，编码之前应充分设计，且需充分考虑其可扩展性，在实践过程中，我发现明确的设计文档确实对编码思路、增量开发有很大帮助。而敏捷目标在于“可用的软件”，当遇到需求的变化时，没有经过充分设计的文档指导与代码支撑，增量开发会不会变得十分困难，反而不那么“敏捷”了？</p>
-<p><br></p>
-<p><strong>5）<a href="https://www.cnblogs.com/xinz/archive/2011/03/13/1982585.html" target="_blank" rel="noopener">画扇面</a>：速成还是求全？</strong></p>
-<p>博客中利用画扇面的例子形象描述出软件工程团队项目进展，引起了我的思考：如果团队项目在进行中途不断添加需求，最终会导致问题层出不穷复杂从而项目流产，那么团队在最初的需求分析时，应该尽可能将需求简化，以达到“速成”的目的，还是应该将需求的功能充分考虑呢？</p>
-<p>以我的个人经验来看，如果作为学生，项目的最终目的是为了的高分，那么前期的充分需求分析、创新性想法就成了争夺高分的利器，而且在准备做足的基础上，项目进展的加速度大，动力也足；而如果追求敏捷而抛弃充分分析的话，导致成果得分不高的同时，还会出现项目完成时处于距离交差不上不下的时间、没有动力增加新功能的窘况。当然在如果交差时间很局限的话，削减需求、敏捷开发还是很必要的。</p>
-<p><br></p>
-<p><strong>6）<a href="https://www.cnblogs.com/xinz/archive/2011/07/10/2102310.html" target="_blank" rel="noopener">创新的迷思  连载(2)</a>：技术创新不一定是关键？</strong> </p>
-<p>在“迷思之六-技术的创新是关键”一节中，作者的观点是，除了技术的创新，其他方面的创新也显得尤为重要。而我认为，相比于其他创新带来的昙花一现，技术的创新才是关键。ipod成功的真正原因并不是用户界面上的创新，而是它实现了“把1000首歌塞进口袋”的技术；苹果生态能够取得成功，得益于其内部软硬件技术的一次次创新；网络购物理念出现时，Paul Graham使用Lisp语言编写Viaweb，在技术上一直领先竞争者，并具有更快的迭代速度，从而占据领先地位。其他方面的创新固然能产生显著效果，比如共享经济、电商经济，但谁才能真正享有成功的果实？只有技术创新才能带来一骑绝尘的实力。因此，对于作者在“技术的创新是关键”的迷思上，我存有疑惑。</p>
-<p><br></p>
-<h2 id="二、“软件”、“软件工程”词汇的产生"><a href="#二、“软件”、“软件工程”词汇的产生" class="headerlink" title="二、“软件”、“软件工程”词汇的产生"></a>二、“软件”、“软件工程”词汇的产生</h2><p><strong>“软件”的产生</strong></p>
-<blockquote>
-<p>In 2000, Fred Shapiro, a librarian at the Yale Law School, published a letter revealing that <strong>Tukey</strong>‘s 1958 paper “The Teaching of Concrete Mathematics” contained the earliest known usage of the term “software” found in a search of JSTOR’s electronic archives, predating the OED’s citation by two years. This led many to credit Tukey with coining the term, particularly in obituaries published that same year, although Tukey never claimed credit for any such coinage. In 1995, <strong>Paul Niquette</strong> claimed he had originally coined the term in October 1953, although he could not find any documents supporting his claim. The earliest known publication of the term “software” in an engineering context was in August 1953 by <strong>Richard R. Carhart</strong>, in a RAND Corporation research memorandum.</p>
-</blockquote>
-<p>上文中说明了“软件”一词的3种起源：</p>
-<ul>
-<li>1958年Tukey在论文《The Teaching of Concrete Mathematics》中包含了“软件”一词的最早用法</li>
-<li>Paul Niquette 声称自己在1953年10月创造了“软件”这个词，经管他找不到支持他说法的文件</li>
-<li>“软件”在工程领域的最早出现是1953年8月Richard R.Carhart在RAND公司的研究备忘录中</li>
-</ul>
-<p><br></p>
-<p><strong>“软件工程”的产生</strong></p>
-<blockquote>
-<p><strong>Hamilton</strong> details how she came to make up the term “software engineering”:<br>When I first came up with the term, no one had heard of it before, at least in our world. It was an ongoing joke for a long time. They liked to kid me about my radical ideas. It was a memorable day when one of the most respected hardware gurus explained to everyone in a meeting that he agreed with me that the process of building software should also be considered an engineering discipline, just like with hardware. Not because of his acceptance of the new ‘term’ per se, but because we had earned his and the acceptance of the others in the room as being in an engineering field in its own right.</p>
-</blockquote>
-<p>“软件工程”是在1960s阿波罗计划执行期间由Margaret Hamilton提出。上面是Margaret Hamilton描述自己如何提出“软件工程”这一词汇的细节。</p>
-<p><br></p>
-<h2 id="三、软件工程发展的过程中的冷知识"><a href="#三、软件工程发展的过程中的冷知识" class="headerlink" title="三、软件工程发展的过程中的冷知识"></a>三、软件工程发展的过程中的冷知识</h2><blockquote>
-<p>Unix的命名：上世纪六七十年代，计算机工业几大巨头聚在一起，合作研发官方版的下一代操作系统Multics。但是，另外两个年轻人——26岁的肯·汤普森和28岁的丹尼斯·里奇——觉得Multics过分负载，就另起炉灶，写出了一个自己的操作系统。他们参照Multics，为它取了一个搞笑式的名字Unix（注：前缀Multi-意思是“多个”，而前缀Uni-意思是“单个”）<br>                                                   ——《黑客与画家》</p>
-</blockquote>
-<p><br></p>
-<h2 id="四、源代码与项目管理软件调研"><a href="#四、源代码与项目管理软件调研" class="headerlink" title="四、源代码与项目管理软件调研"></a>四、源代码与项目管理软件调研</h2><p>目前主要流行的源代码和项目管理软件有Microsoft TFS，GitHub，Trac，Bugzilla，Apple XCode等。优缺点如下：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>优点</th>
-<th>缺点</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Microsoft TFS</td>
-<td>对敏捷、CMMI等项目、过程管理改善有较好支持，需求、项目进度一览无余，对小团队开发有利</td>
-<td>用户量少，源代码功能使用较多，但并不是软件定位</td>
-</tr>
-<tr>
-<td>Git</td>
-<td>支持多人维护庞大项目，分支能力强大、体验好，支持离线提交、非线性开发，是的协作流畅</td>
-<td>上手难，代码保密性差</td>
-</tr>
-<tr>
-<td>Mercurial</td>
-<td>命令行简单，易上手，可扩展性好，对网络依赖性低</td>
-<td>功能较弱，分支方式杂多不便，改写历史麻烦；没有命名空间，容易混淆</td>
-</tr>
-<tr>
-<td>GitHub</td>
-<td>基于web，允许使用Git的源代码管理功能，开源</td>
-<td>适合代码跟踪，但不适合设计跟踪，对国内用户不友好</td>
-</tr>
-<tr>
-<td>Bitbucket</td>
-<td>免费支持私有仓库，且同时支持hg/Git，自定义域名，有Bug追踪功能</td>
-<td>鲜为人知</td>
-</tr>
-<tr>
-<td>Trac</td>
-<td>有良好的扩充性，权限体系的设计较完备，灵活、可随心所欲定制</td>
-<td>不支持多项目，核心功能少，中文化不完整，本地化很差</td>
-</tr>
-<tr>
-<td>Bugzilla</td>
-<td>bug管理系统，检索功能强大，后端数据库强大，配置设定丰富多样</td>
-<td>安装繁琐，不支持中文</td>
-</tr>
-<tr>
-<td>Apple XCode</td>
-<td>文件转移快速，可自由撤销，能够辅助开发</td>
-<td>只支持Mac OS</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>按照用户数和流行度排序排序如下（<a href="https://en.wikipedia.org/wiki/Comparison_of_source-code-hosting_facilities#Popularity" target="_blank" rel="noopener">参照Wiki</a>)</p>
-<p><img src="https://i.loli.net/2020/03/06/p2chV1qsWZDaKjU.png" alt="md_2020-03-06-22-19-20.png"></p>
-<p><br></p>
-<h2 id="五、源代码与项目管理软件使用"><a href="#五、源代码与项目管理软件使用" class="headerlink" title="五、源代码与项目管理软件使用"></a>五、源代码与项目管理软件使用</h2><h3 id="1）Git"><a href="#1）Git" class="headerlink" title="1）Git"></a>1）Git</h3><ul>
-<li>使用git初始化仓库<br><img src="https://i.loli.net/2020/03/06/hQrAsK31p8vNtcL.png" alt="md_2020-03-06-22-35-34.png"></li>
-</ul>
-<ul>
-<li>使用git添加新版本并记录<br><img src="https://i.loli.net/2020/03/06/NmlS3hunpvCHrPd.png" alt="md_2020-03-06-22-41-38.png"></li>
-</ul>
-<p>使用体验：虽然需要记住几个命令行，但是一旦熟悉之后，使用非常方便，且支持离线管理。理解分支操作之后对团队开发将更有帮助。<br><br></p>
-<h3 id="2）BitBucket"><a href="#2）BitBucket" class="headerlink" title="2）BitBucket"></a>2）BitBucket</h3><ul>
-<li>在<a href="https://bitbucket.org/product/features" target="_blank" rel="noopener">BitBucket官网</a>完成注册登录后，可以创建新的私人仓库<br><img src="https://i.loli.net/2020/03/06/yqXMEkCOSvBuF5e.png" alt="md_2020-03-06-22-48-50.png"></li>
-<li>创建仓库流程<br><img src="https://i.loli.net/2020/03/06/kmqg1CRHOKYVLrB.png" alt="md_2020-03-06-22-49-43.png"></li>
-<li>完成仓库创建<br><img src="https://i.loli.net/2020/03/06/5wu2yejhJLSfTbE.png" alt="md_2020-03-06-22-51-08.png"></li>
-<li>使用Git将仓库克隆到本地<br><img src="https://i.loli.net/2020/03/06/gujaUX2fHmwex5b.png" alt="md_2020-03-06-22-59-35.png"></li>
-</ul>
-<p><br></p>
-<ul>
-<li>使用Git添加本地项目文件，然后push到仓库中<br><img src="https://i.loli.net/2020/03/06/Af9JRKBZasMdveE.png" alt="md_2020-03-06-23-02-06.png"></li>
-</ul>
-<p>使用体验：BitBucket和Github很类似，对Git也有很好的支持，区别是Github私人仓库要收费，而BitBucket是免费的。此外，BitBucket用户界面美观大方，使用体验也很方便很赞。</p>
-]]></content>
-      <categories>
-        <category>SoftWareEngineering</category>
-      </categories>
-      <tags>
-        <tag>CourseHomework</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第一次作业-热身！</title>
-    <url>/2020/03/23/%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%9C%E4%B8%9A-%E7%83%AD%E8%BA%AB/</url>
-    <content><![CDATA[<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>项目</th>
-<th>内容 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>这个作业属于哪个课程</td>
-<td><a href="https://edu.cnblogs.com/campus/buaa/BUAA_SE_2020_LJ" target="_blank" rel="noopener">2020春季计算机学院软件工程（罗杰、任建）</a> </td>
-</tr>
-<tr>
-<td>这个作业的要求在哪里</td>
-<td><a href="https://edu.cnblogs.com/campus/buaa/BUAA_SE_2020_LJ/homework/10410" target="_blank" rel="noopener">第一次作业-热身！</a> </td>
-</tr>
-<tr>
-<td>我在这个课程的目标是</td>
-<td>提高软件开发能力、团队协作能力 </td>
-</tr>
-<tr>
-<td>这个作业在哪个具体方面帮助我实现目标</td>
-<td>认清现状、明确规划 </td>
-</tr>
-</tbody>
-</table>
-</div>
-<a id="more"></a>
-<p><br></p>
-<h1 id="一、结缘计算机"><a href="#一、结缘计算机" class="headerlink" title="一、结缘计算机"></a>一、结缘计算机</h1><p><br></p>
-<h2 id="1-1-你为什么选择计算机专业？你认为你的条件如何？和这些博主比呢？"><a href="#1-1-你为什么选择计算机专业？你认为你的条件如何？和这些博主比呢？" class="headerlink" title="1.1 你为什么选择计算机专业？你认为你的条件如何？和这些博主比呢？"></a>1.1 你为什么选择计算机专业？你认为你的条件如何？和这些博主比呢？</h2><p>　　学生时代的我，与计算机的关系只停留在了娱乐一项。小学时老爸带回来的第一台电脑，在我眼里只是一个可以玩蜘蛛纸牌的。由于参与游泳特长训练，加之需要维持学业成绩，我没有将过多的精力投入在探索计算机的运行原理中，而是将其作为一个释放压力和追赶潮流的工具。同时，“编程”这个词在我生活中几乎从未出现过，除了电影。对它的印象只停留在黑客所掌握的酷酷的技能点。</p>
-<p>　　平凡地经历高考之后，拿到了意外的好成绩，这是鼓励我投身信息专业的重要因素。经过反复思索后，我坚定了一个观点：信息专业是通向未来的专业，我想要探究信息世界是如何形成与发展的（也许是迟到的好奇心在作怪），这是决定性因素。很幸福的是，父母也十分尊重我的选择。所以，我最终填报了北航的信息大类志愿，也幸运地被压线录取。后来专业分流时选择选择计算机学院，有一部分“业界好评”的原因，有一部分热心向学的原因，也有一部分受周围环境影响的原因。</p>
-<p>　　作为一个从大学才开始接触编程的计算机系本科生，我自认为条件自然是远远不如其他优秀的同学。从来到士谔书院起，我就十分敬仰那些中学参与信息学竞赛、热爱计算机、动手能力超强、理解能力超强的同学。虽然自己也在努力维持成绩，但编程能力、思维能力的不足还是让自己有些自卑。</p>
-<p>　　与<a href="https://www.cnblogs.com/unruledboy/p/DevCareer.html" target="_blank" rel="noopener">博客I</a>的博主相比，我虽然没有他在学生时代钻研电脑的热情与经历，但拥有深入计算机专业的大学教育资源。我认为与他的条件相比，我无法区分谁好谁坏。都说“兴趣是最好的老师”，博主虽然读的是英语专业，却对计算机有十分浓厚的兴趣，这份热情驱使着他不断学习计算机领域新兴技术。而我虽然拥有十分优秀的教育资源，但仍在迷茫途中，对计算机的感情反复无常，但说不定随着理解的深入，我会在计算机领域找到一个自己热爱的方向呢？</p>
-<p><br></p>
-<h2 id="1-2-计算机是你喜欢的领域吗？是你擅长的领域吗？"><a href="#1-2-计算机是你喜欢的领域吗？是你擅长的领域吗？" class="headerlink" title="1.2 计算机是你喜欢的领域吗？是你擅长的领域吗？"></a>1.2 计算机是你喜欢的领域吗？是你擅长的领域吗？</h2><p>　　严格来说，不是。对于计算机体系结构，从计算机组成、操作系统到编译原理的课程学习来看，我很少感受到沉浸在解决难题的喜悦中，而更多的是害怕无法完成任务、跟不上系里其他同学的学业压力。当然，随着课程的学习，自己对计算机的一些问题也慢慢得到解答，这是使我感到充实的。从程序设计来看，解题过程对我来说也是比较煎熬的，且容易产生自我否定。那“不严格”来说呢？也许后续的学习会接触到某些方向，将运用之前学习的计算机领域知识系统地解决问题，那时也许我会非常乐意地说“我喜欢计算机”吧！</p>
-<p>　　计算机绝对不是我擅长的领域。从本科的动手能力就能看出，程序设计、数据结构、计组等等，这些实验课中多数我都没有取得理想的成绩。且在计算机领域的知识广度、掌握的技能、实践的经历等我也远远比不上同系生。但我一直饱受心理问题的困扰——不自信。如果一直不相信自己有能力去解决某些问题，那么自己就会始终不愿意去深入、始终因为能力问题而兜兜转转。如果一直暗示自己不擅长计算机领域，也许我就再没有动力去学习领域内的新知识了。所以，还是试试相信自己的能力吧。</p>
-<p><br></p>
-<h2 id="1-3-你热爱这一专业吗？你对计算机的热爱是怎样的？仅仅是口头的吗？"><a href="#1-3-你热爱这一专业吗？你对计算机的热爱是怎样的？仅仅是口头的吗？" class="headerlink" title="1.3 你热爱这一专业吗？你对计算机的热爱是怎样的？仅仅是口头的吗？"></a>1.3 你热爱这一专业吗？你对计算机的热爱是怎样的？仅仅是口头的吗？</h2><p>　　目前并不热爱。我对计算机的感情有些复杂，有时会因为创造可行的程序而激动，有时又会因深陷在复杂的知识点中而被挫败。从大学学习开始，我按部就班地完成计算机专业安排的课程，对于可选的一般专业课，我也秉持着“能学多学”的原则，旨在增长见识去选课。但是目前为止，我没有被计算机专业所吸引，仍然被动地为学业而学，自然谈不上热爱。</p>
-<p>　　反观<a href="https://www.cnblogs.com/geniusvczh/archive/2011/12/16/2290808.html" target="_blank" rel="noopener">博客M</a>的博主，我认为那便是热爱。从自学编程、尝试制作游戏，到解释高级语言、写脚本引擎，他的行动以兴趣为驱动，解决问题带来的正反馈效应又更加坚定他的热爱。</p>
-<p><br></p>
-<h1 id="二、在计算机系里学习"><a href="#二、在计算机系里学习" class="headerlink" title="二、在计算机系里学习"></a>二、在计算机系里学习</h1><p><br></p>
-<h2 id="2-1-你对你的大学生活有什么想要吐槽的地方吗？你理想的大学教育应该是什么样子的？跟学校给你的有什么区别？比较你在中国大学的经历，你的老师和学校能做到和国外那样吗？如果不能，请分析一下为什么。"><a href="#2-1-你对你的大学生活有什么想要吐槽的地方吗？你理想的大学教育应该是什么样子的？跟学校给你的有什么区别？比较你在中国大学的经历，你的老师和学校能做到和国外那样吗？如果不能，请分析一下为什么。" class="headerlink" title="2.1 你对你的大学生活有什么想要吐槽的地方吗？你理想的大学教育应该是什么样子的？跟学校给你的有什么区别？比较你在中国大学的经历，你的老师和学校能做到和国外那样吗？如果不能，请分析一下为什么。"></a>2.1 你对你的大学生活有什么想要吐槽的地方吗？你理想的大学教育应该是什么样子的？跟学校给你的有什么区别？比较你在中国大学的经历，你的老师和学校能做到和国外那样吗？如果不能，请分析一下为什么。</h2><p>　　我的大学生活十分中规中矩，跟随着课程设置按部就班地完成学习。想要吐槽的地方是，学院的课程压力分配不太合理。比如大二上学期的计算机组成课，一门实验课可以说是占据了这一学期全部的重心，每周除了空闲时间，甚至理论课的时间、其他课堂的时间，也消耗在编写实验课任务上，此外，还对每周四的上机考核实验忧心忡忡。这样，每周的精力完全放在有没有通过本周Project上，而忽视了其他如离散数学、概率统计之类的重要数学基础课的学习，我认为有些得不偿失。且这种高压并不利于激发我改进设计的动力，反而更加迫使我按照课程要求的“模板”去完成设计，因害怕无法通过测试而不敢思考其他可行方案。</p>
-<p>　　我理想的大学教育应该是与生产实践想结合的。如果在教授课程的同时，能够加入这门课在当今生产实践中的实际运用，也许能让学生对课程整体有更直观的认识，也能够激发学生对某个领域的兴趣。比如算法课，按照课程大纲一个个算法细讲十分枯燥，而如果能够将这些算法在当今各大软件中的实际应用带入讲解，并进行编程实践，或许这些算法就很难忘记了。</p>
-<p>　　学校里的教育比较按部就班，有时上完一门课，却不知道这门课是做什么的。课程的知识点大多平铺罗列，着重于记忆而非联系。</p>
-<p>　　我没有经历过国外教育，但我认为国内大学和国外应该还是有一定区别。国外大学学费高，学校能够将资金转换为更优质的教育环境和资源，且国外高校教授的薪资也更能促进优质课程的产生。相比较，国内高校人数多，旨在为更多人提供平均的教育，老师有发表论文的压力，薪资水平一般，难以有动力精心准备课堂。当然如今也有越来越多的老师因课堂质量深受学生喜爱。</p>
-<p><br></p>
-<h2 id="2-2-迄今为止，你写了多少代码，描述你做的最复杂的软件项目-作业。"><a href="#2-2-迄今为止，你写了多少代码，描述你做的最复杂的软件项目-作业。" class="headerlink" title="2.2 迄今为止，你写了多少代码，描述你做的最复杂的软件项目/作业。"></a>2.2 迄今为止，你写了多少代码，描述你做的最复杂的软件项目/作业。</h2><p>　　大一程序设计课总共约500行，数据结构课约1000行；大二计组课程约2000行，OO课程四个单元约4000行，暑期课OpenGL项目约500行；大三的编译器约5000行。合计不超过2w行吧，当然这都是粗略的估计。</p>
-<p>　　最复杂的项目是大三上学期的C0编译器设计，总共5340行，包含词法分析、语法分析、语义分析、错误处理、中间代码生产、目标代码生成以及优化七个大模块，内部还有符号表之类的小设计。这是一个自己制作出来的比较有成就感的作业，课程只讲解大体的设计思路，其中实现细节经过了反复的思考、添加与修改。最终虽然错误处理测试没能通过，但优化目标代码的测试通过了，还是比较满足。</p>
-<p><br></p>
-<h2 id="2-3-科班出身和北大青鸟有什么区别？"><a href="#2-3-科班出身和北大青鸟有什么区别？" class="headerlink" title="2.3 科班出身和北大青鸟有什么区别？"></a>2.3 科班出身和北大青鸟有什么区别？</h2><p>　　我还依稀记得大一程序设计课荣欣老师在第一堂课就强调过这个问题：“你们和技校、培训班培养出来的码农不一样，你们不仅要会写程序，还要会设计程序”。我认为，当一个软件、或是一个程序的设计完成后，剩下的编码任务其实很容易完成，这点在面向对象课程中深有体会。科班出身的人在掌握编码的同时，还应具备的是设计复杂系统、解决疑难问题的能力；而北大青鸟，如<a href="https://www.cnblogs.com/Tpf386/p/4798437.html" target="_blank" rel="noopener">博客F</a>博主的经历所见，是以就业为目的、学习技能为导向的培训。</p>
-<p><br></p>
-<h2 id="2-4-速成的培训班和打基础的大学教育还有mooc之间有区别吗？"><a href="#2-4-速成的培训班和打基础的大学教育还有mooc之间有区别吗？" class="headerlink" title="2.4 速成的培训班和打基础的大学教育还有mooc之间有区别吗？"></a>2.4 速成的培训班和打基础的大学教育还有mooc之间有区别吗？</h2><p>　　速成培训班以求职技巧为核心，着重教授基本编程技能、美化简历，目的是让学员找到工作；mooc为教育资源差但学习热情高、自学能力强的学生提供名校课程教学，个人的自主学习能力尤为重要；大学教育不仅仅只有老师讲授的实体课堂，大学里提供的专业资源、社交资源、实践平台也十分重要。</p>
-<p><br></p>
-<h2 id="2-5学线性代数和概率论的时候，你是否有过这样的疑问“我们为什么要学这么多数学，这和我们的计算机有关系吗”，你现在是否还有这样的疑问？对这个问题，你有自己的解答了吗？那么其他学科呢？"><a href="#2-5学线性代数和概率论的时候，你是否有过这样的疑问“我们为什么要学这么多数学，这和我们的计算机有关系吗”，你现在是否还有这样的疑问？对这个问题，你有自己的解答了吗？那么其他学科呢？" class="headerlink" title="2.5学线性代数和概率论的时候，你是否有过这样的疑问“我们为什么要学这么多数学，这和我们的计算机有关系吗”，你现在是否还有这样的疑问？对这个问题，你有自己的解答了吗？那么其他学科呢？"></a>2.5学线性代数和概率论的时候，你是否有过这样的疑问“我们为什么要学这么多数学，这和我们的计算机有关系吗”，你现在是否还有这样的疑问？对这个问题，你有自己的解答了吗？那么其他学科呢？</h2><p>　　我曾经有过很多次这样的疑问，因为在这些数学基础课与计算机之间建立不起任何联系。现在这些疑问淡化了，因为随着专业课程的学习深入，这些数学知识或多或少地都得到了一些运用，比如OpenGL的光照运用到了线性代数的向量变换知识。但还有部分未得到解答，可能是因为学习的专业课不够多、不够深入，且见识短浅，可能还需在未来的研究实践中才能得到解答。其他学科如数学分析的知识在机器学习的SVM模型中得到了运用，离散数学的知识在计组的状态机中也有运用。进一步的解答还需等待眼界更加开阔。</p>
-<p><br></p>
-<h1 id="三、未来规划"><a href="#三、未来规划" class="headerlink" title="三、未来规划"></a>三、未来规划</h1><p><br></p>
-<h2 id="3-1-对于你未来在IT行业的发展，你有什么样的梦想或者未来想从事什么样的工作？你准备怎样来规划你技术道路，职业道路和社会道路？（必答）"><a href="#3-1-对于你未来在IT行业的发展，你有什么样的梦想或者未来想从事什么样的工作？你准备怎样来规划你技术道路，职业道路和社会道路？（必答）" class="headerlink" title="3.1 对于你未来在IT行业的发展，你有什么样的梦想或者未来想从事什么样的工作？你准备怎样来规划你技术道路，职业道路和社会道路？（必答）"></a>3.1 对于你未来在IT行业的发展，你有什么样的梦想或者未来想从事什么样的工作？你准备怎样来规划你技术道路，职业道路和社会道路？（必答）</h2><p>　　这是大学里最困扰我的问题。曾经想过做与图形图像相关的技术工作，因为比起思考枯燥的程序算法，制作出肉眼可见的成果更能使我兴奋；作为英雄联盟的游戏爱好者，我也想过进入游戏行业，看过拳头游戏出品的《听说你想做游戏？？》系列宣传片中介绍的技术美工，更是十分向往；内心深处还有一个想法是依靠计算机积累原始资本，之后转行，投身自己真正感兴趣的领域。总之，这些都是迷茫摇摆的表现。</p>
-<p>　　拜读过<a href="https://book.douban.com/subject/4006425/discussion/22803733/" target="_blank" rel="noopener">博客A</a>后，我对“产品经理”这一职位有了动念，源于文中这一句话：“产品经理是谷歌一个非常特殊的角色，一个产品除了开发和测试之外的事情，基本都由产品经理主导。其中最重要也是最令人激动的是产品功能设计，也就是说，你对产品功能的任何合理的想法，都可以在产品经理这个平台上得到实现，最终被全球数以亿计的网民使用，改变他们的生活！”。当然公司之间的产品经理或许职能会有不同，但是主导产品的创作确实令人十分兴奋。</p>
-<p>　　<a href="">博客K</a>的博主说：“做规划时最重要的是两个方面：一是清楚地认识自己的能力、优势和性格；二是确定自己的专业和想从事的行业。只有在确定这两方面后，才能做出自己的职业规划”。对这两方面，我都没有很好的认识，所以谈如何规划道路，或许我不能叫规划，应该只能说是尝试，是迷茫期的探索。<a href="https://book.douban.com/subject/4006425/discussion/22802960/">博客B</a>给我很大的启发。书籍中成体系的知识能够为自己在技术道路上的准备打下坚实的内功基础，我也深深意识到光靠老师的PPT糊弄过考试并不是真正掌握知识。所以，阅读是不可或缺的准备手段；同时，结合实践去提升自己的“硬实力”也是不可或缺的。职业道路的规划将是通过不断探索，获取关于感兴趣职业尽可能多的信息，有目的地进行求职准备，当然在这之前要面临争夺研究生资格的求学道路；因为性格内向的原因，社会道路的规划对我来说有一定难度，目前所能做的只有强迫自己去参与交流，走出自己的社交舒适圈，接触更多有趣有才的人。</p>
-<p><br></p>
-<h2 id="3-2-你对于实现自己的梦想已经做了或者计划做什么样的准备？"><a href="#3-2-你对于实现自己的梦想已经做了或者计划做什么样的准备？" class="headerlink" title="3.2 你对于实现自己的梦想已经做了或者计划做什么样的准备？"></a>3.2 你对于实现自己的梦想已经做了或者计划做什么样的准备？</h2><p>　　如上一个问题中所述，同时还要在试错的过程中找到自己擅长的、感兴趣的方向。</p>
-<p><br></p>
-<h2 id="3-3-你们马上就要面临实习了，你打算在企业内实习还是在实验室实习？"><a href="#3-3-你们马上就要面临实习了，你打算在企业内实习还是在实验室实习？" class="headerlink" title="3.3 你们马上就要面临实习了，你打算在企业内实习还是在实验室实习？"></a>3.3 你们马上就要面临实习了，你打算在企业内实习还是在实验室实习？</h2><p>　　我打算在企业内实习。据了解到的信息，实验室实习是给出课题进行研究，以发论文为目标，而企业实习是参与到项目中，锻炼实际解决问题的能力。因为大学学习阶段，知识都停留在书本，我更希望体验知识所带来的实际影响力，这点企业实习能够提供更好的平台。</p>
-<p><br></p>
-<h2 id="3-4-实习经验究竟有多重要？是否需要马上开始积累实习经验？"><a href="#3-4-实习经验究竟有多重要？是否需要马上开始积累实习经验？" class="headerlink" title="3.4 实习经验究竟有多重要？是否需要马上开始积累实习经验？"></a>3.4 实习经验究竟有多重要？是否需要马上开始积累实习经验？</h2><p>　　这点我没有发言权，因为我从未在企业或实验室中实习过，但我认为应该是十分重要的，因为能够了解到课堂以外的知识和领域内研究热点或技术热点。是否需要马上开始累积实习经验还要看个人情况，学院的课程压力比较大，我认为应该在基础扎实的情况下参与实习，而这也是我没有参加实习的原因，但我认为应该要尽快了。</p>
-<p><br></p>
-<h1 id="四、写在最后"><a href="#四、写在最后" class="headerlink" title="四、写在最后"></a>四、写在最后</h1><p>　　趁着这个机会回顾了自己走上计算机这条路的前前后后，感触良多。在迷雾中来回穿行，反反复复地问自己：这条路走对了吗？你的能力足够吗？你足够感兴趣吗？…翻阅过许多人的思考，阅读过许多名人的经历，乔布斯对科技与艺术的追求让我仰慕不已，即使他是个古怪的人，也许天才都比较古怪吧；Paul Graham拿到计算机博士学位后，远赴欧洲学习绘画，为“解决收入问题”创业，达成目的后又成立创业孵化公司，影响更多的人。</p>
-<p>　　然而我的迷茫始终都在，导致在探索的过程浪费了许多精力，甚至失去探索的动力。这一次思考点醒我的是，总结与规划十分重要，它提醒我不应驻足现状，受限与迷茫，而应理清困惑，回顾总结，做好规划并继续前行，永远不停止思考。</p>
 ]]></content>
       <categories>
         <category>SoftWareEngineering</category>
@@ -1117,6 +874,249 @@
       </tags>
   </entry>
   <entry>
+    <title>第一次作业-热身！</title>
+    <url>/2020/03/23/%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%9C%E4%B8%9A-%E7%83%AD%E8%BA%AB/</url>
+    <content><![CDATA[<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>这个作业属于哪个课程</td>
+<td><a href="https://edu.cnblogs.com/campus/buaa/BUAA_SE_2020_LJ" target="_blank" rel="noopener">2020春季计算机学院软件工程（罗杰、任建）</a> </td>
+</tr>
+<tr>
+<td>这个作业的要求在哪里</td>
+<td><a href="https://edu.cnblogs.com/campus/buaa/BUAA_SE_2020_LJ/homework/10410" target="_blank" rel="noopener">第一次作业-热身！</a> </td>
+</tr>
+<tr>
+<td>我在这个课程的目标是</td>
+<td>提高软件开发能力、团队协作能力 </td>
+</tr>
+<tr>
+<td>这个作业在哪个具体方面帮助我实现目标</td>
+<td>认清现状、明确规划 </td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="more"></a>
+<p><br></p>
+<h1 id="一、结缘计算机"><a href="#一、结缘计算机" class="headerlink" title="一、结缘计算机"></a>一、结缘计算机</h1><p><br></p>
+<h2 id="1-1-你为什么选择计算机专业？你认为你的条件如何？和这些博主比呢？"><a href="#1-1-你为什么选择计算机专业？你认为你的条件如何？和这些博主比呢？" class="headerlink" title="1.1 你为什么选择计算机专业？你认为你的条件如何？和这些博主比呢？"></a>1.1 你为什么选择计算机专业？你认为你的条件如何？和这些博主比呢？</h2><p>　　学生时代的我，与计算机的关系只停留在了娱乐一项。小学时老爸带回来的第一台电脑，在我眼里只是一个可以玩蜘蛛纸牌的。由于参与游泳特长训练，加之需要维持学业成绩，我没有将过多的精力投入在探索计算机的运行原理中，而是将其作为一个释放压力和追赶潮流的工具。同时，“编程”这个词在我生活中几乎从未出现过，除了电影。对它的印象只停留在黑客所掌握的酷酷的技能点。</p>
+<p>　　平凡地经历高考之后，拿到了意外的好成绩，这是鼓励我投身信息专业的重要因素。经过反复思索后，我坚定了一个观点：信息专业是通向未来的专业，我想要探究信息世界是如何形成与发展的（也许是迟到的好奇心在作怪），这是决定性因素。很幸福的是，父母也十分尊重我的选择。所以，我最终填报了北航的信息大类志愿，也幸运地被压线录取。后来专业分流时选择选择计算机学院，有一部分“业界好评”的原因，有一部分热心向学的原因，也有一部分受周围环境影响的原因。</p>
+<p>　　作为一个从大学才开始接触编程的计算机系本科生，我自认为条件自然是远远不如其他优秀的同学。从来到士谔书院起，我就十分敬仰那些中学参与信息学竞赛、热爱计算机、动手能力超强、理解能力超强的同学。虽然自己也在努力维持成绩，但编程能力、思维能力的不足还是让自己有些自卑。</p>
+<p>　　与<a href="https://www.cnblogs.com/unruledboy/p/DevCareer.html" target="_blank" rel="noopener">博客I</a>的博主相比，我虽然没有他在学生时代钻研电脑的热情与经历，但拥有深入计算机专业的大学教育资源。我认为与他的条件相比，我无法区分谁好谁坏。都说“兴趣是最好的老师”，博主虽然读的是英语专业，却对计算机有十分浓厚的兴趣，这份热情驱使着他不断学习计算机领域新兴技术。而我虽然拥有十分优秀的教育资源，但仍在迷茫途中，对计算机的感情反复无常，但说不定随着理解的深入，我会在计算机领域找到一个自己热爱的方向呢？</p>
+<p><br></p>
+<h2 id="1-2-计算机是你喜欢的领域吗？是你擅长的领域吗？"><a href="#1-2-计算机是你喜欢的领域吗？是你擅长的领域吗？" class="headerlink" title="1.2 计算机是你喜欢的领域吗？是你擅长的领域吗？"></a>1.2 计算机是你喜欢的领域吗？是你擅长的领域吗？</h2><p>　　严格来说，不是。对于计算机体系结构，从计算机组成、操作系统到编译原理的课程学习来看，我很少感受到沉浸在解决难题的喜悦中，而更多的是害怕无法完成任务、跟不上系里其他同学的学业压力。当然，随着课程的学习，自己对计算机的一些问题也慢慢得到解答，这是使我感到充实的。从程序设计来看，解题过程对我来说也是比较煎熬的，且容易产生自我否定。那“不严格”来说呢？也许后续的学习会接触到某些方向，将运用之前学习的计算机领域知识系统地解决问题，那时也许我会非常乐意地说“我喜欢计算机”吧！</p>
+<p>　　计算机绝对不是我擅长的领域。从本科的动手能力就能看出，程序设计、数据结构、计组等等，这些实验课中多数我都没有取得理想的成绩。且在计算机领域的知识广度、掌握的技能、实践的经历等我也远远比不上同系生。但我一直饱受心理问题的困扰——不自信。如果一直不相信自己有能力去解决某些问题，那么自己就会始终不愿意去深入、始终因为能力问题而兜兜转转。如果一直暗示自己不擅长计算机领域，也许我就再没有动力去学习领域内的新知识了。所以，还是试试相信自己的能力吧。</p>
+<p><br></p>
+<h2 id="1-3-你热爱这一专业吗？你对计算机的热爱是怎样的？仅仅是口头的吗？"><a href="#1-3-你热爱这一专业吗？你对计算机的热爱是怎样的？仅仅是口头的吗？" class="headerlink" title="1.3 你热爱这一专业吗？你对计算机的热爱是怎样的？仅仅是口头的吗？"></a>1.3 你热爱这一专业吗？你对计算机的热爱是怎样的？仅仅是口头的吗？</h2><p>　　目前并不热爱。我对计算机的感情有些复杂，有时会因为创造可行的程序而激动，有时又会因深陷在复杂的知识点中而被挫败。从大学学习开始，我按部就班地完成计算机专业安排的课程，对于可选的一般专业课，我也秉持着“能学多学”的原则，旨在增长见识去选课。但是目前为止，我没有被计算机专业所吸引，仍然被动地为学业而学，自然谈不上热爱。</p>
+<p>　　反观<a href="https://www.cnblogs.com/geniusvczh/archive/2011/12/16/2290808.html" target="_blank" rel="noopener">博客M</a>的博主，我认为那便是热爱。从自学编程、尝试制作游戏，到解释高级语言、写脚本引擎，他的行动以兴趣为驱动，解决问题带来的正反馈效应又更加坚定他的热爱。</p>
+<p><br></p>
+<h1 id="二、在计算机系里学习"><a href="#二、在计算机系里学习" class="headerlink" title="二、在计算机系里学习"></a>二、在计算机系里学习</h1><p><br></p>
+<h2 id="2-1-你对你的大学生活有什么想要吐槽的地方吗？你理想的大学教育应该是什么样子的？跟学校给你的有什么区别？比较你在中国大学的经历，你的老师和学校能做到和国外那样吗？如果不能，请分析一下为什么。"><a href="#2-1-你对你的大学生活有什么想要吐槽的地方吗？你理想的大学教育应该是什么样子的？跟学校给你的有什么区别？比较你在中国大学的经历，你的老师和学校能做到和国外那样吗？如果不能，请分析一下为什么。" class="headerlink" title="2.1 你对你的大学生活有什么想要吐槽的地方吗？你理想的大学教育应该是什么样子的？跟学校给你的有什么区别？比较你在中国大学的经历，你的老师和学校能做到和国外那样吗？如果不能，请分析一下为什么。"></a>2.1 你对你的大学生活有什么想要吐槽的地方吗？你理想的大学教育应该是什么样子的？跟学校给你的有什么区别？比较你在中国大学的经历，你的老师和学校能做到和国外那样吗？如果不能，请分析一下为什么。</h2><p>　　我的大学生活十分中规中矩，跟随着课程设置按部就班地完成学习。想要吐槽的地方是，学院的课程压力分配不太合理。比如大二上学期的计算机组成课，一门实验课可以说是占据了这一学期全部的重心，每周除了空闲时间，甚至理论课的时间、其他课堂的时间，也消耗在编写实验课任务上，此外，还对每周四的上机考核实验忧心忡忡。这样，每周的精力完全放在有没有通过本周Project上，而忽视了其他如离散数学、概率统计之类的重要数学基础课的学习，我认为有些得不偿失。且这种高压并不利于激发我改进设计的动力，反而更加迫使我按照课程要求的“模板”去完成设计，因害怕无法通过测试而不敢思考其他可行方案。</p>
+<p>　　我理想的大学教育应该是与生产实践想结合的。如果在教授课程的同时，能够加入这门课在当今生产实践中的实际运用，也许能让学生对课程整体有更直观的认识，也能够激发学生对某个领域的兴趣。比如算法课，按照课程大纲一个个算法细讲十分枯燥，而如果能够将这些算法在当今各大软件中的实际应用带入讲解，并进行编程实践，或许这些算法就很难忘记了。</p>
+<p>　　学校里的教育比较按部就班，有时上完一门课，却不知道这门课是做什么的。课程的知识点大多平铺罗列，着重于记忆而非联系。</p>
+<p>　　我没有经历过国外教育，但我认为国内大学和国外应该还是有一定区别。国外大学学费高，学校能够将资金转换为更优质的教育环境和资源，且国外高校教授的薪资也更能促进优质课程的产生。相比较，国内高校人数多，旨在为更多人提供平均的教育，老师有发表论文的压力，薪资水平一般，难以有动力精心准备课堂。当然如今也有越来越多的老师因课堂质量深受学生喜爱。</p>
+<p><br></p>
+<h2 id="2-2-迄今为止，你写了多少代码，描述你做的最复杂的软件项目-作业。"><a href="#2-2-迄今为止，你写了多少代码，描述你做的最复杂的软件项目-作业。" class="headerlink" title="2.2 迄今为止，你写了多少代码，描述你做的最复杂的软件项目/作业。"></a>2.2 迄今为止，你写了多少代码，描述你做的最复杂的软件项目/作业。</h2><p>　　大一程序设计课总共约500行，数据结构课约1000行；大二计组课程约2000行，OO课程四个单元约4000行，暑期课OpenGL项目约500行；大三的编译器约5000行。合计不超过2w行吧，当然这都是粗略的估计。</p>
+<p>　　最复杂的项目是大三上学期的C0编译器设计，总共5340行，包含词法分析、语法分析、语义分析、错误处理、中间代码生产、目标代码生成以及优化七个大模块，内部还有符号表之类的小设计。这是一个自己制作出来的比较有成就感的作业，课程只讲解大体的设计思路，其中实现细节经过了反复的思考、添加与修改。最终虽然错误处理测试没能通过，但优化目标代码的测试通过了，还是比较满足。</p>
+<p><br></p>
+<h2 id="2-3-科班出身和北大青鸟有什么区别？"><a href="#2-3-科班出身和北大青鸟有什么区别？" class="headerlink" title="2.3 科班出身和北大青鸟有什么区别？"></a>2.3 科班出身和北大青鸟有什么区别？</h2><p>　　我还依稀记得大一程序设计课荣欣老师在第一堂课就强调过这个问题：“你们和技校、培训班培养出来的码农不一样，你们不仅要会写程序，还要会设计程序”。我认为，当一个软件、或是一个程序的设计完成后，剩下的编码任务其实很容易完成，这点在面向对象课程中深有体会。科班出身的人在掌握编码的同时，还应具备的是设计复杂系统、解决疑难问题的能力；而北大青鸟，如<a href="https://www.cnblogs.com/Tpf386/p/4798437.html" target="_blank" rel="noopener">博客F</a>博主的经历所见，是以就业为目的、学习技能为导向的培训。</p>
+<p><br></p>
+<h2 id="2-4-速成的培训班和打基础的大学教育还有mooc之间有区别吗？"><a href="#2-4-速成的培训班和打基础的大学教育还有mooc之间有区别吗？" class="headerlink" title="2.4 速成的培训班和打基础的大学教育还有mooc之间有区别吗？"></a>2.4 速成的培训班和打基础的大学教育还有mooc之间有区别吗？</h2><p>　　速成培训班以求职技巧为核心，着重教授基本编程技能、美化简历，目的是让学员找到工作；mooc为教育资源差但学习热情高、自学能力强的学生提供名校课程教学，个人的自主学习能力尤为重要；大学教育不仅仅只有老师讲授的实体课堂，大学里提供的专业资源、社交资源、实践平台也十分重要。</p>
+<p><br></p>
+<h2 id="2-5学线性代数和概率论的时候，你是否有过这样的疑问“我们为什么要学这么多数学，这和我们的计算机有关系吗”，你现在是否还有这样的疑问？对这个问题，你有自己的解答了吗？那么其他学科呢？"><a href="#2-5学线性代数和概率论的时候，你是否有过这样的疑问“我们为什么要学这么多数学，这和我们的计算机有关系吗”，你现在是否还有这样的疑问？对这个问题，你有自己的解答了吗？那么其他学科呢？" class="headerlink" title="2.5学线性代数和概率论的时候，你是否有过这样的疑问“我们为什么要学这么多数学，这和我们的计算机有关系吗”，你现在是否还有这样的疑问？对这个问题，你有自己的解答了吗？那么其他学科呢？"></a>2.5学线性代数和概率论的时候，你是否有过这样的疑问“我们为什么要学这么多数学，这和我们的计算机有关系吗”，你现在是否还有这样的疑问？对这个问题，你有自己的解答了吗？那么其他学科呢？</h2><p>　　我曾经有过很多次这样的疑问，因为在这些数学基础课与计算机之间建立不起任何联系。现在这些疑问淡化了，因为随着专业课程的学习深入，这些数学知识或多或少地都得到了一些运用，比如OpenGL的光照运用到了线性代数的向量变换知识。但还有部分未得到解答，可能是因为学习的专业课不够多、不够深入，且见识短浅，可能还需在未来的研究实践中才能得到解答。其他学科如数学分析的知识在机器学习的SVM模型中得到了运用，离散数学的知识在计组的状态机中也有运用。进一步的解答还需等待眼界更加开阔。</p>
+<p><br></p>
+<h1 id="三、未来规划"><a href="#三、未来规划" class="headerlink" title="三、未来规划"></a>三、未来规划</h1><p><br></p>
+<h2 id="3-1-对于你未来在IT行业的发展，你有什么样的梦想或者未来想从事什么样的工作？你准备怎样来规划你技术道路，职业道路和社会道路？（必答）"><a href="#3-1-对于你未来在IT行业的发展，你有什么样的梦想或者未来想从事什么样的工作？你准备怎样来规划你技术道路，职业道路和社会道路？（必答）" class="headerlink" title="3.1 对于你未来在IT行业的发展，你有什么样的梦想或者未来想从事什么样的工作？你准备怎样来规划你技术道路，职业道路和社会道路？（必答）"></a>3.1 对于你未来在IT行业的发展，你有什么样的梦想或者未来想从事什么样的工作？你准备怎样来规划你技术道路，职业道路和社会道路？（必答）</h2><p>　　这是大学里最困扰我的问题。曾经想过做与图形图像相关的技术工作，因为比起思考枯燥的程序算法，制作出肉眼可见的成果更能使我兴奋；作为英雄联盟的游戏爱好者，我也想过进入游戏行业，看过拳头游戏出品的《听说你想做游戏？？》系列宣传片中介绍的技术美工，更是十分向往；内心深处还有一个想法是依靠计算机积累原始资本，之后转行，投身自己真正感兴趣的领域。总之，这些都是迷茫摇摆的表现。</p>
+<p>　　拜读过<a href="https://book.douban.com/subject/4006425/discussion/22803733/" target="_blank" rel="noopener">博客A</a>后，我对“产品经理”这一职位有了动念，源于文中这一句话：“产品经理是谷歌一个非常特殊的角色，一个产品除了开发和测试之外的事情，基本都由产品经理主导。其中最重要也是最令人激动的是产品功能设计，也就是说，你对产品功能的任何合理的想法，都可以在产品经理这个平台上得到实现，最终被全球数以亿计的网民使用，改变他们的生活！”。当然公司之间的产品经理或许职能会有不同，但是主导产品的创作确实令人十分兴奋。</p>
+<p>　　<a href="">博客K</a>的博主说：“做规划时最重要的是两个方面：一是清楚地认识自己的能力、优势和性格；二是确定自己的专业和想从事的行业。只有在确定这两方面后，才能做出自己的职业规划”。对这两方面，我都没有很好的认识，所以谈如何规划道路，或许我不能叫规划，应该只能说是尝试，是迷茫期的探索。<a href="https://book.douban.com/subject/4006425/discussion/22802960/">博客B</a>给我很大的启发。书籍中成体系的知识能够为自己在技术道路上的准备打下坚实的内功基础，我也深深意识到光靠老师的PPT糊弄过考试并不是真正掌握知识。所以，阅读是不可或缺的准备手段；同时，结合实践去提升自己的“硬实力”也是不可或缺的。职业道路的规划将是通过不断探索，获取关于感兴趣职业尽可能多的信息，有目的地进行求职准备，当然在这之前要面临争夺研究生资格的求学道路；因为性格内向的原因，社会道路的规划对我来说有一定难度，目前所能做的只有强迫自己去参与交流，走出自己的社交舒适圈，接触更多有趣有才的人。</p>
+<p><br></p>
+<h2 id="3-2-你对于实现自己的梦想已经做了或者计划做什么样的准备？"><a href="#3-2-你对于实现自己的梦想已经做了或者计划做什么样的准备？" class="headerlink" title="3.2 你对于实现自己的梦想已经做了或者计划做什么样的准备？"></a>3.2 你对于实现自己的梦想已经做了或者计划做什么样的准备？</h2><p>　　如上一个问题中所述，同时还要在试错的过程中找到自己擅长的、感兴趣的方向。</p>
+<p><br></p>
+<h2 id="3-3-你们马上就要面临实习了，你打算在企业内实习还是在实验室实习？"><a href="#3-3-你们马上就要面临实习了，你打算在企业内实习还是在实验室实习？" class="headerlink" title="3.3 你们马上就要面临实习了，你打算在企业内实习还是在实验室实习？"></a>3.3 你们马上就要面临实习了，你打算在企业内实习还是在实验室实习？</h2><p>　　我打算在企业内实习。据了解到的信息，实验室实习是给出课题进行研究，以发论文为目标，而企业实习是参与到项目中，锻炼实际解决问题的能力。因为大学学习阶段，知识都停留在书本，我更希望体验知识所带来的实际影响力，这点企业实习能够提供更好的平台。</p>
+<p><br></p>
+<h2 id="3-4-实习经验究竟有多重要？是否需要马上开始积累实习经验？"><a href="#3-4-实习经验究竟有多重要？是否需要马上开始积累实习经验？" class="headerlink" title="3.4 实习经验究竟有多重要？是否需要马上开始积累实习经验？"></a>3.4 实习经验究竟有多重要？是否需要马上开始积累实习经验？</h2><p>　　这点我没有发言权，因为我从未在企业或实验室中实习过，但我认为应该是十分重要的，因为能够了解到课堂以外的知识和领域内研究热点或技术热点。是否需要马上开始累积实习经验还要看个人情况，学院的课程压力比较大，我认为应该在基础扎实的情况下参与实习，而这也是我没有参加实习的原因，但我认为应该要尽快了。</p>
+<p><br></p>
+<h1 id="四、写在最后"><a href="#四、写在最后" class="headerlink" title="四、写在最后"></a>四、写在最后</h1><p>　　趁着这个机会回顾了自己走上计算机这条路的前前后后，感触良多。在迷雾中来回穿行，反反复复地问自己：这条路走对了吗？你的能力足够吗？你足够感兴趣吗？…翻阅过许多人的思考，阅读过许多名人的经历，乔布斯对科技与艺术的追求让我仰慕不已，即使他是个古怪的人，也许天才都比较古怪吧；Paul Graham拿到计算机博士学位后，远赴欧洲学习绘画，为“解决收入问题”创业，达成目的后又成立创业孵化公司，影响更多的人。</p>
+<p>　　然而我的迷茫始终都在，导致在探索的过程浪费了许多精力，甚至失去探索的动力。这一次思考点醒我的是，总结与规划十分重要，它提醒我不应驻足现状，受限与迷茫，而应理清困惑，回顾总结，做好规划并继续前行，永远不停止思考。</p>
+]]></content>
+      <categories>
+        <category>SoftWareEngineering</category>
+      </categories>
+      <tags>
+        <tag>CourseHomework</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>个人博客作业-讲义阅读</title>
+    <url>/2020/03/23/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E4%BD%9C%E4%B8%9A/</url>
+    <content><![CDATA[<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>这个作业属于哪个课程</td>
+<td><a href="https://edu.cnblogs.com/campus/buaa/BUAA_SE_2020_LJ" target="_blank" rel="noopener">2020春季计算机学院软件工程（罗杰、任建）</a> </td>
+</tr>
+<tr>
+<td>这个作业的要求在哪里</td>
+<td><a href="https://edu.cnblogs.com/campus/buaa/BUAA_SE_2020_LJ/homework/10410" target="_blank" rel="noopener">个人博客作业 </a> </td>
+</tr>
+<tr>
+<td>我在这个课程的目标是</td>
+<td>提高软件开发能力、团队协作能力 </td>
+</tr>
+<tr>
+<td>这个作业在哪个具体方面帮助我实现目标</td>
+<td>了解与总结软件工程的一些方法论 </td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="more"></a>
+<h2 id="一、阅览教材-讲义后问题汇总"><a href="#一、阅览教材-讲义后问题汇总" class="headerlink" title="一、阅览教材/讲义后问题汇总"></a>一、阅览教材/讲义后问题汇总</h2><p><br></p>
+<p> <strong>1）<a href="https://www.cnblogs.com/xinz/archive/2011/10/22/2220872.html" target="_blank" rel="noopener">PSP: Personal Software Process</a>：每个人的工作质量直接影响最终软件的质量？</strong></p>
+<p>读到“每个人的工作质量直接影响最终软件的质量”这一段话，我有一个小问题：也许只有团队中少部分人真正影响了最终软件的质量呢？当经过软件的设计与任务的分配，团队不免会有“划水”的人存在，也就是<a href="https://www.cnblogs.com/xinz/archive/2010/12/11/1902933.html" target="_blank" rel="noopener">非P1的人</a>，他们的工作无非只会延长成果的完成时间。而团队中能力较强的人能够完成这些“额外”单工作，将进度拉回正轨，最终的软件质量也就不受影响了。</p>
+<p><br></p>
+<p><strong>2）<a href="https://www.cnblogs.com/xinz/archive/2011/08/07/2129751.html" target="_blank" rel="noopener">技能的反面</a>：技能的反面是problem solving？</strong></p>
+<p>读到“技能的反面是Problem solving”这句话，我存在疑惑。这里对Problem Solving的解释有些生硬，将其意思约束在了能力差的人的行为表现。然而Problem Solving也是一项能力，如果一个人称自己精通编程，在被要求用特定语言完成一个问题的情况下，通过“Problem Solving”迅速了解了这门语言的基本用法，并完成了题目，这又何尝不是技能的精通呢？</p>
+<p><br></p>
+<p><strong>3）<a href="https://www.cnblogs.com/xinz/archive/2011/08/07/2130332.html" target="_blank" rel="noopener">结对编程</a> 测试的极致做法是TDD？</strong></p>
+<p>文中对极限编程的表格中，有这么一项：“测试/单元测试能帮助提高质量”的极致做法是“先写单元测试，从测试开始写程序——TDD”。通过网上查阅得知，TDD的基本思想是在开发功能代码之前，先编写测试代码，其理念是</p>
+<ul>
+<li>确保所有需求都能被照顾到</li>
+<li>在代码不断增加和重构的过程中，可以检查所有功能是否正确</li>
+</ul>
+<p>从上述的解释来看，如果需求在不断改变，一旦某段实际功能代码作废，其测试代码也将报废。若面临软件重构的情况，带来的测试程序的改动将是十分巨大的。此外，如果只根据需求分析编写测试程序，而不去考虑实际程序，结果测试只能覆盖结果的正确性，而无法保证其实现过程正确，程序的bug往往出现在对实现细节的考虑不周。</p>
+<p>因此，我对“测试能提高质量的极致是TDD”的推理仍存在疑惑。</p>
+<p><br></p>
+<p><strong>4）<a href="https://www.cnblogs.com/xinz/archive/2010/12/11/1902849.html" target="_blank" rel="noopener">敏捷宣言</a>：敏捷求成品，而不需要文档？</strong>  </p>
+<p>读到现有做法与敏捷的对比表格：“现有的做法：完整的文档；敏捷的做法：可用的软件”，我存在一些疑惑。面向对象程序设计课程中教给我们，编码之前应充分设计，且需充分考虑其可扩展性，在实践过程中，我发现明确的设计文档确实对编码思路、增量开发有很大帮助。而敏捷目标在于“可用的软件”，当遇到需求的变化时，没有经过充分设计的文档指导与代码支撑，增量开发会不会变得十分困难，反而不那么“敏捷”了？</p>
+<p><br></p>
+<p><strong>5）<a href="https://www.cnblogs.com/xinz/archive/2011/03/13/1982585.html" target="_blank" rel="noopener">画扇面</a>：速成还是求全？</strong></p>
+<p>博客中利用画扇面的例子形象描述出软件工程团队项目进展，引起了我的思考：如果团队项目在进行中途不断添加需求，最终会导致问题层出不穷复杂从而项目流产，那么团队在最初的需求分析时，应该尽可能将需求简化，以达到“速成”的目的，还是应该将需求的功能充分考虑呢？</p>
+<p>以我的个人经验来看，如果作为学生，项目的最终目的是为了的高分，那么前期的充分需求分析、创新性想法就成了争夺高分的利器，而且在准备做足的基础上，项目进展的加速度大，动力也足；而如果追求敏捷而抛弃充分分析的话，导致成果得分不高的同时，还会出现项目完成时处于距离交差不上不下的时间、没有动力增加新功能的窘况。当然在如果交差时间很局限的话，削减需求、敏捷开发还是很必要的。</p>
+<p><br></p>
+<p><strong>6）<a href="https://www.cnblogs.com/xinz/archive/2011/07/10/2102310.html" target="_blank" rel="noopener">创新的迷思  连载(2)</a>：技术创新不一定是关键？</strong> </p>
+<p>在“迷思之六-技术的创新是关键”一节中，作者的观点是，除了技术的创新，其他方面的创新也显得尤为重要。而我认为，相比于其他创新带来的昙花一现，技术的创新才是关键。ipod成功的真正原因并不是用户界面上的创新，而是它实现了“把1000首歌塞进口袋”的技术；苹果生态能够取得成功，得益于其内部软硬件技术的一次次创新；网络购物理念出现时，Paul Graham使用Lisp语言编写Viaweb，在技术上一直领先竞争者，并具有更快的迭代速度，从而占据领先地位。其他方面的创新固然能产生显著效果，比如共享经济、电商经济，但谁才能真正享有成功的果实？只有技术创新才能带来一骑绝尘的实力。因此，对于作者在“技术的创新是关键”的迷思上，我存有疑惑。</p>
+<p><br></p>
+<h2 id="二、“软件”、“软件工程”词汇的产生"><a href="#二、“软件”、“软件工程”词汇的产生" class="headerlink" title="二、“软件”、“软件工程”词汇的产生"></a>二、“软件”、“软件工程”词汇的产生</h2><p><strong>“软件”的产生</strong></p>
+<blockquote>
+<p>In 2000, Fred Shapiro, a librarian at the Yale Law School, published a letter revealing that <strong>Tukey</strong>‘s 1958 paper “The Teaching of Concrete Mathematics” contained the earliest known usage of the term “software” found in a search of JSTOR’s electronic archives, predating the OED’s citation by two years. This led many to credit Tukey with coining the term, particularly in obituaries published that same year, although Tukey never claimed credit for any such coinage. In 1995, <strong>Paul Niquette</strong> claimed he had originally coined the term in October 1953, although he could not find any documents supporting his claim. The earliest known publication of the term “software” in an engineering context was in August 1953 by <strong>Richard R. Carhart</strong>, in a RAND Corporation research memorandum.</p>
+</blockquote>
+<p>上文中说明了“软件”一词的3种起源：</p>
+<ul>
+<li>1958年Tukey在论文《The Teaching of Concrete Mathematics》中包含了“软件”一词的最早用法</li>
+<li>Paul Niquette 声称自己在1953年10月创造了“软件”这个词，经管他找不到支持他说法的文件</li>
+<li>“软件”在工程领域的最早出现是1953年8月Richard R.Carhart在RAND公司的研究备忘录中</li>
+</ul>
+<p><br></p>
+<p><strong>“软件工程”的产生</strong></p>
+<blockquote>
+<p><strong>Hamilton</strong> details how she came to make up the term “software engineering”:<br>When I first came up with the term, no one had heard of it before, at least in our world. It was an ongoing joke for a long time. They liked to kid me about my radical ideas. It was a memorable day when one of the most respected hardware gurus explained to everyone in a meeting that he agreed with me that the process of building software should also be considered an engineering discipline, just like with hardware. Not because of his acceptance of the new ‘term’ per se, but because we had earned his and the acceptance of the others in the room as being in an engineering field in its own right.</p>
+</blockquote>
+<p>“软件工程”是在1960s阿波罗计划执行期间由Margaret Hamilton提出。上面是Margaret Hamilton描述自己如何提出“软件工程”这一词汇的细节。</p>
+<p><br></p>
+<h2 id="三、软件工程发展的过程中的冷知识"><a href="#三、软件工程发展的过程中的冷知识" class="headerlink" title="三、软件工程发展的过程中的冷知识"></a>三、软件工程发展的过程中的冷知识</h2><blockquote>
+<p>Unix的命名：上世纪六七十年代，计算机工业几大巨头聚在一起，合作研发官方版的下一代操作系统Multics。但是，另外两个年轻人——26岁的肯·汤普森和28岁的丹尼斯·里奇——觉得Multics过分负载，就另起炉灶，写出了一个自己的操作系统。他们参照Multics，为它取了一个搞笑式的名字Unix（注：前缀Multi-意思是“多个”，而前缀Uni-意思是“单个”）<br>                                                   ——《黑客与画家》</p>
+</blockquote>
+<p><br></p>
+<h2 id="四、源代码与项目管理软件调研"><a href="#四、源代码与项目管理软件调研" class="headerlink" title="四、源代码与项目管理软件调研"></a>四、源代码与项目管理软件调研</h2><p>目前主要流行的源代码和项目管理软件有Microsoft TFS，GitHub，Trac，Bugzilla，Apple XCode等。优缺点如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Microsoft TFS</td>
+<td>对敏捷、CMMI等项目、过程管理改善有较好支持，需求、项目进度一览无余，对小团队开发有利</td>
+<td>用户量少，源代码功能使用较多，但并不是软件定位</td>
+</tr>
+<tr>
+<td>Git</td>
+<td>支持多人维护庞大项目，分支能力强大、体验好，支持离线提交、非线性开发，是的协作流畅</td>
+<td>上手难，代码保密性差</td>
+</tr>
+<tr>
+<td>Mercurial</td>
+<td>命令行简单，易上手，可扩展性好，对网络依赖性低</td>
+<td>功能较弱，分支方式杂多不便，改写历史麻烦；没有命名空间，容易混淆</td>
+</tr>
+<tr>
+<td>GitHub</td>
+<td>基于web，允许使用Git的源代码管理功能，开源</td>
+<td>适合代码跟踪，但不适合设计跟踪，对国内用户不友好</td>
+</tr>
+<tr>
+<td>Bitbucket</td>
+<td>免费支持私有仓库，且同时支持hg/Git，自定义域名，有Bug追踪功能</td>
+<td>鲜为人知</td>
+</tr>
+<tr>
+<td>Trac</td>
+<td>有良好的扩充性，权限体系的设计较完备，灵活、可随心所欲定制</td>
+<td>不支持多项目，核心功能少，中文化不完整，本地化很差</td>
+</tr>
+<tr>
+<td>Bugzilla</td>
+<td>bug管理系统，检索功能强大，后端数据库强大，配置设定丰富多样</td>
+<td>安装繁琐，不支持中文</td>
+</tr>
+<tr>
+<td>Apple XCode</td>
+<td>文件转移快速，可自由撤销，能够辅助开发</td>
+<td>只支持Mac OS</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>按照用户数和流行度排序排序如下（<a href="https://en.wikipedia.org/wiki/Comparison_of_source-code-hosting_facilities#Popularity" target="_blank" rel="noopener">参照Wiki</a>)</p>
+<p><img src="https://i.loli.net/2020/03/06/p2chV1qsWZDaKjU.png" alt="md_2020-03-06-22-19-20.png"></p>
+<p><br></p>
+<h2 id="五、源代码与项目管理软件使用"><a href="#五、源代码与项目管理软件使用" class="headerlink" title="五、源代码与项目管理软件使用"></a>五、源代码与项目管理软件使用</h2><h3 id="1）Git"><a href="#1）Git" class="headerlink" title="1）Git"></a>1）Git</h3><ul>
+<li>使用git初始化仓库<br><img src="https://i.loli.net/2020/03/06/hQrAsK31p8vNtcL.png" alt="md_2020-03-06-22-35-34.png"></li>
+</ul>
+<ul>
+<li>使用git添加新版本并记录<br><img src="https://i.loli.net/2020/03/06/NmlS3hunpvCHrPd.png" alt="md_2020-03-06-22-41-38.png"></li>
+</ul>
+<p>使用体验：虽然需要记住几个命令行，但是一旦熟悉之后，使用非常方便，且支持离线管理。理解分支操作之后对团队开发将更有帮助。<br><br></p>
+<h3 id="2）BitBucket"><a href="#2）BitBucket" class="headerlink" title="2）BitBucket"></a>2）BitBucket</h3><ul>
+<li>在<a href="https://bitbucket.org/product/features" target="_blank" rel="noopener">BitBucket官网</a>完成注册登录后，可以创建新的私人仓库<br><img src="https://i.loli.net/2020/03/06/yqXMEkCOSvBuF5e.png" alt="md_2020-03-06-22-48-50.png"></li>
+<li>创建仓库流程<br><img src="https://i.loli.net/2020/03/06/kmqg1CRHOKYVLrB.png" alt="md_2020-03-06-22-49-43.png"></li>
+<li>完成仓库创建<br><img src="https://i.loli.net/2020/03/06/5wu2yejhJLSfTbE.png" alt="md_2020-03-06-22-51-08.png"></li>
+<li>使用Git将仓库克隆到本地<br><img src="https://i.loli.net/2020/03/06/gujaUX2fHmwex5b.png" alt="md_2020-03-06-22-59-35.png"></li>
+</ul>
+<p><br></p>
+<ul>
+<li>使用Git添加本地项目文件，然后push到仓库中<br><img src="https://i.loli.net/2020/03/06/Af9JRKBZasMdveE.png" alt="md_2020-03-06-23-02-06.png"></li>
+</ul>
+<p>使用体验：BitBucket和Github很类似，对Git也有很好的支持，区别是Github私人仓库要收费，而BitBucket是免费的。此外，BitBucket用户界面美观大方，使用体验也很方便很赞。</p>
+]]></content>
+      <categories>
+        <category>SoftWareEngineering</category>
+      </categories>
+      <tags>
+        <tag>CourseHomework</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>《代码大全（第2版）》Part 1：打好基础</title>
     <url>/2020/03/18/Code_Complete_part_1/</url>
     <content><![CDATA[<h2 id="1-欢迎进入软件构建的世界"><a href="#1-欢迎进入软件构建的世界" class="headerlink" title="1 欢迎进入软件构建的世界"></a>1 欢迎进入软件构建的世界</h2><h3 id="1-1-什么是软件构建"><a href="#1-1-什么是软件构建" class="headerlink" title="1.1 什么是软件构建"></a>1.1 什么是软件构建</h3><p>　　构建就是软件工程中“编码”的那一部分，关心的是程序的实现与可行。构建活动主要是编码与调试，但也涉及详细设计、规划构建、单元测试、集成等其他活动。</p>
@@ -1241,7 +1241,7 @@
   </entry>
   <entry>
     <title>LeetCode 1160：拼写单词</title>
-    <url>/2020/03/17/leetcode_3_17/</url>
+    <url>/2020/03/18/leetcode_3_17/</url>
     <content><![CDATA[<p>ps：是非常非常简单的一道题，但是实现途中意识到自己代码能力太差，c++ string的用法搞的一塌糊涂，还是要拉出来总结一下</p>
 <a id="more"></a>
 <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><img src="https://ftp.bmp.ovh/imgs/2020/03/5ade2ab64378432a.png" alt=""></p>
@@ -1299,7 +1299,7 @@
   </entry>
   <entry>
     <title>LeetCode 300：最长上升子序列</title>
-    <url>/2020/03/14/leetcode_3_14/</url>
+    <url>/2020/03/15/leetcode_3_14/</url>
     <content><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><img src="https://ftp.bmp.ovh/imgs/2020/03/218af1675f7358de.png" alt=""></p>
 <a id="more"></a>
 <h2 id="标准解法一：DP-O-n-2"><a href="#标准解法一：DP-O-n-2" class="headerlink" title="标准解法一：DP $O(n^2)$"></a>标准解法一：DP $O(n^2)$</h2><p>$d[i] = max(d[j])+1, 0 ≤ j &lt; i \&amp;\&amp; nums[j] &gt; nums[i]$</p>
@@ -1325,7 +1325,7 @@
   </entry>
   <entry>
     <title>使用Next主题</title>
-    <url>/2020/03/13/%E4%BD%BF%E7%94%A8Next%E4%B8%BB%E9%A2%98/</url>
+    <url>/2020/03/14/%E4%BD%BF%E7%94%A8Next%E4%B8%BB%E9%A2%98/</url>
     <content><![CDATA[<p>Next主题美化个人博客</p>
 <a id="more"></a>
 <h2 id="克隆仓库"><a href="#克隆仓库" class="headerlink" title="克隆仓库"></a>克隆仓库</h2><p>在根目录下</p>
@@ -1375,7 +1375,7 @@
   </entry>
   <entry>
     <title>Hexo+Github搭建个人博客</title>
-    <url>/2020/03/13/Hexo+Github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <url>/2020/03/14/Hexo+Github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<p>使用Hexo与github.io部署自己的博客</p>
 <blockquote>
 <p>环境：win10</p>
