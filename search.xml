@@ -1,10 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>lambda表达式</title>
+    <url>/2021/04/21/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h1><p>参考：<a href="http://c.biancheng.net/view/3741.html" target="_blank" rel="noopener">http://c.biancheng.net/view/3741.html</a></p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>lambda 表达式是 <a href="http://c.biancheng.net/cplus/" target="_blank" rel="noopener">C++</a>11 最重要也最常用的一个特性之一，<a href="http://c.biancheng.net/csharp/" target="_blank" rel="noopener">C#</a> 3.5 和 <a href="http://c.biancheng.net/java/" target="_blank" rel="noopener">Java</a> 8 中就引入了 lambda 表达式。</p>
+<p>lambda表达式有如下优点：</p>
+<ul>
+<li>声明式编程风格：就地<strong>匿名定义目标函数或函数对象</strong>，不需要额外写一个命名函数或者函数对象。以更直接的方式去写程序，好的可读性和可维护性。</li>
+<li>简洁：不需要额外再写一个函数或者函数对象，避免了代码膨胀和功能分散，让开发者更加集中精力在手边的问题，同时也获取了更高的生产率。</li>
+<li>在需要的时间和地点实现功能闭包，使程序更灵活。</li>
+</ul>
+<h2 id="lambda-表达式的概念和基本用法"><a href="#lambda-表达式的概念和基本用法" class="headerlink" title="lambda 表达式的概念和基本用法"></a>lambda 表达式的概念和基本用法</h2><p>lambda 表达式定义了一个匿名函数，并且可以捕获一定范围内的变量。</p>
+<ol>
+<li><p>lambda表达式完全体</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">[ capture ] ( params ) opt -&gt; ret &#123; body; &#125;;	<span class="comment">// 注意外部有';'</span></span><br></pre></td></tr></table></figure>
+<p>其中 <strong>capture</strong> 是捕获列表，<strong>params</strong> 是参数表，<strong>opt</strong> 是函数选项，<strong>ret</strong> 是返回值类型，<strong>body</strong>是函数体。</p>
+</li>
+<li><p>省略返回值或参数表的lambda表达式</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 省略返回值类型</span></span><br><span class="line"><span class="keyword">auto</span> f = [](<span class="keyword">int</span> a)&#123; <span class="keyword">return</span> a + <span class="number">1</span>; &#125;;</span><br></pre></td></tr></table></figure>
+<p>在 C++11 中，lambda 表达式的返回值是通过前面介绍的《<a href="http://c.biancheng.net/view/3727.html" target="_blank" rel="noopener">C++返回值类型后置</a>》语法来定义的。其实很多时候，lambda 表达式的返回值是非常明显的，比如这个例子。因此，C++11 中允许省略 lambda 表达式的返回值定义：</p>
+<p>这样编译器就会根据 return 语句自动推导出返回值类型。但是注意，定义二中，<strong>初始化列表不能用于返回值的自动推导</strong>。</p>
+<p>lambda 表达式在没有参数列表时，参数列表是可以省略的。因此像下面的写法都是正确的：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">auto</span> f1 = []()&#123; <span class="keyword">return</span> <span class="number">1</span>; &#125;;</span><br><span class="line"><span class="comment">// 省略空参数表</span></span><br><span class="line"><span class="keyword">auto</span> f2 = []&#123; <span class="keyword">return</span> <span class="number">1</span>; &#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>例子：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义了一个功能f，实现输入+1并返回</span></span><br><span class="line"><span class="keyword">auto</span> f = [](<span class="keyword">int</span> a) -&gt; <span class="keyword">int</span> &#123; <span class="keyword">return</span> a + <span class="number">1</span>; &#125;;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; f(<span class="number">1</span>) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;  <span class="comment">// 输出: 2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">auto</span> x1 = [](<span class="keyword">int</span> i)&#123; <span class="keyword">return</span> i; &#125;;  <span class="comment">// OK: return type is int</span></span><br><span class="line"><span class="keyword">auto</span> x2 = []()&#123; <span class="keyword">return</span> &#123; <span class="number">1</span>, <span class="number">2</span> &#125;; &#125;;  <span class="comment">// error: 无法推导出返回值类型</span></span><br></pre></td></tr></table></figure>
+<h2 id="lambda-表达式捕获列表"><a href="#lambda-表达式捕获列表" class="headerlink" title="lambda 表达式捕获列表"></a>lambda 表达式捕获列表</h2><p>lambda 表达式还可以通过捕获列表捕获一定范围内的变量：</p>
+<ul>
+<li><code>[]</code> 不捕获任何变量。</li>
+<li><code>[&amp;]</code>捕获<strong>外部作用域中所有变量</strong>，并作为<strong>引用</strong>在函数体中使用（按引用捕获）。</li>
+<li><code>[=]</code> 捕获<strong>外部作用域中所有变量</strong>，并作为<strong>副本</strong>在函数体中使用（按值捕获）。</li>
+<li><code>[=，&amp;foo]</code> 按值捕获外部作用域中所有变量，并按引用捕获 foo <strong>变量</strong>。</li>
+<li><code>[bar]</code> <strong>按值捕获 bar 变量</strong>，同时不捕获其他变量。</li>
+<li><code>[this]</code> 捕获<strong>当前类中的 this <a href="http://c.biancheng.net/c/80/" target="_blank" rel="noopener">指针</a></strong>，让 lambda 表达式<strong>拥有和当前类成员函数同样的访问权限</strong>。如果已经使用了 <strong>&amp; 或者 =，就默认添加此选项</strong>。捕获 this 的目的是可以在 lamda 中使用当前类的成员函数和成员变量。</li>
+</ul>
+<p>例1：类中捕获变量</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> i_ = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> x1 = []&#123; <span class="keyword">return</span> i_; &#125;;                    <span class="comment">// error，没有捕获外部变量</span></span><br><span class="line">        <span class="keyword">auto</span> x2 = [=]&#123; <span class="keyword">return</span> i_ + x + y; &#125;;           <span class="comment">// OK，捕获所有外部变量</span></span><br><span class="line">        <span class="keyword">auto</span> x3 = [&amp;]&#123; <span class="keyword">return</span> i_ + x + y; &#125;;           <span class="comment">// OK，捕获所有外部变量</span></span><br><span class="line">        <span class="keyword">auto</span> x4 = [<span class="keyword">this</span>]&#123; <span class="keyword">return</span> i_; &#125;;                <span class="comment">// OK，捕获this指针</span></span><br><span class="line">        <span class="keyword">auto</span> x5 = [<span class="keyword">this</span>]&#123; <span class="keyword">return</span> i_ + x + y; &#125;;        <span class="comment">// error，没有捕获x、y</span></span><br><span class="line">        <span class="keyword">auto</span> x6 = [<span class="keyword">this</span>, x, y]&#123; <span class="keyword">return</span> i_ + x + y; &#125;;  <span class="comment">// OK，捕获this指针、x、y</span></span><br><span class="line">        <span class="keyword">auto</span> x7 = [<span class="keyword">this</span>]&#123; <span class="keyword">return</span> i_++; &#125;;              <span class="comment">// OK，捕获this指针，并修改成员的值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>例2：引用捕获与按值捕获</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">0</span>, b = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">auto</span> f1 = []&#123; <span class="keyword">return</span> a; &#125;;               <span class="comment">// error，没有捕获外部变量</span></span><br><span class="line"><span class="keyword">auto</span> f2 = [&amp;]&#123; <span class="keyword">return</span> a++; &#125;;            <span class="comment">// OK，捕获所有外部变量，并对a执行自加运算</span></span><br><span class="line"><span class="keyword">auto</span> f3 = [=]&#123; <span class="keyword">return</span> a; &#125;;              <span class="comment">// OK，捕获所有外部变量，并返回a</span></span><br><span class="line"><span class="keyword">auto</span> f4 = [=]&#123; <span class="keyword">return</span> a++; &#125;;            <span class="comment">// error，a是以复制方式捕获的，无法修改</span></span><br><span class="line"><span class="keyword">auto</span> f5 = [a]&#123; <span class="keyword">return</span> a + b; &#125;;          <span class="comment">// error，没有捕获变量b</span></span><br><span class="line"><span class="keyword">auto</span> f6 = [a, &amp;b]&#123; <span class="keyword">return</span> a + (b++); &#125;;  <span class="comment">// OK，捕获a和b的引用，并对b做自加运算</span></span><br><span class="line"><span class="keyword">auto</span> f7 = [=, &amp;b]&#123; <span class="keyword">return</span> a + (b++); &#125;;  <span class="comment">// OK，捕获所有外部变量和b的引用，并对b做自加运算</span></span><br></pre></td></tr></table></figure>
+<p>需要注意的是，默认状态下 lambda 表达式无法修改通过复制方式捕获的外部变量。如果希望修改这些变量的话，我们需要使用<strong>引用方式</strong>进行捕获。</p>
+<p>例3：lambda表达式简化代码的使用</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 使用for_each累计偶数个数</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span> &#125;;</span><br><span class="line"><span class="keyword">int</span> even_count = <span class="number">0</span>;</span><br><span class="line">for_each( v.<span class="built_in">begin</span>(), v.<span class="built_in">end</span>(), [&amp;even_count](<span class="keyword">int</span> val)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!(val &amp; <span class="number">1</span>))  <span class="comment">// val % 2 == 0</span></span><br><span class="line">            &#123;</span><br><span class="line">                ++ even_count;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"The number of even is "</span> &lt;&lt; even_count &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="lambda-表达式的延迟调用"><a href="#lambda-表达式的延迟调用" class="headerlink" title="lambda 表达式的延迟调用"></a>lambda 表达式的延迟调用</h2><p>如果希望 lambda 表达式在调用时能够即时访问外部变量，我们应当使用<strong>引用方式</strong>捕获。<strong>按值捕获得到的外部变量值是在 lambda 表达式定义时的值</strong>。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">auto</span> f = [=]&#123; <span class="keyword">return</span> a; &#125;;      <span class="comment">// 按值捕获外部变量</span></span><br><span class="line">a += <span class="number">1</span>;                         <span class="comment">// a被修改了</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; f() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;  <span class="comment">// 输出？</span></span><br></pre></td></tr></table></figure>
+<p>在这个例子中，lambda 表达式按值捕获了所有外部变量。<strong>在捕获的一瞬间，a 的值就已经被复制到f中了</strong>。之后 a 被修改，但此时 f 中存储的 a 仍然还是捕获时的值，因此，最终输出结果是 0。</p>
+<p>那么如果希望去修改按值捕获的外部变量应当怎么办呢？这时，需要显式指明 lambda 表达式为 <strong>mutable</strong>：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">auto</span> f1 = [=]&#123; <span class="keyword">return</span> a++; &#125;;             <span class="comment">// error，修改按值捕获的外部变量</span></span><br><span class="line"><span class="keyword">auto</span> f2 = [=]() <span class="keyword">mutable</span> &#123; <span class="keyword">return</span> a++; &#125;;  <span class="comment">// OK，mutable</span></span><br></pre></td></tr></table></figure>
+<p>需要注意的一点是，被 mutable 修饰的 lambda 表达式就算没有参数也要写明参数列表。</p>
+<h2 id="lambda-表达式的类型"><a href="#lambda-表达式的类型" class="headerlink" title="lambda 表达式的类型"></a>lambda 表达式的类型</h2><p>lambda 表达式的类型在 C++11 中被称为“闭包类型（Closure Type）”。它是一个特殊的，匿名的非 nunion 的类类型。</p>
+<p>因此，我们可以认为它是一个<strong>带有 operator() 的类</strong>，即仿函数</p>
+<blockquote>
+<p>operator()：重载的函数操作符。类重载这一操作符后，可以将对象当作函数使用</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123; <span class="built_in">cout</span>&lt;&lt;x&lt;&lt;<span class="built_in">endl</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    test t;</span><br><span class="line">    t(<span class="number">10</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>lambda 表达式可以说是就地定义仿函数闭包的“语法糖”。它的<strong>捕获列表捕获住的任何外部变量，最终均会变为闭包类型的成员变量</strong>。</p>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>《算法笔记》总结</title>
-    <url>/2021/04/21/%E3%80%8A%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%E3%80%8B%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p>[TOC]</p>
-<a id="more"></a>
+    <url>/2021/04/21/%E3%80%8A%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%E3%80%8B%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<a id="more"></a>
+<p>[TOC]</p>
 <h2 id="0-起步"><a href="#0-起步" class="headerlink" title="0 起步"></a>0 起步</h2><p>基本数据类型：变量，强制转换，符号常量（define），const</p>
 <p>顺序结构：赋值，scanf/printf，getchar/putchar，typedef，<strong>math</strong>函数</p>
 <ul>
@@ -17,13 +81,10 @@
 </ul>
 <p>选择结构：if，switch</p>
 <p>循环结构：while，do while，for，break/continue</p>
-<p>数组：memset，字符数组，string.h头文件，<strong>sscanf/sprintf</strong>（字符串格式转换）</p>
-<ul>
-<li><p>```c++</p>
-<h1 id="include"><a href="#include" class="headerlink" title="include "></a>include <cstring></h1><p>memset(数组名, 值, sizeof(数组名));    // 值只能0或-1，因为是按字节赋值</p>
-<figure class="highlight axapta"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- ```c++</span><br><span class="line">  <span class="comment">// 将数据输入到字符串</span></span><br><span class="line">  <span class="keyword">int</span> n = <span class="number">12345</span>;</span><br><span class="line">  <span class="keyword">char</span> <span class="keyword">str</span>[<span class="number">6</span>];</span><br><span class="line">  sprintf(<span class="keyword">str</span>, <span class="string">"%d"</span>, n);</span><br><span class="line">  <span class="comment">// 执行后str为"12345"</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 从字符串中提取输入</span></span><br><span class="line">  <span class="keyword">char</span> <span class="keyword">str</span>[<span class="number">6</span>] = <span class="string">"12345"</span>;</span><br><span class="line">  <span class="keyword">int</span> n;</span><br><span class="line">  sscanf(<span class="keyword">str</span>, <span class="string">"%d"</span>, &amp;n);</span><br><span class="line">  <span class="comment">// 执行后n = 12345</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+<p>数组：memset，字符数组，string.h头文件，</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="built_in">memset</span>(数组名, 值, <span class="keyword">sizeof</span>(数组名));	<span class="comment">// 值只能0或-1，因为是按字节赋值</span></span><br></pre></td></tr></table></figure>
+<p><strong>sscanf/sprintf</strong>（字符串格式转换）</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 将数据输入到字符串</span></span><br><span class="line"><span class="keyword">int</span> n = <span class="number">12345</span>;</span><br><span class="line"><span class="keyword">char</span> str[<span class="number">6</span>];</span><br><span class="line"><span class="built_in">sprintf</span>(str, <span class="string">"%d"</span>, n);</span><br><span class="line"><span class="comment">// 执行后str为"12345"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 从字符串中提取输入</span></span><br><span class="line"><span class="keyword">char</span> str[<span class="number">6</span>] = <span class="string">"12345"</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="built_in">sscanf</span>(str, <span class="string">"%d"</span>, &amp;n);</span><br><span class="line"><span class="comment">// 执行后n = 12345</span></span><br></pre></td></tr></table></figure>
 <p>函数：嵌套、递归</p>
 <p>指针：指针与数组、<strong>引用<code>&amp;</code></strong></p>
 <ul>
