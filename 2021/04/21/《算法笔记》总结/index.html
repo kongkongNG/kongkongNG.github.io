@@ -466,7 +466,7 @@
 <ol>
 <li><p><del>定义计算（阶乘）</del>（long long也只能承受n&lt;20的数据）</p>
 </li>
-<li><p>递推公式：$C_n^m = C_{n-1}^m + C_{n-1}^{m-1}$，$C_n^0 = C_n^n = 1$</p>
+<li><p>递推公式：$C<em>n^m = C</em>{n-1}^m + C_{n-1}^{m-1}$，$C_n^0 = C_n^n = 1$</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">C</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> n, <span class="keyword">long</span> <span class="keyword">long</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (m == <span class="number">0</span> || n == m) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> C(n<span class="number">-1</span>, m) + C(n<span class="number">-1</span>, m<span class="number">-1</span>);	<span class="comment">// 可以储存计算结果防止重复计算</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>用定义，边除边乘，$C_{n+m-i}^{i}=\frac{(n-m+1)<em>(n-m+2)</em>…<em>(n-m+i)}{1</em>2<em>…</em>i}$一定是整数</p>
