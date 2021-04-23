@@ -214,10 +214,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-04-21 11:55:01 / 修改时间：20:23:48" itemprop="dateCreated datePublished" datetime="2021-04-21T11:55:01+08:00">2021-04-21</time>
+              <time title="创建时间：2021-04-21 11:55:01" itemprop="dateCreated datePublished" datetime="2021-04-21T11:55:01+08:00">2021-04-21</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-23 09:37:04" itemprop="dateModified" datetime="2021-04-23T09:37:04+08:00">2021-04-23</time>
+              </span>
 
           
   
@@ -244,14 +250,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="C-Trick-Methods"><a href="#C-Trick-Methods" class="headerlink" title="C++ Trick Methods"></a>C++ Trick Methods</h1><h2 id="iota"><a href="#iota" class="headerlink" title="iota()"></a>iota()</h2><p><a href="http://c.biancheng.net/view/681.html" target="_blank" rel="noopener">http://c.biancheng.net/view/681.html</a></p>
-<p>定义在 <code>numeric</code> 头文件中的 <code>iota()</code> 函数模板会用连续的 T 类型值填充序列。前两个参数是定义序列的正向迭代器，第三个参数是初始的 T 值。 T 类型必须支持 operator++()</p>
-<blockquote>
-<p>相当于使用enum为容器进行初始化</p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;numeric&gt;</span></span></span><br><span class="line"><span class="function"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; <span class="title">data</span><span class="params">(<span class="number">9</span>)</span></span>;</span><br><span class="line"><span class="keyword">double</span> initial &#123;<span class="number">-4</span>&#125;;</span><br><span class="line"><span class="built_in">std</span>::iota (<span class="built_in">std</span>::<span class="built_in">begin</span> (data) , <span class="built_in">std</span>::<span class="built_in">end</span> (data) , initial);</span><br><span class="line"><span class="comment">// -4.0 -3.0 -2.0 -1.0 0.0 1.0 2.0 3.0 4.0</span></span><br></pre></td></tr></table></figure>
-<h2 id="使用ostream-iterator输出容器"><a href="#使用ostream-iterator输出容器" class="headerlink" title="使用ostream_iterator输出容器"></a>使用ostream_iterator输出容器</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iterator&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; data = &#123; <span class="number">1</span>, <span class="number">21</span>, <span class="number">31</span>, <span class="number">41</span>, <span class="number">51</span>, <span class="number">61</span>, <span class="number">71</span>, <span class="number">81</span> &#125;;</span><br><span class="line">	<span class="comment">// 定义ostream_iterator，第一个参数是流文件，第二个是分隔符</span></span><br><span class="line">    <span class="function"><span class="built_in">std</span>::ostream_iterator&lt;<span class="keyword">int</span>&gt; <span class="title">dataIter</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">cout</span>, <span class="string">", "</span>)</span></span>;</span><br><span class="line">	<span class="comment">// 使用copy将迭代器复制到ostream</span></span><br><span class="line">    <span class="built_in">std</span>::copy(data.<span class="built_in">begin</span>(), data.<span class="built_in">end</span>(), dataIter);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+          <p>title: C++ Trick Methods</p>
+<p>tags: C++</p>
+<p>categories: C++</p>
+<h1 id="C-Trick-Methods"><a href="#C-Trick-Methods" class="headerlink" title="C++ Trick Methods"></a>C++ Trick Methods</h1><p>介绍c++中一些简化编码/提高效率/单纯有趣的函数</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/21/C++trick_methods/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -293,10 +303,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-04-21 10:29:42 / 修改时间：11:13:46" itemprop="dateCreated datePublished" datetime="2021-04-21T10:29:42+08:00">2021-04-21</time>
+              <time title="创建时间：2021-04-21 10:29:42" itemprop="dateCreated datePublished" datetime="2021-04-21T10:29:42+08:00">2021-04-21</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-23 09:37:11" itemprop="dateModified" datetime="2021-04-23T09:37:11+08:00">2021-04-23</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -340,52 +356,14 @@
 <li>简洁：不需要额外再写一个函数或者函数对象，避免了代码膨胀和功能分散，让开发者更加集中精力在手边的问题，同时也获取了更高的生产率。</li>
 <li>在需要的时间和地点实现功能闭包，使程序更灵活。</li>
 </ul>
-<h2 id="lambda-表达式的概念和基本用法"><a href="#lambda-表达式的概念和基本用法" class="headerlink" title="lambda 表达式的概念和基本用法"></a>lambda 表达式的概念和基本用法</h2><p>lambda 表达式定义了一个匿名函数，并且可以捕获一定范围内的变量。</p>
-<ol>
-<li><p>lambda表达式完全体</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ capture ] ( params ) opt -&gt; ret &#123; body; &#125;;	<span class="comment">// 注意外部有';'</span></span><br></pre></td></tr></table></figure>
-<p>其中 <strong>capture</strong> 是捕获列表，<strong>params</strong> 是参数表，<strong>opt</strong> 是函数选项，<strong>ret</strong> 是返回值类型，<strong>body</strong>是函数体。</p>
-</li>
-<li><p>省略返回值或参数表的lambda表达式</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 省略返回值类型</span></span><br><span class="line"><span class="keyword">auto</span> f = [](<span class="keyword">int</span> a)&#123; <span class="keyword">return</span> a + <span class="number">1</span>; &#125;;</span><br></pre></td></tr></table></figure>
-<p>在 C++11 中，lambda 表达式的返回值是通过前面介绍的《<a href="http://c.biancheng.net/view/3727.html" target="_blank" rel="noopener">C++返回值类型后置</a>》语法来定义的。其实很多时候，lambda 表达式的返回值是非常明显的，比如这个例子。因此，C++11 中允许省略 lambda 表达式的返回值定义：</p>
-<p>这样编译器就会根据 return 语句自动推导出返回值类型。但是注意，定义二中，<strong>初始化列表不能用于返回值的自动推导</strong>。</p>
-<p>lambda 表达式在没有参数列表时，参数列表是可以省略的。因此像下面的写法都是正确的：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> f1 = []()&#123; <span class="keyword">return</span> <span class="number">1</span>; &#125;;</span><br><span class="line"><span class="comment">// 省略空参数表</span></span><br><span class="line"><span class="keyword">auto</span> f2 = []&#123; <span class="keyword">return</span> <span class="number">1</span>; &#125;;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>例子：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义了一个功能f，实现输入+1并返回</span></span><br><span class="line"><span class="keyword">auto</span> f = [](<span class="keyword">int</span> a) -&gt; <span class="keyword">int</span> &#123; <span class="keyword">return</span> a + <span class="number">1</span>; &#125;;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; f(<span class="number">1</span>) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;  <span class="comment">// 输出: 2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">auto</span> x1 = [](<span class="keyword">int</span> i)&#123; <span class="keyword">return</span> i; &#125;;  <span class="comment">// OK: return type is int</span></span><br><span class="line"><span class="keyword">auto</span> x2 = []()&#123; <span class="keyword">return</span> &#123; <span class="number">1</span>, <span class="number">2</span> &#125;; &#125;;  <span class="comment">// error: 无法推导出返回值类型</span></span><br></pre></td></tr></table></figure>
-<h2 id="lambda-表达式捕获列表"><a href="#lambda-表达式捕获列表" class="headerlink" title="lambda 表达式捕获列表"></a>lambda 表达式捕获列表</h2><p>lambda 表达式还可以通过捕获列表捕获一定范围内的变量：</p>
-<ul>
-<li><code>[]</code> 不捕获任何变量。</li>
-<li><code>[&amp;]</code>捕获<strong>外部作用域中所有变量</strong>，并作为<strong>引用</strong>在函数体中使用（按引用捕获）。</li>
-<li><code>[=]</code> 捕获<strong>外部作用域中所有变量</strong>，并作为<strong>副本</strong>在函数体中使用（按值捕获）。</li>
-<li><code>[=，&amp;foo]</code> 按值捕获外部作用域中所有变量，并按引用捕获 foo <strong>变量</strong>。</li>
-<li><code>[bar]</code> <strong>按值捕获 bar 变量</strong>，同时不捕获其他变量。</li>
-<li><code>[this]</code> 捕获<strong>当前类中的 this <a href="http://c.biancheng.net/c/80/" target="_blank" rel="noopener">指针</a></strong>，让 lambda 表达式<strong>拥有和当前类成员函数同样的访问权限</strong>。如果已经使用了 <strong>&amp; 或者 =，就默认添加此选项</strong>。捕获 this 的目的是可以在 lamda 中使用当前类的成员函数和成员变量。</li>
-</ul>
-<p>例1：类中捕获变量</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> i_ = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> x1 = []&#123; <span class="keyword">return</span> i_; &#125;;                    <span class="comment">// error，没有捕获外部变量</span></span><br><span class="line">        <span class="keyword">auto</span> x2 = [=]&#123; <span class="keyword">return</span> i_ + x + y; &#125;;           <span class="comment">// OK，捕获所有外部变量</span></span><br><span class="line">        <span class="keyword">auto</span> x3 = [&amp;]&#123; <span class="keyword">return</span> i_ + x + y; &#125;;           <span class="comment">// OK，捕获所有外部变量</span></span><br><span class="line">        <span class="keyword">auto</span> x4 = [<span class="keyword">this</span>]&#123; <span class="keyword">return</span> i_; &#125;;                <span class="comment">// OK，捕获this指针</span></span><br><span class="line">        <span class="keyword">auto</span> x5 = [<span class="keyword">this</span>]&#123; <span class="keyword">return</span> i_ + x + y; &#125;;        <span class="comment">// error，没有捕获x、y</span></span><br><span class="line">        <span class="keyword">auto</span> x6 = [<span class="keyword">this</span>, x, y]&#123; <span class="keyword">return</span> i_ + x + y; &#125;;  <span class="comment">// OK，捕获this指针、x、y</span></span><br><span class="line">        <span class="keyword">auto</span> x7 = [<span class="keyword">this</span>]&#123; <span class="keyword">return</span> i_++; &#125;;              <span class="comment">// OK，捕获this指针，并修改成员的值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>例2：引用捕获与按值捕获</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">0</span>, b = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">auto</span> f1 = []&#123; <span class="keyword">return</span> a; &#125;;               <span class="comment">// error，没有捕获外部变量</span></span><br><span class="line"><span class="keyword">auto</span> f2 = [&amp;]&#123; <span class="keyword">return</span> a++; &#125;;            <span class="comment">// OK，捕获所有外部变量，并对a执行自加运算</span></span><br><span class="line"><span class="keyword">auto</span> f3 = [=]&#123; <span class="keyword">return</span> a; &#125;;              <span class="comment">// OK，捕获所有外部变量，并返回a</span></span><br><span class="line"><span class="keyword">auto</span> f4 = [=]&#123; <span class="keyword">return</span> a++; &#125;;            <span class="comment">// error，a是以复制方式捕获的，无法修改</span></span><br><span class="line"><span class="keyword">auto</span> f5 = [a]&#123; <span class="keyword">return</span> a + b; &#125;;          <span class="comment">// error，没有捕获变量b</span></span><br><span class="line"><span class="keyword">auto</span> f6 = [a, &amp;b]&#123; <span class="keyword">return</span> a + (b++); &#125;;  <span class="comment">// OK，捕获a和b的引用，并对b做自加运算</span></span><br><span class="line"><span class="keyword">auto</span> f7 = [=, &amp;b]&#123; <span class="keyword">return</span> a + (b++); &#125;;  <span class="comment">// OK，捕获所有外部变量和b的引用，并对b做自加运算</span></span><br></pre></td></tr></table></figure>
-<p>需要注意的是，默认状态下 lambda 表达式无法修改通过复制方式捕获的外部变量。如果希望修改这些变量的话，我们需要使用<strong>引用方式</strong>进行捕获。</p>
-<p>例3：lambda表达式简化代码的使用</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用for_each累计偶数个数</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span> &#125;;</span><br><span class="line"><span class="keyword">int</span> even_count = <span class="number">0</span>;</span><br><span class="line">for_each( v.<span class="built_in">begin</span>(), v.<span class="built_in">end</span>(), [&amp;even_count](<span class="keyword">int</span> val)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!(val &amp; <span class="number">1</span>))  <span class="comment">// val % 2 == 0</span></span><br><span class="line">            &#123;</span><br><span class="line">                ++ even_count;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"The number of even is "</span> &lt;&lt; even_count &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="lambda-表达式的延迟调用"><a href="#lambda-表达式的延迟调用" class="headerlink" title="lambda 表达式的延迟调用"></a>lambda 表达式的延迟调用</h2><p>如果希望 lambda 表达式在调用时能够即时访问外部变量，我们应当使用<strong>引用方式</strong>捕获。<strong>按值捕获得到的外部变量值是在 lambda 表达式定义时的值</strong>。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">auto</span> f = [=]&#123; <span class="keyword">return</span> a; &#125;;      <span class="comment">// 按值捕获外部变量</span></span><br><span class="line">a += <span class="number">1</span>;                         <span class="comment">// a被修改了</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; f() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;  <span class="comment">// 输出？</span></span><br></pre></td></tr></table></figure>
-<p>在这个例子中，lambda 表达式按值捕获了所有外部变量。<strong>在捕获的一瞬间，a 的值就已经被复制到f中了</strong>。之后 a 被修改，但此时 f 中存储的 a 仍然还是捕获时的值，因此，最终输出结果是 0。</p>
-<p>那么如果希望去修改按值捕获的外部变量应当怎么办呢？这时，需要显式指明 lambda 表达式为 <strong>mutable</strong>：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">auto</span> f1 = [=]&#123; <span class="keyword">return</span> a++; &#125;;             <span class="comment">// error，修改按值捕获的外部变量</span></span><br><span class="line"><span class="keyword">auto</span> f2 = [=]() <span class="keyword">mutable</span> &#123; <span class="keyword">return</span> a++; &#125;;  <span class="comment">// OK，mutable</span></span><br></pre></td></tr></table></figure>
-<p>需要注意的一点是，被 mutable 修饰的 lambda 表达式就算没有参数也要写明参数列表。</p>
-<h2 id="lambda-表达式的类型"><a href="#lambda-表达式的类型" class="headerlink" title="lambda 表达式的类型"></a>lambda 表达式的类型</h2><p>lambda 表达式的类型在 C++11 中被称为“闭包类型（Closure Type）”。它是一个特殊的，匿名的非 nunion 的类类型。</p>
-<p>因此，我们可以认为它是一个<strong>带有 operator() 的类</strong>，即仿函数</p>
-<blockquote>
-<p>operator()：重载的函数操作符。类重载这一操作符后，可以将对象当作函数使用</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123; <span class="built_in">cout</span>&lt;&lt;x&lt;&lt;<span class="built_in">endl</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    test t;</span><br><span class="line">    t(<span class="number">10</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>lambda 表达式可以说是就地定义仿函数闭包的“语法糖”。它的<strong>捕获列表捕获住的任何外部变量，最终均会变为闭包类型的成员变量</strong>。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/21/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -427,10 +405,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-04-21 09:50:12 / 修改时间：11:35:41" itemprop="dateCreated datePublished" datetime="2021-04-21T09:50:12+08:00">2021-04-21</time>
+              <time title="创建时间：2021-04-21 09:50:12" itemprop="dateCreated datePublished" datetime="2021-04-21T09:50:12+08:00">2021-04-21</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-23 09:34:33" itemprop="dateModified" datetime="2021-04-23T09:34:33+08:00">2021-04-23</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -498,7 +482,7 @@
 <p>C语言字符判断函数</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">isalpha</span>(c);	<span class="comment">// 是否为字母</span></span><br><span class="line"><span class="built_in">isdigit</span>(c);	<span class="comment">// 是否为数字</span></span><br><span class="line"><span class="built_in">isalnum</span>(c);	<span class="comment">// 是否为英文或数字</span></span><br><span class="line"><span class="built_in">isupper</span>(c);	<span class="comment">// 是否为大写</span></span><br><span class="line"><span class="built_in">islower</span>(c);	<span class="comment">// 是否为小写</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 是否为分割文本的空白符（空格' '和水平制表符'\t'）</span></span><br><span class="line">isblank(c);	</span><br><span class="line"><span class="comment">// 是否为空白符（' '、水平制表符'\t'、换行符'\n'、垂直制表符'\v'、换页'\f'以及回车'\r'。）</span></span><br><span class="line"><span class="built_in">isspace</span>(c);</span><br></pre></td></tr></table></figure>
 <h2 id="1-算法初步"><a href="#1-算法初步" class="headerlink" title="1 算法初步"></a>1 算法初步</h2><h3 id="1-1-排序"><a href="#1-1-排序" class="headerlink" title="1.1 排序"></a>1.1 排序</h3><p>c++ <code>sort</code></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line">sort([首元素地址], [尾元素的下一个地址], [比较函数cmp(非必填)]);	<span class="comment">// 默认升序</span></span><br><span class="line"><span class="comment">// 简单cmp函数</span></span><br><span class="line"><span class="comment">// bool cmp(e1, e2)</span></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">// 		return e1 &lt; e2; // 小元素在前、升序</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line">sort([首元素地址], [尾元素的下一个地址], [比较函数cmp(非必填)]);	<span class="comment">// 默认升序</span></span><br><span class="line"><span class="comment">// 简单cmp函数</span></span><br><span class="line"><span class="comment">// bool cmp(e1, e2)</span></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">// 		return e1 &lt; e2; // 小元素在前、升序</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用lambda表达式写cmp</span></span><br><span class="line"><span class="comment">// 对索引数组indices排序</span></span><br><span class="line">sort(indices.<span class="built_in">begin</span>(), indices.<span class="built_in">end</span>(), [&amp;](<span class="keyword">int</span> i, <span class="keyword">int</span> j)&#123;</span><br><span class="line">    <span class="keyword">return</span> tasks[i][<span class="number">0</span>] &lt; tasks[j][<span class="number">0</span>];   </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>c <code>qsort</code></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmpfunc</span> <span class="params">(<span class="keyword">const</span> <span class="keyword">void</span> * a, <span class="keyword">const</span> <span class="keyword">void</span> * b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">return</span> ( *([类型]*)a - *([类型]*)b );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">qsort([数组], n, <span class="keyword">sizeof</span>([类型]), cmp);</span><br></pre></td></tr></table></figure>
 <p>写cmp函数的原则：</p>
