@@ -255,7 +255,7 @@
 <ol>
 <li><p><del>定义计算（阶乘）</del>（long long也只能承受n&lt;20的数据）</p>
 </li>
-<li><p>递推公式：$C_n^m = C_{n-1}^m + C_{n-1}^{m-1}$，$C_n^0 = C_n^n = 1$</p>
+<li><p>递推公式：$C<em>n^m = C</em>{n-1}^m + C_{n-1}^{m-1}$，$C_n^0 = C_n^n = 1$</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">C</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> n, <span class="keyword">long</span> <span class="keyword">long</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (m == <span class="number">0</span> || n == m) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> C(n<span class="number">-1</span>, m) + C(n<span class="number">-1</span>, m<span class="number">-1</span>);	<span class="comment">// 可以储存计算结果防止重复计算</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>用定义，边除边乘，$C_{n+m-i}^{i}=\frac{(n-m+1)<em>(n-m+2)</em>…<em>(n-m+i)}{1</em>2<em>…</em>i}$一定是整数</p>
@@ -273,8 +273,15 @@
 </li>
 <li><p>注3：<br>STL的<code>find()</code>一般用<code>if (stl.find(x) != stl.end())</code>进行判断，<code>string</code>特殊，可以用<code>string::npos</code></p>
 </li>
-<li><p>```c++<br>count(stl.begin(), stl.end(), value);    // 计算value在stl中的个数</p>
-<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- 注<span class="number">4</span>：C++<span class="number">11</span>新特性！</span><br><span class="line"></span><br><span class="line">  - 引入**emlace_front、empace 和 emplace_back**进行构造插入</span><br><span class="line"></span><br><span class="line">    ```c++</span><br><span class="line">    <span class="comment">//push_back()创建一个临时对象，然后将临时对象拷贝到容器中</span></span><br><span class="line">    d.push_back(Date(“<span class="number">2016</span>”,”<span class="number">05</span>”,”<span class="number">26</span>”));</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 直接进行构造插入，省去构造临时对象的开销</span></span><br><span class="line">    <span class="comment">// 前提是元素需要有相应的构造函数</span></span><br><span class="line">    d.emplace_back(“<span class="number">2016</span>”,”<span class="number">05</span>”,”<span class="number">26</span>”);</span><br></pre></td></tr></table></figure>
+<li><p>注4： 计算value在stl中的个数</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">count(stl.<span class="built_in">begin</span>(), stl.<span class="built_in">end</span>(), value);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注5：C++11新特性！</p>
+<ul>
+<li><p>引入<strong>emlace_front、empace 和 emplace_back</strong>进行构造插入</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//push_back()创建一个临时对象，然后将临时对象拷贝到容器中</span></span><br><span class="line">d.push_back(Date(“<span class="number">2016</span>”,”<span class="number">05</span>”,”<span class="number">26</span>”));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 直接进行构造插入，省去构造临时对象的开销</span></span><br><span class="line"><span class="comment">// 前提是元素需要有相应的构造函数</span></span><br><span class="line">d.emplace_back(“<span class="number">2016</span>”,”<span class="number">05</span>”,”<span class="number">26</span>”);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 </li>
 </ul>
 <h3 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h3><ul>
