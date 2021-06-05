@@ -39,12 +39,43 @@
 </ul>
 <p>图形学和计算机视觉</p>
 <p><img src="Y:\GitBlog\kongkongNG.github.io\source\_posts\图形学101_闫令琪.assets\image-20210602103322246.png" alt="image-20210602103322246" style="zoom: 50%;" /></p>
+<p>Lecture 2</p>
+<p>图形学依赖的前驱知识</p>
+<p><img src="Y:\GitBlog\kongkongNG.github.io\source\_posts\图形学101_闫令琪.assets\image-20210605102029465.png" alt="image-20210605102029465" style="zoom:33%;" /></p>
+<p>线性代数</p>
+<ul>
+<li><p>向量$\vec{a}$、向量标准化$\hat{a}$、向量加法</p>
+</li>
+<li><p>点乘（夹角、投影、方向一致性、方向是否接近）</p>
+<ul>
+<li><p>方向一致性：同侧点乘为正，不同侧点乘为负</p>
+</li>
+<li><p>方向是否接近：标准化后的向量点乘越大，越接近同向</p>
+<blockquote>
+<p>金属高光，在方向接近的范围可以看到高光</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>叉积</p>
+<ul>
+<li><p>判定左右：右手系，叉积正-&gt;左侧，叉积负-&gt;右侧</p>
+</li>
+<li><p>判定内外： 边向量叉积都为正（都相同）-&gt;在三条边的左侧-&gt;在内侧</p>
+<p><img src="Y:\GitBlog\kongkongNG.github.io\source\_posts\图形学101_闫令琪.assets\image-20210605105101191.png" alt="image-20210605105101191" style="zoom:33%;" /></p>
+</li>
+</ul>
+</li>
+<li><p>正交坐标系（orthonormal coordinate frame）<br>在坐标系下表示一个向量</p>
+<p><img src="Y:\GitBlog\kongkongNG.github.io\source\_posts\图形学101_闫令琪.assets\image-20210605105926837.png" alt="image-20210605105926837" style="zoom:33%;" /></p>
+</li>
+</ul>
 ]]></content>
   </entry>
   <entry>
     <title>leetcode_June</title>
     <url>/2021/06/01/leetcode_June/</url>
-    <content><![CDATA[<p>title: leetcode 六月每日一题<br>tags: leetcode<br>categories: LeetCode</p>
+    <content><![CDATA[<p>title: LeetCode 六月每日一题<br>tags: leetcode<br>categories: LeetCode</p>
 <p>mathjax: true</p>
 <h2 id="1-你能在你最喜欢的那天吃到你最喜欢的糖果吗（Mid）"><a href="#1-你能在你最喜欢的那天吃到你最喜欢的糖果吗（Mid）" class="headerlink" title="*1 你能在你最喜欢的那天吃到你最喜欢的糖果吗（Mid）"></a>*1 你能在你最喜欢的那天吃到你最喜欢的糖果吗（Mid）</h2><p><a href="https://leetcode-cn.com/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/" target="_blank" rel="noopener">1744. 你能在你最喜欢的那天吃到你最喜欢的糖果吗？</a></p>
 <p>解法：前缀和+区间交集</p>
@@ -55,6 +86,7 @@
 <p>只要<strong>两区间有交集</strong>，总有吃法使得在favoriteDay当天吃到favoriteType类的糖。</p>
 <p>边界情况：当favoriteType == 0时，Y的左边界为1，即只要吃一个糖就能吃到第0类</p>
 </blockquote>
+<a id="more"></a>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> LL = <span class="keyword">long</span> <span class="keyword">long</span>;</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; <span class="title">canEat</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; candiesCount, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; queries)</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;LL&gt; <span class="title">sum</span><span class="params">(candiesCount.<span class="built_in">size</span>())</span></span>;</span><br><span class="line">        <span class="comment">// 1. 前缀和</span></span><br><span class="line">        sum[<span class="number">0</span>] = candiesCount[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; candiesCount.<span class="built_in">size</span>(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            sum[i] = sum[i - <span class="number">1</span>] + candiesCount[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 2. 获取queries，比对区间计算ans</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; qr : queries)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> favType = qr[<span class="number">0</span>], favDay = qr[<span class="number">1</span>], dailyCap = qr[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">            LL x1 = favDay + <span class="number">1</span>;</span><br><span class="line">            LL x2 = (LL)(favDay + <span class="number">1</span>) * dailyCap;    <span class="comment">// 需要强转，否则会溢出</span></span><br><span class="line">            LL y1 = (favType == <span class="number">0</span>)? <span class="number">1</span> : sum[favType - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">            LL y2 = sum[qr[<span class="number">0</span>]];</span><br><span class="line"></span><br><span class="line">            ans.push_back(!(x2 &lt; y1 || y2 &lt; x1));	<span class="comment">// 判断</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 3. 返回</span></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>小结：</p>
 <ul>
@@ -2585,9 +2617,11 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode 1071：字符串的最大公因子</title>
+    <title>leetcode_3_13</title>
     <url>/2020/03/18/leetcode_3_13/</url>
-    <content><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><img src="https://ftp.bmp.ovh/imgs/2020/03/e492b17beb0c5a02.png" alt=""></p>
+    <content><![CDATA[<p>title: LeetCode 1071：字符串的最大公因子<br>tags: leetcode<br>categories: LeetCode</p>
+<p>mathjax: true</p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><img src="https://ftp.bmp.ovh/imgs/2020/03/e492b17beb0c5a02.png" alt=""></p>
 <a id="more"></a>
 <h2 id="标准解答-数学-O-n"><a href="#标准解答-数学-O-n" class="headerlink" title="标准解答 数学 $O(n)$"></a>标准解答 数学 $O(n)$</h2><p>首先证明：如果<code>str1+str2</code>等于<code>str2+str1</code>，则一定存在符合条件的字符串<code>X</code>。</p>
 <p>必要性：</p>
@@ -2602,12 +2636,6 @@
 <p>gcd开销$O(logn)$，字符串mod中的for循环外层$O(n/m)$，内层$O(n)$，相乘为$O(n^2/m)$，总共开销为$O(\frac{n^2}{m}logn)$</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://leetcode-cn.com/problems/greatest-common-divisor-of-strings/solution/zi-fu-chuan-de-zui-da-gong-yin-zi-by-leetcode-solu/" target="_blank" rel="noopener">官方题解</a></p>
 ]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-      </tags>
   </entry>
   <entry>
     <title>LeetCode 1160：拼写单词</title>
