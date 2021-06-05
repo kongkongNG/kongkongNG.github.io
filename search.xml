@@ -1,6 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>图形学101_闫令琪</title>
+    <url>/2021/06/02/%E5%9B%BE%E5%BD%A2%E5%AD%A6101_%E9%97%AB%E4%BB%A4%E7%90%AA/</url>
+    <content><![CDATA[<h2 id="Lecture-1-Overview-of-Computer-Graphics"><a href="#Lecture-1-Overview-of-Computer-Graphics" class="headerlink" title="Lecture 1 Overview of Computer Graphics"></a>Lecture 1 Overview of Computer Graphics</h2><p><img src="Y:\GitBlog\kongkongNG.github.io\source\_posts\图形学101_闫令琪.assets\image-20210602100344582.png" alt="image-20210602100344582" style="zoom: 33%;" /></p>
+<p>What is Computer Graphics</p>
+<p>电子游戏、电影、动画、设计、可视化、混合现实、Digital Illustration、 </p>
+<p>仿真、用户界面、Typography（字体）</p>
+<blockquote>
+<p>字体测试常用的句子（包含了所有字母）</p>
+<p>The Quick Brown Fox Jumps Over The Lazy Dog</p>
+</blockquote>
+<p>Why Study Computer Graphics</p>
+<p><img src="Y:\GitBlog\kongkongNG.github.io\source\_posts\图形学101_闫令琪.assets\image-20210602101022407.png" alt="image-20210602101022407" style="zoom:33%;" /></p>
+<p>好看就完事了！</p>
+<p><img src="Y:\GitBlog\kongkongNG.github.io\source\_posts\图形学101_闫令琪.assets\image-20210602101218823.png" alt="image-20210602101218823" style="zoom:33%;" /></p>
+<ul>
+<li><p>光栅化</p>
+<blockquote>
+<p>光栅化：把三维空间的几何形体显示在屏幕上</p>
+</blockquote>
+<p><img src="Y:\GitBlog\kongkongNG.github.io\source\_posts\图形学101_闫令琪.assets\image-20210602101931837.png" alt="image-20210602101931837" style="zoom: 33%;" /></p>
+<blockquote>
+<p>实时：每秒30帧</p>
+</blockquote>
+</li>
+<li><p>曲线和曲面<br><img src="Y:\GitBlog\kongkongNG.github.io\source\_posts\图形学101_闫令琪.assets\image-20210602102012737.png" alt="image-20210602102012737" style="zoom:33%;" /></p>
+</li>
+<li><p>光线追踪</p>
+<p><img src="Y:\GitBlog\kongkongNG.github.io\source\_posts\图形学101_闫令琪.assets\image-20210602101658412.png" alt="image-20210602101658412" style="zoom:33%;" /></p>
+<blockquote>
+<p>tradeoff（取舍）：达成某个目标时牺牲某些效果，比如光线追踪，好看但是慢</p>
+</blockquote>
+</li>
+<li><p>动画/模拟</p>
+<p><img src="Y:\GitBlog\kongkongNG.github.io\source\_posts\图形学101_闫令琪.assets\image-20210602101833478.png" alt="image-20210602101833478" style="zoom: 33%;" /></p>
+</li>
+</ul>
+<p>图形学和计算机视觉</p>
+<p><img src="Y:\GitBlog\kongkongNG.github.io\source\_posts\图形学101_闫令琪.assets\image-20210602103322246.png" alt="image-20210602103322246" style="zoom: 50%;" /></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>leetcode_June</title>
+    <url>/2021/06/01/leetcode_June/</url>
+    <content><![CDATA[<p>title: leetcode 六月每日一题<br>tags: leetcode<br>categories: LeetCode</p>
+<p>mathjax: true</p>
+<h2 id="1-你能在你最喜欢的那天吃到你最喜欢的糖果吗（Mid）"><a href="#1-你能在你最喜欢的那天吃到你最喜欢的糖果吗（Mid）" class="headerlink" title="*1 你能在你最喜欢的那天吃到你最喜欢的糖果吗（Mid）"></a>*1 你能在你最喜欢的那天吃到你最喜欢的糖果吗（Mid）</h2><p><a href="https://leetcode-cn.com/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/" target="_blank" rel="noopener">1744. 你能在你最喜欢的那天吃到你最喜欢的糖果吗？</a></p>
+<p>解法：前缀和+区间交集</p>
+<p>原理：</p>
+<blockquote>
+<p>favoriteDay内吃糖的总数区间 X = [favoriteDay + 1， (favoriteDay + 1) * dailyCap]，即左边界为每天只吃一个，右边界为每天吃到最大</p>
+<p>可以吃到favoriteType的区间 Y = [sum[favoriteType - 1] + 1, sum[favoriteType]]，即最少只吃到一个，最多吃到最后一个（吃完）</p>
+<p>只要<strong>两区间有交集</strong>，总有吃法使得在favoriteDay当天吃到favoriteType类的糖。</p>
+<p>边界情况：当favoriteType == 0时，Y的左边界为1，即只要吃一个糖就能吃到第0类</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> LL = <span class="keyword">long</span> <span class="keyword">long</span>;</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; <span class="title">canEat</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; candiesCount, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; queries)</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;LL&gt; <span class="title">sum</span><span class="params">(candiesCount.<span class="built_in">size</span>())</span></span>;</span><br><span class="line">        <span class="comment">// 1. 前缀和</span></span><br><span class="line">        sum[<span class="number">0</span>] = candiesCount[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; candiesCount.<span class="built_in">size</span>(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            sum[i] = sum[i - <span class="number">1</span>] + candiesCount[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 2. 获取queries，比对区间计算ans</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; qr : queries)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> favType = qr[<span class="number">0</span>], favDay = qr[<span class="number">1</span>], dailyCap = qr[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">            LL x1 = favDay + <span class="number">1</span>;</span><br><span class="line">            LL x2 = (LL)(favDay + <span class="number">1</span>) * dailyCap;    <span class="comment">// 需要强转，否则会溢出</span></span><br><span class="line">            LL y1 = (favType == <span class="number">0</span>)? <span class="number">1</span> : sum[favType - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">            LL y2 = sum[qr[<span class="number">0</span>]];</span><br><span class="line"></span><br><span class="line">            ans.push_back(!(x2 &lt; y1 || y2 &lt; x1));	<span class="comment">// 判断</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 3. 返回</span></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>小结：</p>
+<ul>
+<li>时间复杂度$O(n)$， 空间复杂度$O(n)$</li>
+<li>使用<strong>区间交集</strong>的解法判断在一定约束条件下能否满足特定取物行为。</li>
+</ul>
+<h2 id="2-连续子数组的和（Mid）"><a href="#2-连续子数组的和（Mid）" class="headerlink" title="2 连续子数组的和（Mid）"></a>2 连续子数组的和（Mid）</h2><p><a href="https://leetcode-cn.com/problems/continuous-subarray-sum/" target="_blank" rel="noopener">523. 连续的子数组和</a></p>
+<p>思路类似May_25中涉及到的题目<a href="https://leetcode-cn.com/problems/subarray-sum-equals-k/" target="_blank" rel="noopener">560. 和为K的子数组</a></p>
+<p>解法：前缀和+哈希</p>
+<p>原理</p>
+<blockquote>
+<p>子数组的和可以表示为 sum = pre[i] - pre[j - 1]</p>
+<p>要找到 sum = n * k，变换一下等式，即找到 pre[j - 1] = pre[i] - nk</p>
+<p>两边同模k，得<strong>pre[j - 1] % k = pre[i] % k</strong></p>
+<p>因此将前缀和模k作为哈希表的key，最早出现的下标作为value，从左往右遍历查表即可</p>
+<p>初始情况：哈希表mp[0] = -1，即最早出现前缀和模k为0的位置是-1（若遍历到i时查到此值，表示从0到i的子数组之和满足题意）</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkSubarraySum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 1. hash存前缀和%k；2. 查是否存在pre[i]%k的值</span></span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; mp;</span><br><span class="line">        <span class="comment">// int pre = nums[0];</span></span><br><span class="line">        <span class="keyword">int</span> pre = <span class="number">0</span>;</span><br><span class="line">        mp[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            pre = (pre + nums[i]) % k;</span><br><span class="line">            <span class="keyword">if</span> (mp.<span class="built_in">find</span>(pre) != mp.<span class="built_in">end</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (i - mp[pre] &gt;= <span class="number">2</span>)</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                mp[pre] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="3-连续数组-（Mid）"><a href="#3-连续数组-（Mid）" class="headerlink" title="3 连续数组 （Mid）"></a>3 连续数组 （Mid）</h2><p><a href="https://leetcode-cn.com/problems/contiguous-array/" target="_blank" rel="noopener">525. 连续数组</a></p>
+<p>解法：前缀和+哈希</p>
+<p>原理：</p>
+<blockquote>
+<p>将数组中的0替换为-1，则问题转化为：计算和为0的子数组最大长度</p>
+<p>令前缀和为pre，只需令[i..j]的前缀和pre[i] - pre[j - 1] = 0，即找到pre[j - 1 = pre[i]</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMaxLength</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 1. 0替换为-1</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; x : nums)</span><br><span class="line">        &#123;</span><br><span class="line">            x = (x == <span class="number">0</span>)? <span class="number">-1</span> : x;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 2. 哈希记录所有前缀和的下标</span></span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; mp;</span><br><span class="line">        <span class="keyword">int</span> pre = <span class="number">0</span>;</span><br><span class="line">        mp[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">        <span class="comment">// 3. 找相等，计算长度</span></span><br><span class="line">        <span class="keyword">int</span> maxLen = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            pre += nums[i];</span><br><span class="line">            <span class="keyword">if</span> (mp.<span class="built_in">find</span>(pre) != mp.<span class="built_in">end</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                maxLen = <span class="built_in">max</span>(i - mp[pre], maxLen);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                mp[pre] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxLen;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>但是上述代码存在缺陷：修改了传入的数组，根据题解思路进行优化，只在计算时替换数值：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMaxLength</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 哈希记录所有前缀和的下标</span></span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; mp;</span><br><span class="line">        <span class="keyword">int</span> pre = <span class="number">0</span>;</span><br><span class="line">        mp[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 找相等，计算长度</span></span><br><span class="line">        <span class="keyword">int</span> maxLen = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            pre += (nums[i] == <span class="number">0</span>)? <span class="number">-1</span> : <span class="number">1</span>;  <span class="comment">// **计算前缀和时进行替换</span></span><br><span class="line">            <span class="keyword">if</span> (mp.<span class="built_in">find</span>(pre) != mp.<span class="built_in">end</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                maxLen = <span class="built_in">max</span>(i - mp[pre], maxLen);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                mp[pre] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxLen;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>小结：</p>
+<ul>
+<li>时间复杂度$O(n)$，空间复杂度$O(n)$</li>
+<li>前缀和+哈希刻进了DNA里</li>
+</ul>
+<h2 id="4-相交链表（Easy）"><a href="#4-相交链表（Easy）" class="headerlink" title="4 相交链表（Easy）"></a>4 相交链表（Easy）</h2><p><a href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/" target="_blank" rel="noopener">160. 相交链表</a></p>
+<p>解法一：提前步进</p>
+<p>原理</p>
+<blockquote>
+<p>假设两个链表长度分别为len1，len2且有len1 &gt; len2，令长的一方先走len1 - len2步，此时双方同时前进，到达相同位置即为相交点</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode *<span class="title">getIntersectionNode</span><span class="params">(ListNode *headA, ListNode *headB)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 1 区分长和短方</span></span><br><span class="line">        <span class="keyword">int</span> lenA = <span class="number">0</span>, lenB = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> p = headA; p != <span class="literal">NULL</span>; p = p-&gt;next, lenA++);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> p = headB; p != <span class="literal">NULL</span>; p = p-&gt;next, lenB++);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2 计算长度差delta，长的一方提前走delta步</span></span><br><span class="line">        ListNode *p, *q;</span><br><span class="line">        <span class="keyword">int</span> delta;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (lenA &gt; lenB)</span><br><span class="line">        &#123;</span><br><span class="line">            delta = lenA - lenB;</span><br><span class="line">            <span class="keyword">for</span> (p = headA; delta &gt; <span class="number">0</span>; p = p-&gt;next, delta--);</span><br><span class="line">            q = headB;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (lenA &lt; lenB)</span><br><span class="line">        &#123;</span><br><span class="line">            delta = lenB - lenA;</span><br><span class="line">            <span class="keyword">for</span> (p = headB; delta &gt; <span class="number">0</span>; p = p-&gt;next, delta--);</span><br><span class="line">            q = headA;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            p = headA;</span><br><span class="line">            q = headB;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 3 双方同时步进并比较</span></span><br><span class="line">        <span class="keyword">while</span> (p != <span class="literal">NULL</span> &amp;&amp; q != <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (p == q)</span><br><span class="line">                <span class="keyword">return</span> p;</span><br><span class="line">            p = p-&gt;next; q = q-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>时间复杂度$O(n)$，空间复杂度$O(1)$</li>
+</ul>
+<p>解法二（题解）：双指针</p>
+<p>做法：</p>
+<blockquote>
+<ul>
+<li><p>每步操作需要同时更新指针pA 和 pB；</p>
+</li>
+<li><p>如果指针pA不为空，则将指针pA移到下一个节点；如果指针pB不为空，则将指针pB移到下一个节点。</p>
+</li>
+<li><p>如果指针pA为空，则将指针pA移到链表headB的头节点；如果指针pB为空，则将指针pB移到链表 headA的头节点。</p>
+</li>
+<li><p>当指针pA和pB指向同一个节点或者都为空时，返回它们指向的节点或者null。</p>
+</li>
+</ul>
+</blockquote>
+<p>原理：</p>
+<blockquote>
+<p>设链表A和B不同的部分分别为a，b，相同的部分为c</p>
+<p>若A和B相交，pA走过的部分为a+c+b，pB走过的部分为b+c+a，此时pA和pB都会走到相交点的位置；</p>
+<p>若A和B不相交，pA走过a+b，pB走过b+a，二者都会到达链表尾，返回NULL</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode *<span class="title">getIntersectionNode</span><span class="params">(ListNode *headA, ListNode *headB)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (headA == <span class="literal">NULL</span> || headB == <span class="literal">NULL</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">        ListNode *pA = headA, *pB = headB;</span><br><span class="line">        <span class="keyword">while</span> (pA != pB)</span><br><span class="line">        &#123;</span><br><span class="line">            pA = (pA == <span class="literal">NULL</span>)? headB : pA-&gt;next;</span><br><span class="line">            pB = (pB == <span class="literal">NULL</span>)? headA : pB-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pA;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>时间复杂度$O(n)$，空间复杂度$O(1)$。</li>
+</ul>
+<h2 id="5-移除链表元素（Easy）"><a href="#5-移除链表元素（Easy）" class="headerlink" title="5 移除链表元素（Easy）"></a>5 移除链表元素（Easy）</h2><p><a href="https://leetcode-cn.com/problems/remove-linked-list-elements/" target="_blank" rel="noopener">203. 移除链表元素</a></p>
+<p>解法一：迭代+哑结点</p>
+<p>原理：</p>
+<blockquote>
+<p>哑结点是head前的一个辅助结点，使用哑结点就不用考虑删除head的特殊情况了</p>
+<p>从哑结点开始遍历，寻找待删除结点的前一个结点p，由 <code>p.next = p.next.next</code> 即可删除</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">removeElements</span><span class="params">(ListNode* head, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 1 插入哑结点</span></span><br><span class="line">        ListNode *dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>, head);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2 遍历</span></span><br><span class="line">        <span class="keyword">auto</span> p = dummy;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (p-&gt;next != <span class="literal">nullptr</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (p-&gt;next-&gt;val == val)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">auto</span> q = p-&gt;next;</span><br><span class="line">                p-&gt;next = q-&gt;next;	<span class="comment">// 软删除</span></span><br><span class="line">                <span class="keyword">delete</span>(q);		<span class="comment">// 硬删除</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                p = p-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 3 更新头</span></span><br><span class="line">        head = dummy-&gt;next;</span><br><span class="line">        <span class="keyword">delete</span>(dummy);		<span class="comment">// 删除哑结点</span></span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>小结：</p>
+<ul>
+<li>时间复杂度$O(n)$，空间复杂度$O(1)$</li>
+<li>哑结点yyds！！</li>
+</ul>
+<p>解法二（题解）：递归</p>
+<p>原理：</p>
+<blockquote>
+<p>利用链表的递归性质，先操作 <code>head-&gt;next</code>，再判断 <code>head</code>。递归边界为 <code>head == nullptr</code></p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">removeElements</span><span class="params">(ListNode* head, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        head-&gt;next = removeElements(head-&gt;next, val);</span><br><span class="line">        <span class="keyword">return</span> head-&gt;val == val ? head-&gt;next : head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>小结</p>
+<ul>
+<li>时间复杂度$O(n)$，空间复杂度$O(n)$（递归调用栈最多n层）</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>C++trick_methods</title>
     <url>/2021/04/21/C++trick_methods/</url>
     <content><![CDATA[<p>title: C++ Trick Methods</p>
@@ -15,8 +162,10 @@
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;numeric&gt;</span></span></span><br><span class="line"><span class="function"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; <span class="title">data</span><span class="params">(<span class="number">9</span>)</span></span>;</span><br><span class="line"><span class="keyword">double</span> initial &#123;<span class="number">-4</span>&#125;;</span><br><span class="line"><span class="built_in">std</span>::iota (<span class="built_in">std</span>::<span class="built_in">begin</span> (data) , <span class="built_in">std</span>::<span class="built_in">end</span> (data) , initial);</span><br><span class="line"><span class="comment">// -4.0 -3.0 -2.0 -1.0 0.0 1.0 2.0 3.0 4.0</span></span><br></pre></td></tr></table></figure>
 <h2 id="使用ostream-iterator输出容器"><a href="#使用ostream-iterator输出容器" class="headerlink" title="使用ostream_iterator输出容器"></a>使用ostream_iterator输出容器</h2><p><a href="https://www.jianshu.com/p/c14f60ee3527" target="_blank" rel="noopener">https://www.jianshu.com/p/c14f60ee3527</a></p>
-<p>头文件<code>#include &lt;iterator&gt;</code></p>
+<p>头文件：<code>#include &lt;iterator&gt;</code></p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iterator&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; data = &#123; <span class="number">1</span>, <span class="number">21</span>, <span class="number">31</span>, <span class="number">41</span>, <span class="number">51</span>, <span class="number">61</span>, <span class="number">71</span>, <span class="number">81</span> &#125;;</span><br><span class="line">	<span class="comment">// 定义ostream_iterator，第一个参数是流文件，第二个是分隔符</span></span><br><span class="line">    <span class="function"><span class="built_in">std</span>::ostream_iterator&lt;<span class="keyword">int</span>&gt; <span class="title">dataIter</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">cout</span>, <span class="string">", "</span>)</span></span>;</span><br><span class="line">	<span class="comment">// 使用copy将迭代器复制到ostream</span></span><br><span class="line">    <span class="built_in">std</span>::copy(data.<span class="built_in">begin</span>(), data.<span class="built_in">end</span>(), dataIter);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="STL汇总"><a href="#STL汇总" class="headerlink" title="STL汇总"></a>STL汇总</h2><p>数组反转</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">reverse(stl.<span class="built_in">begin</span>(), stl.<span class="built_in">end</span>());</span><br></pre></td></tr></table></figure>
 ]]></content>
   </entry>
   <entry>
